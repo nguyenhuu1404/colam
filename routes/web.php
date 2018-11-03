@@ -19,3 +19,7 @@ Route::get('/home', 'HomeController@index');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
+    Route::get('/', 'HomeController@index')->name('home.index');
+});
