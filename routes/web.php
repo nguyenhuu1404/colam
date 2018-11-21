@@ -11,15 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home', 'HomeController@index');
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
 Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
+    Auth::routes();
+    Route::get('login/facebook', 'Auth\LoginController@redirectToProviderFacebook');
+    Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallbackFacebook');
+    Route::get('login/google', 'Auth\LoginController@redirectToProviderGoogle');
+    Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallbackGoogle');
+
     Route::get('/', 'HomeController@index')->name('home.index');
+
 });
+
+
+

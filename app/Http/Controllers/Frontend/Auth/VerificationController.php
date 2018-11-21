@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Frontend\Auth;
 
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller
@@ -15,7 +14,7 @@ class VerificationController extends Controller
     |
     | This controller is responsible for handling email verification for any
     | user that recently registered with the application. Emails may also
-    | be resent if the user did not receive the original email message.
+    | be re-sent if the user didn't receive the original email message.
     |
     */
 
@@ -26,7 +25,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
