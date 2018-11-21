@@ -1,0 +1,10 @@
+Tải code từ git về
+git clone ...
+
+Đồng bộ code, lấy code của t khác viết
+git pull
+
+commit code lên
+git add .
+git commit -am "comment"
+git push
