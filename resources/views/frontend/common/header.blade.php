@@ -2,7 +2,7 @@
 				<div class="container">
 					<nav class="navbar navbar-expand-lg navbar-light">
 						<a class="navbar-brand" href="/">
-							<img src="/images/logo.png" alt="logo">
+							<img src="{{ Storage::url(setting('site.logo')) }}" alt="logo">
 						</a>
 						<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 							<i class="fa fa-bars"></i>
@@ -13,7 +13,7 @@
 								<?php
 								echo menu('topmenu', 'topmenu');
 								?>
-								
+
 								<li class="nav-item d-flex align-items-center">
 									<div class="search-nav">
 										<button type="button" class="btn-search toggle-search"><i class="fa fa-search"></i></button>
@@ -39,7 +39,7 @@
 											<div class="modal-content f7fbfe">
 												<div class="modal-header border-0">
 													<h5 class="modal-title text-sign mt-3 text-uppercase w-100 text-center" id="loginLabel">Đăng nhập</h5>
-													
+
 												</div>
 												<div class="modal-body">
 													<div class="row">
@@ -48,7 +48,7 @@
                         									@csrf
 															<div class="form-group">
 																<div class="input-group">
-																	
+
 																	<input id="email" type="email" class="sign-input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Tài khoản" />
 
 																	@if ($errors->has('email'))
@@ -61,7 +61,7 @@
 															</div>
 															<div class="form-group">
 																<div class="input-group">
-																	
+
 																	 <input id="password" type="password" class="sign-input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Mật khẩu" required />
 
 																	@if ($errors->has('password'))
@@ -83,9 +83,9 @@
 																<a class="float-right" href="{{ route('frontend.password.request') }}">Quên mật khẩu?</a>
 															</div>
 
-														</form>	
+														</form>
 
-															
+
 
 															<div class="mb-5">Bạn chưa có tài khoản? <a onclick="register();" data-toggle="modal" data-target="#signup" class="text-danger" href="#">Đăng ký ngay!</a></div>
 
@@ -102,10 +102,10 @@
 														</div>
 													</div>
 
-													
-													
+
+
 												</div>
-											
+
 											</div>
 										</div>
 									</div>
@@ -115,7 +115,7 @@
 											<div class="modal-content f7fbfe">
 												<div class="modal-header border-0">
 													<h5 class="modal-title text-sign mt-3 text-uppercase w-100 text-center" id="loginLabel">Đăng ký tài khoản</h5>
-													
+
 												</div>
 												<div class="modal-body">
 													<div class="row">
@@ -135,7 +135,7 @@
 															</div>
 															<div class="form-group">
 																<div class="input-group">
-																	
+
 																	<input placeholder="Địa chỉ mail" id="email" type="email" class="sign-input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
 																	@if ($errors->has('email'))
@@ -148,7 +148,7 @@
 															</div>
 															<div class="form-group">
 																<div class="input-group">
-																	
+
 																	<input placeholder="Mật khẩu" id="password" type="password" class="sign-input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required />
 
 																	@if ($errors->has('password'))
@@ -161,7 +161,7 @@
 															<div class="form-group">
 																<div class="input-group">
 																	<input placeholder="Nhập lại mật khẩu" id="password-confirm" type="password" class="sign-input form-control" name="password_confirmation" required />
-																	 
+
 																</div>
 															</div>
 
@@ -169,20 +169,20 @@
 																<input type="submit" class="btn signin btn-lg btn-primary btn-block" value="Tạo tài khoản">
 															</div>
 
-														</form>	
-															
+														</form>
+
 														</div>
 													</div>
 
-													
-													
+
+
 												</div>
-											
+
 											</div>
 										</div>
 									</div>
 									@else
-									<button type="button" class="info-user">	
+									<button type="button" class="info-user">
 										<div class="avatar-user">
 											<img src="/images/avatar.png" alt="avatar">
 										</div>
@@ -211,8 +211,8 @@
 									<div class="hotline-nav">
 										<img src="/images/icon-phone.png" alt="icon hotline">
 										<div class="text-hotline">
-											<span>0982 735 392</span>
-											8h - 22h hàng ngày
+											<span>{{ setting('site.hotline') }}</span>
+											{{ setting('site.open_time') }}
 										</div>
 									</div>
 								</li>

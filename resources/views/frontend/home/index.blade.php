@@ -1,35 +1,23 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-<section class="banner">
-				<div>
-					<img src="/images/slider-1.jpg">
-					<div class="title-description">
-						<div class="container">
-							<h2 class="title-slider">HỌC TIẾNG NHẬT</h2>
-							<a href="" class="btn-slider ml-3">chưa bao giờ dễ đến thế</a>
-						</div>
-					</div>
-				</div>
-				<div>
-					<img src="/images/slider-1.jpg">
-					<div class="title-description">
-						<div class="container">
-							<h2 class="title-slider">HỌC TIẾNG NHẬT</h2>
-							<a href="" class="btn-slider ml-3">chưa bao giờ dễ đến thế</a>
-						</div>
-					</div>
-				</div>
-				<div>
-					<img src="/images/slider-1.jpg">
-					<div class="title-description">
-						<div class="container">
-							<h2 class="title-slider">HỌC TIẾNG NHẬT</h2>
-							<a href="" class="btn-slider ml-3">chưa bao giờ dễ đến thế</a>
-						</div>
-					</div>
-				</div>
-			</section>
+    @isset($banners)
+        <section class="banner">
+            @foreach ($banners as $banner)
+                <div>
+                    <img src="{{ Storage::url($banner['image']) }}">
+                    <div class="title-description">
+                        <div class="container">
+                            <h2 class="title-slider">{{ $banner['title'] }}</h2>
+                            <a href="" class="btn-slider ml-3">{{ $banner['text_button']}}</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        </section>
+    @endisset
+
 			<section class="combo-box">
 				<div class="container">
 					<div class="row">
@@ -74,21 +62,34 @@
 					</div>
 				</div>
 			</section>
+            @php
+                $href = str_replace('\\', '/', setting('gioi-thieu.background_img'));
+                $link_youtube = setting('gioi-thieu.youtube');
+                $youtubeId = substr($link_youtube, strrpos($link_youtube, '=') + 1);
+            @endphp
+            <style>
+                .introduce {
+                    background-image: url( "/storage/{{ $href }}") !important;
+                    background-color: "#{{ setting('gioi-thieu.background_color') }}" !important;
+                }
+            </style>
 			<section class="introduce">
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-3 col-lg-4">
 							<div class="title-introduce">
-								HỌC TIẾNG NHẬT ONLINE
+								{{ setting('gioi-thieu.title') }}
 							</div>
 							<div class="h2">
-								GIỚI THIỆU
+                                {{ setting('gioi-thieu.name') }}
 							</div>
-							<p>Lorem ipsum dollor site amet the best  consectuer adipiscing elites sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat insignia the consectuer adipiscing elit. </p>
-							<a href="#" class="btn-classroom mt-5">LỘ TRÌNH HỌC</a>
+							<p>
+                            {{ setting('gioi-thieu.description') }}
+                            </p>
+							<a href="{{ setting('gioi-thieu.href') }}" class="btn-classroom mt-5">{{ setting('gioi-thieu.button') }}</a>
 						</div>
 						<div class="col-xl-9 col-lg-8">
-							<iframe class="iframe" height="450" src="https://www.youtube.com/embed/yU6BSPNnuWA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							<iframe class="iframe" height="450" src="https://www.youtube.com/embed/{{$youtubeId}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</div>
 					</div>
 				</div>
