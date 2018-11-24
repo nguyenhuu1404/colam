@@ -17,40 +17,49 @@
 
         </section>
     @endisset
+        @isset($recomand)
+        @php
+        $sale = false;
+        if(isset($recomand['price_sale'])){
+            $sale = floor(($recomand['price_sale'] * 100) / $recomand['price']);
+        }
 
+        @endphp
 			<section class="combo-box">
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-7 col-lg-7 d-flex">
 							<div class="thumbnail-img">
-								<img src="/images/img-thumbnail-1.png" alt="">
+								<img src="{{ Storage::url($recomand['image']) }}" alt="">
 							</div>
 							<div class="content-combo">
-								<h4 class="title-combo">COMBO N4 + N5</h4>
-								<span class="sale-combo">SALE 30%</span>
-								<div class="info-combo">
+								<h4 class="title-combo">{{$recomand['name']}}</h4>
+								@isset($sale)
+                                <span class="sale-combo">SALE {{100-$sale}}%</span>
+								@endisset
+                                <div class="info-combo">
 									<div class="item-info-combo">
 										<i><img src="/images/icon-hours.png" alt="icon"></i>
-										Thời hạn: 10 tháng
+										Thời hạn: {{$recomand['time']}} tháng
 									</div>
 									<div class="item-info-combo">
 										<i><img src="/images/icon-video.png" alt="icon"></i>
-										Video: 150
+										Video: {{$recomand['video_number']}}
 									</div>
 									<div class="item-info-combo">
 										<i><img src="/images/icon-3code.png" alt="icon"></i>
-										Mã số: CL45N
+										Mã số: {{$recomand['code']}}
 									</div>
 									<div class="item-info-combo">
 										<i><img src="/images/icon-file.png" alt="icon"></i>
-										Bài test: 50
+										Bài test: {{$recomand['test_number']}}
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-xl-5 col-lg-5">
 							<div class="price-combo">
-								<div class="sale-price-combo">890.000 vnđ</div>
+								<div class="sale-price-combo">800.000 vnđ</div>
 								<p class="text-only-price-combo">chỉ còn</p>
 								<div class="after-salce-price-combo">600.000 vnđ</div>
 								<div class="group-btn-combo">
@@ -62,6 +71,7 @@
 					</div>
 				</div>
 			</section>
+        @endisset
             @php
                 $href = str_replace('\\', '/', setting('gioi-thieu.background_img'));
                 $link_youtube = setting('gioi-thieu.youtube');
