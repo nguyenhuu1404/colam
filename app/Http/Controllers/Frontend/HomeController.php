@@ -22,7 +22,8 @@ class HomeController extends Controller
             $data['recomand']['course_id'] = $courses['id'];
             $data['recomand']['course_slug'] = $courses['slug'];
         }
-
+        $data['tryLessons'] = Lesson::where(['status'=> 1, 'is_home'=>1, 'trial' => 1])->get()->toArray();
+        //dd($data['TryLessons']);
         return view('frontend.home.index', $data);
     }
 }

@@ -15,7 +15,7 @@ class Lesson extends Model
         return $this->belongsTo(self::class);
     }
     function courses(){
-        return $this->belongsToMany('App\Courses', 'course_lesson', 'lession_id', 'course_id');
+        return $this->belongsToMany('App\Course', 'course_lesson', 'lesson_id', 'course_id');
     }
     function tests() {
         return $this->hasMany('App\Test', 'test_id', 'id');

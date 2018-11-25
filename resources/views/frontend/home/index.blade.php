@@ -353,56 +353,20 @@
 							<div class="body-try">
 								<div class="row">
 									<div class="col-xl-6 left-try-it">
-										<div class="item-try-it active">
-											<div class="thumbnail-tryit">
-												<img src="/images/img-try-it.png">
-											</div>
-											<div class="content-try-it">
-												<div class="h4">N6</div>
-												<p class="tilte-post">Tiếng Nhật cho người đi làm</p>
-												<div class="code-id">Mã số: CL45N</div>
-											</div>
-										</div>
-										<div class="item-try-it">
-											<div class="thumbnail-tryit">
-												<img src="/images/img-try-it-2.png">
-											</div>
-											<div class="content-try-it">
-												<div class="h4">N2</div>
-												<p class="tilte-post">Tiếng Nhật qua bài hát</p>
-												<div class="code-id">Mã số: CL45N</div>
-											</div>
-										</div>
-										<div class="item-try-it">
-											<div class="thumbnail-tryit">
-												<img src="/images/img-try-it-3.png">
-											</div>
-											<div class="content-try-it">
-												<div class="h4">N3</div>
-												<p class="tilte-post">Tiếng Nhật giao tiếp</p>
-												<div class="code-id">Mã số: CL45N</div>
-											</div>
-										</div>
+                                        @foreach($tryLessons as $tryLesson)
+                                        <a href="">
 										<div class="item-try-it">
 											<div class="thumbnail-tryit">
 												<img src="/images/img-try-it.png">
 											</div>
 											<div class="content-try-it">
 												<div class="h4">N6</div>
-												<p class="tilte-post">Tiếng Nhật cho người đi làm</p>
-												<div class="code-id">Mã số: CL45N</div>
+												<p class="tilte-post">{{$tryLesson['name']}}</p>
+												<div class="code-id">Mã số: ss</div>
 											</div>
 										</div>
-										<div class="item-try-it">
-											<div class="thumbnail-tryit">
-												<img src="/images/img-try-it.png">
-											</div>
-											<div class="content-try-it">
-												<div class="h4">N6</div>
-												<p class="tilte-post">Tiếng Nhật cho người đi làm</p>
-												<div class="code-id">Mã số: CL45N</div>
-											</div>
-										</div>
+                                        </a>
+										@endforeach
 
 									</div>
 									<div class="col-xl-6 right-try-it">
