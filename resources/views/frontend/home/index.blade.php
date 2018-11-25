@@ -320,6 +320,7 @@
                 });
             </script>
 
+            @if($trialLessons)
 			<section class="try-it">
 				<div class="container">
 					<div class="row">
@@ -389,6 +390,8 @@
                     $(that).addClass('active');
                 }
             </script>
+            @endif
+
 			<section class="course-payment">
 				<div class="container">
 					<div class="row">
