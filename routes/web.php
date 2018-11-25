@@ -22,7 +22,14 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
     Route::get('login/google', 'Auth\LoginController@redirectToProviderGoogle');
     Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallbackGoogle');
 
+    Route::get('khoa-hoc/combo/{id}-{slug}', 'PackageController@combo')->where(['id' => '[0-9]+']);
+    Route::get('thanh-toan/{id}-{slug}', 'PaymentController@index')->where(['id' => '[0-9]+']);
+
+    //Route::get('/users/{id}', 'UserController@show')->where('id','[0-9]+')->name('user.show');
+    //Route::put('/users/{id}', 'UserController@update')->name('user.update');
+
     Route::get('tin-tuc', 'NewController@index');
+
 
     Route::get('/', 'HomeController@index')->name('home.index');
 

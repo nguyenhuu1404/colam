@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use TCG\Voyager\Facades\Voyager;
+use App\FormFields\SelectparentFormField;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        Voyager::addFormField(SelectparentFormField::class);
     }
 }

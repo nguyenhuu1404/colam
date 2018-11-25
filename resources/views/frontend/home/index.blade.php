@@ -59,13 +59,28 @@
 						</div>
 						<div class="col-xl-5 col-lg-5">
 							<div class="price-combo">
-								<div class="sale-price-combo">800.000 vnđ</div>
+                                @if($recomand['price'] > 0)
+								<div class="sale-price-combo">{{ number_format($recomand['price'], 0, ',', '.') }} vnđ</div>
+                                @endif
+                                @if($recomand['price_sale'] > 0)
 								<p class="text-only-price-combo">chỉ còn</p>
-								<div class="after-salce-price-combo">600.000 vnđ</div>
+								<div class="after-salce-price-combo">{{ number_format($recomand['price_sale'], 0, ',', '.') }} vnđ</div>
+                                @endif
+
+                                @if($recomand['type'] == 'combo')
 								<div class="group-btn-combo">
-									<a href="" class="btn btn-more mr-3">XEM CHI TIẾT</a>
-									<a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
+									<a href="/khoa-hoc/combo/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn btn-more mr-3">XEM CHI TIẾT</a>
+									<a href="/thanh-toan/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn btn-buy">MUA KHÓA HỌC</a>
 								</div>
+                                @else
+                                @php
+
+                                @endphp
+                                <div class="group-btn-combo">
+									<a href="/khoa-hoc/{{ $recomand['course_id'] }}-{{ $recomand['course_slug'] }}" class="btn btn-more mr-3">XEM CHI TIẾT</a>
+									<a href="/thanh-toan/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn btn-buy">MUA KHÓA HỌC</a>
+								</div>
+                                @endif
 							</div>
 						</div>
 					</div>
