@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     $('.js-toggle-search').click(function(){
         $('body').toggleClass('show');
@@ -8,6 +9,7 @@ $(document).ready(function(){
         autoplay: true,
           autoplaySpeed: 5000
     });
+
     $('.slick-class').slick({
         dots: true,
         infinite: false,
@@ -33,7 +35,9 @@ $(document).ready(function(){
                 }
             }
         ]
-    })
+    });
+
+
     $('.slick-user-info').slick({
         dots: true,
         infinite: false,
@@ -43,5 +47,5 @@ $(document).ready(function(){
         autoplay: true,
           autoplaySpeed: 5000,
           arrows: true,
-    })
+    });
 })

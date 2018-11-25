@@ -22,8 +22,29 @@ class HomeController extends Controller
             $data['recomand']['course_id'] = $courses['id'];
             $data['recomand']['course_slug'] = $courses['slug'];
         }
-        $data['tryLessons'] = Lesson::where(['status'=> 1, 'is_home'=>1, 'trial' => 1])->get()->toArray();
-        //dd($data['TryLessons']);
+
+        $trialLessons = Lesson::where(['status'=> 1, 'is_home'=>1, 'trial' => 1])->get();
+        $courseTrialLesson = [];
+        foreach($trialLessons as $lesson){
+            $courseTrialLesson[$lesson['id']] = $lesson->courses()->get()->toArray();
+        }
+        $data['trialLessons'] = $trialLessons->toArray();
+        $data['courseTrialLesson'] = $courseTrialLesson;
+
+        $singlePackages = Package::where(['type' => 'single', 'status' => 1])->get()->toArray();
+            $dataPackages = [];
+            if(count($singlePackages) > 0){
+                foreach($singlePackages as $package){
+                    if($package['course_type'] !== null){
+                        $dataPackages[$package['course_type']][] = $package;
+                    }else{
+                        $dataPackages = $singlePackages;
+                    }
+                }
+            }
+        $data['singlePackages'] = json_encode($dataPackages);
+        $data['courseTypes'] = config('app.courseTypes');
+
         return view('frontend.home.index', $data);
     }
 }

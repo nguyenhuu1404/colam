@@ -139,22 +139,24 @@
 							</div>
 							<div v-if="packageType=='single'" class="class-box">
 								<ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
-                                    @foreach($courseTypes as $courseType)
-									<li v-on:click="packageSlick();" class="nav-item">
-										<a  class="nav-link text-uppercase {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}-tab" data-toggle="tab" href="#{{$courseType}}" role="tab" aria-controls="{{$courseType}}" aria-selected="false">{{$courseType}}</a>
+									<li class="nav-item">
+										<a class="nav-link" id="n3-tab" data-toggle="tab" href="#n3" role="tab" aria-controls="n3" aria-selected="false">N3</a>
 									</li>
-                                    @endforeach
-
+									<li class="nav-item">
+										<a class="nav-link" id="n4-tab" data-toggle="tab" href="#n4" role="tab" aria-controls="n4" aria-selected="false">N4</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" id="n5-tab" data-toggle="tab" href="#n5" role="tab" aria-controls="n5" aria-selected="true">N5</a>
+									</li>
 								</ul>
 								<div class="tab-content" id="myTabContent">
-
-                                    @foreach($courseTypes as $courseType)
-
-									<div  class="tab-pane fade show {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}" role="tabpanel" aria-labelledby="contact-tab">
-										<div id="slick-{{ $courseType}}" class="w-100 slick-class">
-											<div v-for="package in packages.{{$courseType}}" class="w-100 item-class">
+									<div class="tab-pane fade" id="n3" role="tabpanel" aria-labelledby="home-tab">...</div>
+									<div class="tab-pane fade" id="n4" role="tabpanel" aria-labelledby="profile-tab">...</div>
+									<div class="tab-pane fade show active" id="n5" role="tabpanel" aria-labelledby="contact-tab">
+										<div class="row slick-class">
+											<div v-for="package in packages.n5" class="col-xl-12 item-class">
 												<div class="thumbnail-tab-class">
-													<img :src="'/storage/'+package.image" />
+													<img src="/images/img-class.png">
 													<div class="info-class-position">
 														<div class="h3">@{{package.name}}</div>
 														<p>@{{package.time}} tháng</p>
@@ -162,28 +164,27 @@
 												</div>
 												<div class="body-item-class">
 													<div class="title-body-item-class">
-                                                    @{{package.name}} <span v-if="package.title">-</span> @{{package.title}}
+														N5 - Khóa học dành cho sinh viên du học
 														<span class="tuition">học phí: <b>990,000</b></span>
 													</div>
 													<div class="content-item-class">
 														<div class="info-item-class">
 															<div class="duration">L</div>
-															Thời gian học: @{{package.time}} tháng
+															Thời gian học: 4 tháng
 														</div>
 														<div class="info-item-class">
 															<div class="number-video"></div>
-															Số video: @{{package.video_number}}
+															Số video: 123
 														</div>
 														<div class="group-btn-item-class">
-															<a v-bind:href="'/khoa-hoc/'+ package.id+'-'+package.slug" class="btn btn-more mr-2">CHI TIẾT</a>
-															<a v-bind:href="'/thanh-toan/'+ package.id+'-'+package.slug" class="btn btn-buy">MUA KHÓA HỌC</a>
+															<a href="" class="btn btn-more mr-2">CHI TIẾT</a>
+															<a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-                                    @endforeach
 								</div>
 							</div>
 
@@ -191,7 +192,7 @@
                                 <div class="row slick-class">
                                     <div v-for="package in packages" class="col-xl-12 item-class">
                                         <div class="thumbnail-tab-class">
-                                            <img :src="'/storage/'+package.image">
+                                            <img src="/images/img-class.png">
                                             <div class="info-class-position">
                                                 <div class="h3">@{{package.name}}</div>
                                                 <p>@{{package.time}} tháng</p>
@@ -199,22 +200,21 @@
                                         </div>
                                         <div class="body-item-class">
                                             <div class="title-body-item-class">
-                                            @{{package.name}} <span v-if="package.title">-</span> @{{package.title}}
+                                                N5 - Khóa học dành cho sinh viên du học
                                                 <span class="tuition">học phí: <b>990,000</b></span>
                                             </div>
                                             <div class="content-item-class">
                                                 <div class="info-item-class">
                                                     <div class="duration">L</div>
-                                                    Thời gian học: @{{package.time}} tháng
+                                                    Thời gian học: 4 tháng
                                                 </div>
                                                 <div class="info-item-class">
                                                     <div class="number-video"></div>
-                                                    Số video: @{{package.video_number}}
+                                                    Số video: 123
                                                 </div>
-
                                                 <div class="group-btn-item-class">
-                                                    <a v-bind:href="'/khoa-hoc/combo/'+ package.id+'-'+package.slug" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                    <a v-bind:href="'/thanh-toan/'+ package.id+'-'+package.slug" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                    <a href="" class="btn btn-more mr-2">CHI TIẾT</a>
+                                                    <a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -242,37 +242,7 @@
                         packages: {!!$singlePackages!!},
                         packageType: 'single',
                     },
-
                     methods: {
-                        packageSlick: function(){
-                            var vm = this;
-                            setTimeout(function() {
-                                $(vm.$el).find('.slick-class').slick({
-                                    speed: 300,
-                                    slidesToShow: 3,
-                                    slidesToScroll: 3,
-                                    autoplay: true,
-                                    autoplaySpeed: 5000,
-                                    arrows: true,
-                                    responsive: [
-                                        {
-                                        breakpoint: 768,
-                                        settings: {
-                                            slidesToShow: 2,
-                                            slidesToScroll: 2
-                                        }
-                                        },
-                                        {
-                                        breakpoint: 480,
-                                            settings: {
-                                                slidesToShow: 1,
-                                                slidesToScroll: 1
-                                            }
-                                        }
-                                    ]
-                                });
-                            }, 100);
-                        },
                         getPackages: function(){
                             if(this.packageType == 'single'){
                                 this.packageType = 'combo';
@@ -287,7 +257,8 @@
                                 vm2 = vm;
                                 setTimeout(function() {
                                 $(vm2.$el).find('.slick-class').slick({
-
+                                    //dots: true,
+                                    infinite: false,
                                     speed: 300,
                                     slidesToShow: 3,
                                     slidesToScroll: 3,
@@ -311,7 +282,7 @@
                                         }
                                     ]
                                 });
-                            }, 1);
+                            }, 0);
 
                             });
 
@@ -336,44 +307,34 @@
 									</select>
 								</div-->
 							</div>
-							<div class="body-try w-100">
+							<div class="body-try">
 								<div class="row">
-									<div class="col-xl-6 pointer left-try-it">
-                                        @foreach($trialLessons as $indexKey => $trialLesson)
-                                        <?php
-
-                                             $link_youtube = $trialLesson['youtube'];
-                                             $youtubeId = substr($link_youtube, strrpos($link_youtube, '=') + 1);
-                                        ?>
-										<div onclick="videoTrial(this, '<?= $youtubeId ?>')" class="item-try-it {{ ($indexKey == 0) ? 'active' : '' }}">
+									<div class="col-xl-6 left-try-it">
+                                        @foreach($tryLessons as $tryLesson)
+                                        <a href="">
+										<div class="item-try-it">
 											<div class="thumbnail-tryit">
-												<img src="{{ Storage::url($trialLesson['image']) }}">
-                                            </div>
-
+												<img src="/images/img-try-it.png">
+											</div>
 											<div class="content-try-it">
-												<div class="h4">
-                                                    <?php
-                                                    $courses = $courseTrialLesson[$trialLesson['id']];
-                                                    if(count($courses) > 0){
-                                                        $courseName = [];
-                                                        foreach($courses as $course){
-                                                            $courseName[] = $course['name'];
-                                                        }
-                                                        echo implode(', ', $courseName);
-                                                    }
-                                                    ?>
-                                                </div>
-												<p class="tilte-post">{{$trialLesson['name']}}</p>
-                                            </div>
-
+												<div class="h4">N6</div>
+												<p class="tilte-post">{{$tryLesson['name']}}</p>
+												<div class="code-id">Mã số: ss</div>
+											</div>
 										</div>
+                                        </a>
 										@endforeach
 
 									</div>
 									<div class="col-xl-6 right-try-it">
 										<div class="video-tryit">
-
-                                        <iframe id="videoTrial" class="w-100" height="460px;" src="https://www.youtube.com/embed/{{ getYoutubeId($trialLessons[0]['youtube'])}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											<div class="star-video">
+												<i class="fa fa-star"></i>
+												N5
+											</div>
+											<div class="content-video-tryit">
+												<img src="/images/video.png">
+											</div>
 										</div>
 									</div>
 								</div>
@@ -381,14 +342,7 @@
 						</div>
 					</div>
 				</div>
-            </section>
-            <script>
-                function videoTrial(that, youtubeId){
-                    $('#videoTrial').attr('src', 'https://www.youtube.com/embed/'+youtubeId);
-                    $('.item-try-it').removeClass('active');
-                    $(that).addClass('active');
-                }
-            </script>
+			</section>
 			<section class="course-payment">
 				<div class="container">
 					<div class="row">

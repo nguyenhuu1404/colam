@@ -22,7 +22,7 @@
     @yield('styles')
 </head>
 <body>
-	
+
 	<div class="container-fluid">
 		<div class="row">
             @include('frontend.common.header')
