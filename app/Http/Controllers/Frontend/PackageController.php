@@ -9,7 +9,7 @@ use App\Package;
 class PackageController extends Controller
 {
     public function combo(){
-        echo 1;
+        return view('frontend.packages.combo');
     }
     public function index(){
         return view('frontend.packages.index');

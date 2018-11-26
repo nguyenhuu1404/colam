@@ -20,6 +20,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-3">
+                    <a class="btn btn-danger" href="">Mua khóa học này</a>
+                    <a  href=""><h2 class="btn btn-danger">Xem thêm các khóa học khác</h2> </a>
                     <div class="title-slidebar">Tiến trình học</div>
                     <div class="section-sb-current">
                         <ul class="section-sb-list">
@@ -48,53 +50,19 @@
                     </div>
                 </div>
                 <div class="col-xl-9 pd-0-30">
-                    <div class="title-content-lesson">
-                        <div class="left-title-lesson">
-                            <div class="h2">N5</div>
-                            <span>4 tháng</span>
-                        </div>
-                        <div class="right-title-lesson">
-                            <div>
-                                <div class="h3">Bài 2 - Hiragana Ta,Chi,Tsu,Te,To</div>
-                                <p>15 lượt xem </p>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class='w-100 left-title-lesson'>Khóa học N5</h2>
+
+                    <div class="alert alert-primary ">Giới thiệu lộ trình học</div>
+
                     <div class="body-content-lesson">
                         <div class="row">
-                            <div class="col-xl-7 bd-top-gray p-0">
-                                <div class="info-combo border-top-0 mt-0">
-                                    <div class="item-info-combo">
-                                        <i><img src="/images/icon-hours.png" alt="icon"></i>
-                                        Thời hạn: 10 tháng
-                                    </div>
-                                    <div class="item-info-combo">
-                                        <i><img src="/images/icon-video.png" alt="icon"></i>
-                                        Video: 150
-                                    </div>
-                                    <div class="item-info-combo">
-                                        <i><img src="/images/icon-3code.png" alt="icon"></i>
-                                        Mã số: CL45N
-                                    </div>
-                                    <div class="item-info-combo">
-                                        <i><img src="/images/icon-file.png" alt="icon"></i>
-                                        Bài test: 50
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-5 d-flex align-items-center justify-content-end bd-top-gray">
-                                <img src="/images/icon-clock-hour.png">
-                                Còn lại: <b>85 ngày</b>
-                            </div>
-                            <div class="col-xl-12 mt-5 p-0">
+                            <div class="col-xl-12 p-0">
                                 <iframe class="iframe" height="450" src="https://www.youtube.com/embed/yU6BSPNnuWA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                                 <div class="description-body-content-lesson">
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat.
                                 </div>
-                                <div class="form-group text-center mt-5">
-                                    <button type="button" class="btn btn-test">Làm bài Test</button>
-                                </div>
+
                             </div>
 
                             <div class="col-xl-12 p-0">
