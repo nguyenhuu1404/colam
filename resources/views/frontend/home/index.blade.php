@@ -140,7 +140,7 @@
 							<div v-if="packageType=='single'" class="class-box">
 								<ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
                                     @foreach($courseTypes as $courseType)
-									<li v-on:click="packageSlick();" class="nav-item">
+									<li class="nav-item">
 										<a  class="nav-link text-uppercase {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}-tab" data-toggle="tab" href="#{{$courseType}}" role="tab" aria-controls="{{$courseType}}" aria-selected="false">{{$courseType}}</a>
 									</li>
                                     @endforeach
