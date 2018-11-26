@@ -42,7 +42,7 @@ class HomeController extends Controller
                     }
                 }
             }
-        $data['singlePackages'] = json_encode($dataPackages);
+        $data['singlePackages'] = $dataPackages;
         $data['courseTypes'] = config('app.courseTypes');
 
         return view('frontend.home.index', $data);

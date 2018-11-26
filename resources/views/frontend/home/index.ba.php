@@ -140,7 +140,7 @@
 							<div v-if="packageType=='single'" class="class-box">
 								<ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
                                     @foreach($courseTypes as $courseType)
-									<li v-on:click="packageSlick();" class="nav-item">
+									<li class="nav-item">
 										<a  class="nav-link text-uppercase {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}-tab" data-toggle="tab" href="#{{$courseType}}" role="tab" aria-controls="{{$courseType}}" aria-selected="false">{{$courseType}}</a>
 									</li>
                                     @endforeach
@@ -152,7 +152,7 @@
 
 									<div  class="tab-pane fade show {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}" role="tabpanel" aria-labelledby="contact-tab">
 										<div  class="owl-carousel owl-theme owl-3-items">
-											<div v-for="package in packages.{{$courseType}}" class="item-class">
+											<div v-for="(package, index) in packages.{{$courseType}}"  :class="{'yellow': (index+1) % 2 === 0, 'green': (index+1) % 2 !== 0 }" class="item-class">
 												<div class="thumbnail-tab-class">
 													<img :src="'/storage/'+package.image" />
 													<div class="info-class-position">
@@ -189,7 +189,7 @@
 
                             <div v-if="packageType=='combo'" class="class-box">
                                 <div class="owl-carousel owl-theme owl-3-items">
-                                    <div v-for="package in packages" class="item-class">
+                                    <div v-for="(package, index) in packages2" :class="{'yellow': (index+1) % 2 === 0, 'green': (index+1) % 2 !== 0 }" class="item-class">
                                         <div class="thumbnail-tab-class">
                                             <img :src="'/storage/'+package.image">
                                             <div class="info-class-position">
@@ -375,10 +375,14 @@
 						</div>
 					</div>
 				</div>
-			</section>
+            </section>
+
+
+
 @endsection
 
 @section('styles')
+
 <link rel="stylesheet" href="{{ asset('owl-carousel/assets/owl.carousel.min.css')}}"/>
 <link rel="stylesheet" href="{{ asset('owl-carousel/assets/owl.theme.default.min.css')}}"/>
 
@@ -393,23 +397,6 @@ $('.banner').slick({
     autoplaySpeed: 5000
 });
 
-$(".owl-3-items").owlCarousel({
-    nav:false,
-    loop:false,
-    dots: true,
-    margin:30,
-    responsive:{
-        0:{
-            items:1
-        },
-        768:{
-            items:2
-        },
-        1024:{
-            items:3
-        }
-    }
-});
 
 $('.slick-user-info').slick({
     dots: true,
@@ -427,38 +414,115 @@ $('.slick-user-info').slick({
 <script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
 
 <script type="text/javascript">
+
     axios.defaults.headers.common = {
         'X-Requested-With': 'XMLHttpRequest'
     };
     var app = new Vue({
         el: '#package',
         data: {
-            packages: {!!$singlePackages!!},
+            packages: {},
+            packages2: [],
             packageType: 'single',
         },
         methods: {
+            listPackages: function(){
+                var packages = {!!$singlePackages!!};
+                this.packages = packages;
+            },
             getPackages: function(){
                 if(this.packageType == 'single'){
                     this.packageType = 'combo';
+                    var vm = this;
+                    axios.post('{{ route('api.package.getPackages') }}', {
+                        type: vm.packageType,
+                    }).then(function (response) {
+                        vm.packages2 = response && response.data;
+                        vm2 = vm;
+                        setTimeout(function() {
+                            $(vm2.$el).find(".owl-3-items").owlCarousel({
+                                nav:false,
+                                loop:false,
+                                dots: true,
+                                margin:30,
+                                responsive:{
+                                    0:{
+                                        items:1
+                                    },
+                                    768:{
+                                        items:2
+                                    },
+                                    1024:{
+                                        items:3
+                                    }
+                                }
+                            });
+                        }, 1000);
+
+
+                    });
                 }else{
                     this.packageType = 'single';
+                    var vm = this;
+                    axios.post('{{ route('api.package.getPackages') }}', {
+                        type: vm.packageType,
+                    }).then(function (response) {
+                        vm.packages = response && response.data;
+                        vm2 = vm;
+                        setTimeout(function() {
+                            $(vm2.$el).find(".owl-3-items").owlCarousel({
+                                nav:false,
+                                loop:false,
+                                dots: true,
+                                margin:30,
+                                responsive:{
+                                    0:{
+                                        items:1
+                                    },
+                                    768:{
+                                        items:2
+                                    },
+                                    1024:{
+                                        items:3
+                                    }
+                                }
+                            });
+                        }, 1000);
+
+                    });
                 }
-                var vm = this;
-                axios.post('{{ route('api.package.getPackages') }}', {
-                    type: vm.packageType,
-                }).then(function (response) {
-                    vm.packages = response && response.data;
-                    // vm2 = vm;
-                    // setTimeout(function() {
-                    //     $(vm2.$el).find('.slick-class').slick({
 
-                    //     });
-                    // }, 1);
 
+            },
+            installOWLcarousel: function() {
+                $(".owl-3-items").owlCarousel({
+                    nav:false,
+                    loop:false,
+                    dots: true,
+                    margin:30,
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        768:{
+                            items:2
+                        },
+                        1024:{
+                            items:3
+                        }
+                    }
                 });
-
             }
+        },
+        mounted: function() {
+            this.listPackages();
+            var self = this;
+            setTimeout(function() {
+                self.installOWLcarousel();
+            }, 0);
         }
     });
+
+
 </script>
 @endpush

@@ -5,3 +5,10 @@ if(!function_exists('getYoutubeId')){
         return $youtubeId;
     }
 }
+
+if(!function_exists('priceFormat')){
+    function priceFormat($price){
+        return number_format($price, 0, ',', '.');
+    }
+}
+

@@ -17,7 +17,7 @@ class PackageController extends Controller
     public function myPackage() {
         return view('frontend.packages.mypackage');
     }
-    public function getPackages(Request $request){
+    public function getSinglePackages(Request $request){
         $type = $request->input('type');
         if ($request->ajax() && isset($type)) {
             $packages = Package::where(['type' => $type, 'status' => 1])->get()->toArray();
@@ -26,12 +26,23 @@ class PackageController extends Controller
                 foreach($packages as $package){
                     if($package['course_type'] !== null){
                         $dataPackages[$package['course_type']][] = $package;
-                    }else{
-                        $dataPackages = $packages;
                     }
                 }
             }
-            return response()->json($dataPackages);
+            $data['courseTypes'] = config('app.courseTypes');
+            $data['singlePackages'] = $dataPackages;
+            return view('frontend.ajax.singlepackage', $data);
+
+        }
+
+    }
+    public function getComboPackages(Request $request){
+        $type = $request->input('type');
+        if ($request->ajax() && isset($type)) {
+            $packages = Package::where(['type' => $type, 'status' => 1])->get()->toArray();
+            $data['courseTypes'] = config('app.courseTypes');
+            $data['comboPackages'] = $packages;
+            return view('frontend.ajax.combopackage', $data);
 
         }
 

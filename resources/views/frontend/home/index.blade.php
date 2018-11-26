@@ -121,7 +121,7 @@
 			</section>
 
 
-			<section id="package" class="courses-box">
+		<section class="courses-box">
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-12">
@@ -130,99 +130,68 @@
 								<div class="h4">TIẾNG NHẬT CÔ LAM</div>
 								<div class="checkbox-courses">
 									<label class="p-0">
-										<input type="checkbox" data-toggle="toggle">
+										<input id="packageType" value="single" type="checkbox" data-toggle="toggle">
 										<div class="toogle-left-right"></div>
-										<div v-on:click="getPackages();"  class="package-toggle">Gói lẻ</div>
-										<div v-on:click="getPackages();"  class="combo-toggle">Combo</div>
+										<div onclick="getPackages()" class="package-toggle">Gói lẻ</div>
+										<div onclick="getPackages()" class="combo-toggle">Combo</div>
 									</label>
 								</div>
 							</div>
-							<div v-if="packageType=='single'" class="class-box">
+							<div id="resultPackage" class="class-box">
+
 								<ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
                                     @foreach($courseTypes as $courseType)
 									<li class="nav-item">
-										<a  class="nav-link text-uppercase {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}-tab" data-toggle="tab" href="#{{$courseType}}" role="tab" aria-controls="{{$courseType}}" aria-selected="false">{{$courseType}}</a>
+										<a class="nav-link text-uppercase {{$courseType == 'n5' ? 'active' : ''}}" id="{{$courseType}}-tab" data-toggle="tab" href="#{{$courseType}}" role="tab" aria-controls="{{$courseType}}" aria-selected="false">{{$courseType}}</a>
 									</li>
-                                    @endforeach
-
+									@endforeach
 								</ul>
 								<div class="tab-content" id="myTabContent">
-
                                     @foreach($courseTypes as $courseType)
+									<div class="tab-pane fade {{$courseType == 'n5' ? 'show active' : ''}}" id="{{$courseType}}" role="tabpanel" aria-labelledby="profile-tab">
 
-									<div  class="tab-pane fade show {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}" role="tabpanel" aria-labelledby="contact-tab">
-										<div  class="owl-carousel owl-theme owl-3-items">
-											<div v-for="(package, index) in packages.{{$courseType}}"  :class="{'yellow': (index+1) % 2 === 0, 'green': (index+1) % 2 !== 0 }" class="item-class">
-												<div class="thumbnail-tab-class">
-													<img :src="'/storage/'+package.image" />
-													<div class="info-class-position">
-														<div class="h3">@{{package.name}}</div>
-														<p>@{{package.time}} tháng</p>
-													</div>
-												</div>
-												<div class="body-item-class">
-													<div class="title-body-item-class">
-                                                    @{{package.name}} <span v-if="package.title">-</span> @{{package.title}}
-														<span class="tuition">học phí: <b>990,000</b></span>
-													</div>
-													<div class="content-item-class">
-														<div class="info-item-class">
-															<div class="duration">L</div>
-															Thời gian học: @{{package.time}} tháng
-														</div>
-														<div class="info-item-class">
-															<div class="number-video"></div>
-															Số video: @{{package.video_number}}
-														</div>
-														<div class="group-btn-item-class">
-															<a v-bind:href="'/khoa-hoc/'+ package.id+'-'+package.slug" class="btn btn-more mr-2">CHI TIẾT</a>
-															<a v-bind:href="'/thanh-toan/'+ package.id+'-'+package.slug" class="btn btn-buy">MUA KHÓA HỌC</a>
-														</div>
-													</div>
-												</div>
-											</div>
+										<div class="owl-carousel owl-theme owl-3-items" id="huu4">
+                                            @if(isset($singlePackages[$courseType]) >0 )
+                                                @foreach($singlePackages[$courseType] as $key => $package)
+                                                <div class="item-class {{ $key % 2 !=0 ? 'yellow' : ''}}">
+                                                    <div class="thumbnail-tab-class">
+                                                        <img src="{{ Storage::url($package['image']) }}">
+                                                        <div class="info-class-position">
+                                                            <div class="h3">{{$package['name']}}</div>
+                                                            <p>{{$package['time']}} tháng</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="body-item-class">
+                                                        <div class="title-body-item-class">
+                                                        {{$package['name']}} {{$package['title']}}
+                                                            <span class="tuition">học phí: <b>{{priceFormat($package['price'])}}</b></span>
+                                                        </div>
+                                                        <div class="content-item-class">
+                                                            <div class="info-item-class">
+                                                                <div class="duration">L</div>
+                                                                Thời gian học:  {{$package['time']}} tháng
+                                                            </div>
+                                                            <div class="info-item-class">
+                                                                <div class="number-video"></div>
+                                                                Số video:  {{$package['video_number']}}
+                                                            </div>
+                                                            <div class="group-btn-item-class">
+                                                                <a href="/khoa-hoc/{{$package['id']}}-{{$package['slug']}}" class="btn btn-more mr-2">CHI TIẾT</a>
+                                                                <a href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @endforeach
+                                            @endif
+
 										</div>
-									</div>
+
+                                    </div>
                                     @endforeach
+
 								</div>
 							</div>
-
-                            <div v-if="packageType=='combo'" class="class-box">
-                                <div class="owl-carousel owl-theme owl-3-items">
-                                    <div v-for="(package, index) in packages" :class="{'yellow': (index+1) % 2 === 0, 'green': (index+1) % 2 !== 0 }" class="item-class">
-                                        <div class="thumbnail-tab-class">
-                                            <img :src="'/storage/'+package.image">
-                                            <div class="info-class-position">
-                                                <div class="h3">@{{package.name}}</div>
-                                                <p>@{{package.time}} tháng</p>
-                                            </div>
-                                        </div>
-                                        <div class="body-item-class">
-                                            <div class="title-body-item-class">
-                                            @{{package.name}} <span v-if="package.title">-</span> @{{package.title}}
-                                                <span class="tuition">học phí: <b>990,000</b></span>
-                                            </div>
-                                            <div class="content-item-class">
-                                                <div class="info-item-class">
-                                                    <div class="duration">L</div>
-                                                    Thời gian học: @{{package.time}} tháng
-                                                </div>
-                                                <div class="info-item-class">
-                                                    <div class="number-video"></div>
-                                                    Số video: @{{package.video_number}}
-                                                </div>
-
-                                                <div class="group-btn-item-class">
-                                                    <a v-bind:href="'/khoa-hoc/combo/'+ package.id+'-'+package.slug" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                    <a v-bind:href="'/thanh-toan/'+ package.id+'-'+package.slug" class="btn btn-buy">MUA KHÓA HỌC</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
 						</div>
 					</div>
 				</div>
@@ -375,10 +344,14 @@
 						</div>
 					</div>
 				</div>
-			</section>
+            </section>
+
+
+
 @endsection
 
 @section('styles')
+
 <link rel="stylesheet" href="{{ asset('owl-carousel/assets/owl.carousel.min.css')}}"/>
 <link rel="stylesheet" href="{{ asset('owl-carousel/assets/owl.theme.default.min.css')}}"/>
 
@@ -388,6 +361,33 @@
 
 <script src="{{ asset('owl-carousel/owl.carousel.min.js')}}"></script>
 <script>
+
+function getPackages(){
+    var packageType = $('#packageType').val();
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    if(packageType === 'single'){
+        $.ajax({
+            method: "POST",
+            url: "{{ route('api.package.getComboPackages') }}",
+            data: {_token: CSRF_TOKEN, type: "combo"}
+        })
+        .done(function( data ) {
+            $('#resultPackage').html(data);
+            $('#packageType').val('combo');
+        });
+    }else{
+        $.ajax({
+            method: "POST",
+            url: "{{ route('api.package.getSinglePackages') }}",
+            data: {_token: CSRF_TOKEN, type: "single"}
+        })
+        .done(function( data ) {
+            $('#resultPackage').html(data);
+            $('#packageType').val('single');
+        });
+    }
+}
+
 $('.banner').slick({
     autoplay: true,
     autoplaySpeed: 5000
@@ -423,42 +423,4 @@ $('.slick-user-info').slick({
 });
 </script>
 
-<script type="text/javascript" src="{{ asset('js/vue.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
-
-<script type="text/javascript">
-    axios.defaults.headers.common = {
-        'X-Requested-With': 'XMLHttpRequest'
-    };
-    var app = new Vue({
-        el: '#package',
-        data: {
-            packages: {!!$singlePackages!!},
-            packageType: 'single',
-        },
-        methods: {
-            getPackages: function(){
-                if(this.packageType == 'single'){
-                    this.packageType = 'combo';
-                }else{
-                    this.packageType = 'single';
-                }
-                var vm = this;
-                axios.post('{{ route('api.package.getPackages') }}', {
-                    type: vm.packageType,
-                }).then(function (response) {
-                    vm.packages = response && response.data;
-                    // vm2 = vm;
-                    // setTimeout(function() {
-                    //     $(vm2.$el).find('.slick-class').slick({
-
-                    //     });
-                    // }, 1);
-
-                });
-
-            }
-        }
-    });
-</script>
 @endpush

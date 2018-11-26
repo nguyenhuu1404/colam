@@ -40,7 +40,8 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
 });
 
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'Frontend'], function() {
-    Route::post('/package/getPackages', 'PackageController@getPackages')->name('package.getPackages');
+    Route::post('/package/getSinglePackages', 'PackageController@getSinglePackages')->name('package.getSinglePackages');
+    Route::post('/package/getComboPackages', 'PackageController@getComboPackages')->name('package.getComboPackages');
 
 });
 
