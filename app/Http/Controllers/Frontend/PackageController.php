@@ -11,10 +11,11 @@ class PackageController extends Controller
     public function combo(){
         echo 1;
     }
-    public function getCombo(){
-        return response()->json([
-
-        ]);
+    public function index(){
+        return view('frontend.packages.index');
+    }
+    public function myPackage() {
+        return view('frontend.packages.mypackage');
     }
     public function getPackages(Request $request){
         $type = $request->input('type');

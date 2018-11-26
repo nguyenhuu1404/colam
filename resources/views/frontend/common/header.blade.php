@@ -192,7 +192,7 @@
 											<li><a href="">Khóa học của tôi <i class="fa fa-file-text-o"></i></a></li>
 											<li><a href="">Đổi mật khẩu <i class="fa fa-lock"></i></a></li>
 											<li><a href="">Thông báo (2) <i class="fa fa-exclamation-circle "></i></a></li>
-											<li><a href="">Giỏ hàng (1) <i class="fa fa-shopping-cart"></i></a></li>
+
 											<li>
 											<a class="dropdown-item" href="{{route('frontend.logout') }}"
 											onclick="event.preventDefault();

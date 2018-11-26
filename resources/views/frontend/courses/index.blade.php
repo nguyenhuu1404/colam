@@ -297,3 +297,12 @@
 
 
 @endsection
+@push('scripts')
+<script>
+    $('.cat-item a').click(function(){
+    $(this).parent().toggleClass('opened');
+})
+
+</script>
+@endpush
+

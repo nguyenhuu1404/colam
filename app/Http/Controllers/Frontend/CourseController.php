@@ -11,4 +11,5 @@ class CourseController extends Controller
         $data = [];
         return view('frontend.courses.index', $data);
     }
+
 }
