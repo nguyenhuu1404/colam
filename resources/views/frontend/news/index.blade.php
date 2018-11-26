@@ -3,16 +3,17 @@
 @section('content')
 
 <section class="banner news">
-    <div>
         <div class="title-description">
             <div class="container">
                 <h2 class="title-slider">Học tiếng Nhật online</h2>
                 <div class="ui breadcrumb">
-                    <p id="breadcrumbs"><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb"><a href="http://duhocbgc.com/dia-diem-du-hoc" rel="v:url" property="v:title">Trang chủ</a> > <span rel="v:child" typeof="v:Breadcrumb"><a href="http://duhocbgc.com/dia-diem-du-hoc/du-hoc-malta" rel="v:url" property="v:title">Các khóa học</a><span rel="v:child" typeof="v:Breadcrumb"></p>
+                    <p id="breadcrumbs">
+                        <a href="">Trang chủ</a> >
+                        <a href="">Các khóa học</a>
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <section class="w-100 main-news">
