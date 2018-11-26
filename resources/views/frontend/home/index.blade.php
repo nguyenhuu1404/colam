@@ -151,8 +151,8 @@
                                     @foreach($courseTypes as $courseType)
 
 									<div  class="tab-pane fade show {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}" role="tabpanel" aria-labelledby="contact-tab">
-										<div id="slick-{{ $courseType}}" class="w-100 slick-class">
-											<div v-for="package in packages.{{$courseType}}" class="w-100 item-class">
+										<div  class="owl-carousel owl-theme owl-3-items">
+											<div v-for="(package, index) in packages.{{$courseType}}"  :class="{'yellow': (index+1) % 2 === 0, 'green': (index+1) % 2 !== 0 }" class="item-class">
 												<div class="thumbnail-tab-class">
 													<img :src="'/storage/'+package.image" />
 													<div class="info-class-position">
@@ -188,8 +188,8 @@
 							</div>
 
                             <div v-if="packageType=='combo'" class="class-box">
-                                <div class="row slick-class">
-                                    <div v-for="package in packages" class="col-xl-12 item-class">
+                                <div class="owl-carousel owl-theme owl-3-items">
+                                    <div v-for="(package, index) in packages" :class="{'yellow': (index+1) % 2 === 0, 'green': (index+1) % 2 !== 0 }" class="item-class">
                                         <div class="thumbnail-tab-class">
                                             <img :src="'/storage/'+package.image">
                                             <div class="info-class-position">
@@ -228,97 +228,7 @@
 				</div>
 			</section>
 
-            <script type="text/javascript" src="{{ asset('js/vue.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
 
-
-            <script type="text/javascript">
-                axios.defaults.headers.common = {
-                    'X-Requested-With': 'XMLHttpRequest'
-                };
-                var app = new Vue({
-                    el: '#package',
-                    data: {
-                        packages: {!!$singlePackages!!},
-                        packageType: 'single',
-                    },
-
-                    methods: {
-                        packageSlick: function(){
-                            var vm = this;
-                            setTimeout(function() {
-                                $(vm.$el).find('.slick-class').slick({
-                                    speed: 300,
-                                    slidesToShow: 3,
-                                    slidesToScroll: 3,
-                                    autoplay: true,
-                                    autoplaySpeed: 5000,
-                                    arrows: true,
-                                    responsive: [
-                                        {
-                                        breakpoint: 768,
-                                        settings: {
-                                            slidesToShow: 2,
-                                            slidesToScroll: 2
-                                        }
-                                        },
-                                        {
-                                        breakpoint: 480,
-                                            settings: {
-                                                slidesToShow: 1,
-                                                slidesToScroll: 1
-                                            }
-                                        }
-                                    ]
-                                });
-                            }, 100);
-                        },
-                        getPackages: function(){
-                            if(this.packageType == 'single'){
-                                this.packageType = 'combo';
-                            }else{
-                                this.packageType = 'single';
-                            }
-                            var vm = this;
-                            axios.post('{{ route('api.package.getPackages') }}', {
-                                type: vm.packageType,
-                            }).then(function (response) {
-                                vm.packages = response && response.data;
-                                vm2 = vm;
-                                setTimeout(function() {
-                                $(vm2.$el).find('.slick-class').slick({
-
-                                    speed: 300,
-                                    slidesToShow: 3,
-                                    slidesToScroll: 3,
-                                    autoplay: true,
-                                    autoplaySpeed: 5000,
-                                    arrows: true,
-                                    responsive: [
-                                        {
-                                        breakpoint: 768,
-                                        settings: {
-                                            slidesToShow: 2,
-                                            slidesToScroll: 2
-                                        }
-                                        },
-                                        {
-                                        breakpoint: 480,
-                                            settings: {
-                                                slidesToShow: 1,
-                                                slidesToScroll: 1
-                                            }
-                                        }
-                                    ]
-                                });
-                            }, 1);
-
-                            });
-
-                        }
-                    }
-                });
-            </script>
 
             @if($trialLessons)
 			<section class="try-it">
@@ -467,50 +377,88 @@
 				</div>
 			</section>
 @endsection
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('owl-carousel/assets/owl.carousel.min.css')}}"/>
+<link rel="stylesheet" href="{{ asset('owl-carousel/assets/owl.theme.default.min.css')}}"/>
+
+@stop
+
 @push('scripts')
+
+<script src="{{ asset('owl-carousel/owl.carousel.min.js')}}"></script>
 <script>
 $('.banner').slick({
-        autoplay: true,
-          autoplaySpeed: 5000
-    });
+    autoplay: true,
+    autoplaySpeed: 5000
+});
 
-    $('.slick-class').slick({
-        dots: true,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        autoplay: true,
-          autoplaySpeed: 5000,
-          arrows: false,
-        responsive: [
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-              }
-            },
-            {
-              breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
+$(".owl-3-items").owlCarousel({
+    nav:false,
+    loop:false,
+    dots: true,
+    margin:30,
+    responsive:{
+        0:{
+            items:1
+        },
+        768:{
+            items:2
+        },
+        1024:{
+            items:3
+        }
+    }
+});
+
+$('.slick-user-info').slick({
+    dots: true,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: true,
+});
+</script>
+
+<script type="text/javascript" src="{{ asset('js/vue.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
+
+<script type="text/javascript">
+    axios.defaults.headers.common = {
+        'X-Requested-With': 'XMLHttpRequest'
+    };
+    var app = new Vue({
+        el: '#package',
+        data: {
+            packages: {!!$singlePackages!!},
+            packageType: 'single',
+        },
+        methods: {
+            getPackages: function(){
+                if(this.packageType == 'single'){
+                    this.packageType = 'combo';
+                }else{
+                    this.packageType = 'single';
                 }
+                var vm = this;
+                axios.post('{{ route('api.package.getPackages') }}', {
+                    type: vm.packageType,
+                }).then(function (response) {
+                    vm.packages = response && response.data;
+                    // vm2 = vm;
+                    // setTimeout(function() {
+                    //     $(vm2.$el).find('.slick-class').slick({
+
+                    //     });
+                    // }, 1);
+
+                });
+
             }
-        ]
-    });
-
-
-    $('.slick-user-info').slick({
-        dots: true,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-          autoplaySpeed: 5000,
-          arrows: true,
+        }
     });
 </script>
 @endpush

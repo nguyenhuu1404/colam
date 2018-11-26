@@ -139,24 +139,22 @@
 							</div>
 							<div v-if="packageType=='single'" class="class-box">
 								<ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
-									<li class="nav-item">
-										<a class="nav-link" id="n3-tab" data-toggle="tab" href="#n3" role="tab" aria-controls="n3" aria-selected="false">N3</a>
+                                    @foreach($courseTypes as $courseType)
+									<li v-on:click="packageSlick();" class="nav-item">
+										<a  class="nav-link text-uppercase {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}-tab" data-toggle="tab" href="#{{$courseType}}" role="tab" aria-controls="{{$courseType}}" aria-selected="false">{{$courseType}}</a>
 									</li>
-									<li class="nav-item">
-										<a class="nav-link" id="n4-tab" data-toggle="tab" href="#n4" role="tab" aria-controls="n4" aria-selected="false">N4</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link active" id="n5-tab" data-toggle="tab" href="#n5" role="tab" aria-controls="n5" aria-selected="true">N5</a>
-									</li>
+                                    @endforeach
+
 								</ul>
 								<div class="tab-content" id="myTabContent">
-									<div class="tab-pane fade" id="n3" role="tabpanel" aria-labelledby="home-tab">...</div>
-									<div class="tab-pane fade" id="n4" role="tabpanel" aria-labelledby="profile-tab">...</div>
-									<div class="tab-pane fade show active" id="n5" role="tabpanel" aria-labelledby="contact-tab">
-										<div class="row slick-class">
-											<div v-for="package in packages.n5" class="col-xl-12 item-class">
+
+                                    @foreach($courseTypes as $courseType)
+
+									<div  class="tab-pane fade show {{ $courseType === 'n5' ? 'active' : '' }}" id="{{$courseType}}" role="tabpanel" aria-labelledby="contact-tab">
+										<div  class="owl-carousel owl-theme owl-3-items">
+											<div v-for="package in packages.{{$courseType}}" class="item-class">
 												<div class="thumbnail-tab-class">
-													<img src="/images/img-class.png">
+													<img :src="'/storage/'+package.image" />
 													<div class="info-class-position">
 														<div class="h3">@{{package.name}}</div>
 														<p>@{{package.time}} tháng</p>
@@ -164,35 +162,36 @@
 												</div>
 												<div class="body-item-class">
 													<div class="title-body-item-class">
-														N5 - Khóa học dành cho sinh viên du học
+                                                    @{{package.name}} <span v-if="package.title">-</span> @{{package.title}}
 														<span class="tuition">học phí: <b>990,000</b></span>
 													</div>
 													<div class="content-item-class">
 														<div class="info-item-class">
 															<div class="duration">L</div>
-															Thời gian học: 4 tháng
+															Thời gian học: @{{package.time}} tháng
 														</div>
 														<div class="info-item-class">
 															<div class="number-video"></div>
-															Số video: 123
+															Số video: @{{package.video_number}}
 														</div>
 														<div class="group-btn-item-class">
-															<a href="" class="btn btn-more mr-2">CHI TIẾT</a>
-															<a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
+															<a v-bind:href="'/khoa-hoc/'+ package.id+'-'+package.slug" class="btn btn-more mr-2">CHI TIẾT</a>
+															<a v-bind:href="'/thanh-toan/'+ package.id+'-'+package.slug" class="btn btn-buy">MUA KHÓA HỌC</a>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
+                                    @endforeach
 								</div>
 							</div>
 
                             <div v-if="packageType=='combo'" class="class-box">
-                                <div class="row slick-class">
-                                    <div v-for="package in packages" class="col-xl-12 item-class">
+                                <div class="owl-carousel owl-theme owl-3-items">
+                                    <div v-for="package in packages" class="item-class">
                                         <div class="thumbnail-tab-class">
-                                            <img src="/images/img-class.png">
+                                            <img :src="'/storage/'+package.image">
                                             <div class="info-class-position">
                                                 <div class="h3">@{{package.name}}</div>
                                                 <p>@{{package.time}} tháng</p>
@@ -200,21 +199,22 @@
                                         </div>
                                         <div class="body-item-class">
                                             <div class="title-body-item-class">
-                                                N5 - Khóa học dành cho sinh viên du học
+                                            @{{package.name}} <span v-if="package.title">-</span> @{{package.title}}
                                                 <span class="tuition">học phí: <b>990,000</b></span>
                                             </div>
                                             <div class="content-item-class">
                                                 <div class="info-item-class">
                                                     <div class="duration">L</div>
-                                                    Thời gian học: 4 tháng
+                                                    Thời gian học: @{{package.time}} tháng
                                                 </div>
                                                 <div class="info-item-class">
                                                     <div class="number-video"></div>
-                                                    Số video: 123
+                                                    Số video: @{{package.video_number}}
                                                 </div>
+
                                                 <div class="group-btn-item-class">
-                                                    <a href="" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                    <a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                    <a v-bind:href="'/khoa-hoc/combo/'+ package.id+'-'+package.slug" class="btn btn-more mr-2">CHI TIẾT</a>
+                                                    <a v-bind:href="'/thanh-toan/'+ package.id+'-'+package.slug" class="btn btn-buy">MUA KHÓA HỌC</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -228,69 +228,9 @@
 				</div>
 			</section>
 
-            <script type="text/javascript" src="{{ asset('js/vue.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
 
 
-            <script type="text/javascript">
-                axios.defaults.headers.common = {
-                    'X-Requested-With': 'XMLHttpRequest'
-                };
-                var app = new Vue({
-                    el: '#package',
-                    data: {
-                        packages: {!!$singlePackages!!},
-                        packageType: 'single',
-                    },
-                    methods: {
-                        getPackages: function(){
-                            if(this.packageType == 'single'){
-                                this.packageType = 'combo';
-                            }else{
-                                this.packageType = 'single';
-                            }
-                            var vm = this;
-                            axios.post('{{ route('api.package.getPackages') }}', {
-                                type: vm.packageType,
-                            }).then(function (response) {
-                                vm.packages = response && response.data;
-                                vm2 = vm;
-                                setTimeout(function() {
-                                $(vm2.$el).find('.slick-class').slick({
-                                    //dots: true,
-                                    infinite: false,
-                                    speed: 300,
-                                    slidesToShow: 3,
-                                    slidesToScroll: 3,
-                                    autoplay: true,
-                                    autoplaySpeed: 5000,
-                                    arrows: true,
-                                    responsive: [
-                                        {
-                                        breakpoint: 768,
-                                        settings: {
-                                            slidesToShow: 2,
-                                            slidesToScroll: 2
-                                        }
-                                        },
-                                        {
-                                        breakpoint: 480,
-                                            settings: {
-                                                slidesToShow: 1,
-                                                slidesToScroll: 1
-                                            }
-                                        }
-                                    ]
-                                });
-                            }, 0);
-
-                            });
-
-                        }
-                    }
-                });
-            </script>
-
+            @if($trialLessons)
 			<section class="try-it">
 				<div class="container">
 					<div class="row">
@@ -307,42 +247,61 @@
 									</select>
 								</div-->
 							</div>
-							<div class="body-try">
+							<div class="body-try w-100">
 								<div class="row">
-									<div class="col-xl-6 left-try-it">
-                                        @foreach($tryLessons as $tryLesson)
-                                        <a href="">
-										<div class="item-try-it">
+									<div class="col-xl-6 pointer left-try-it">
+                                        @foreach($trialLessons as $indexKey => $trialLesson)
+                                        <?php
+
+                                             $link_youtube = $trialLesson['youtube'];
+                                             $youtubeId = substr($link_youtube, strrpos($link_youtube, '=') + 1);
+                                        ?>
+										<div onclick="videoTrial(this, '<?= $youtubeId ?>')" class="item-try-it {{ ($indexKey == 0) ? 'active' : '' }}">
 											<div class="thumbnail-tryit">
-												<img src="/images/img-try-it.png">
-											</div>
+												<img src="{{ Storage::url($trialLesson['image']) }}">
+                                            </div>
+
 											<div class="content-try-it">
-												<div class="h4">N6</div>
-												<p class="tilte-post">{{$tryLesson['name']}}</p>
-												<div class="code-id">Mã số: ss</div>
-											</div>
+												<div class="h4">
+                                                    <?php
+                                                    $courses = $courseTrialLesson[$trialLesson['id']];
+                                                    if(count($courses) > 0){
+                                                        $courseName = [];
+                                                        foreach($courses as $course){
+                                                            $courseName[] = $course['name'];
+                                                        }
+                                                        echo implode(', ', $courseName);
+                                                    }
+                                                    ?>
+                                                </div>
+												<p class="tilte-post">{{$trialLesson['name']}}</p>
+                                            </div>
+
 										</div>
-                                        </a>
 										@endforeach
 
 									</div>
 									<div class="col-xl-6 right-try-it">
 										<div class="video-tryit">
-											<div class="star-video">
-												<i class="fa fa-star"></i>
-												N5
-											</div>
-											<div class="content-video-tryit">
-												<img src="/images/video.png">
-											</div>
+
+                                        <iframe id="videoTrial" class="w-100" height="460px;" src="https://www.youtube.com/embed/{{ getYoutubeId($trialLessons[0]['youtube'])}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+                    </div>
+                </div>
 				</div>
-			</section>
+            </section>
+            <script>
+                function videoTrial(that, youtubeId){
+                    $('#videoTrial').attr('src', 'https://www.youtube.com/embed/'+youtubeId);
+                    $('.item-try-it').removeClass('active');
+                    $(that).addClass('active');
+                }
+            </script>
+            @endif
 			<section class="course-payment">
 				<div class="container">
 					<div class="row">
@@ -418,3 +377,88 @@
 				</div>
 			</section>
 @endsection
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('owl-carousel/assets/owl.carousel.min.css')}}"/>
+<link rel="stylesheet" href="{{ asset('owl-carousel/assets/owl.theme.default.min.css')}}"/>
+
+@stop
+
+@push('scripts')
+
+<script src="{{ asset('owl-carousel/owl.carousel.min.js')}}"></script>
+<script>
+$('.banner').slick({
+    autoplay: true,
+    autoplaySpeed: 5000
+});
+
+$(".owl-3-items").owlCarousel({
+    nav:false,
+    loop:false,
+    dots: true,
+    margin:30,
+    responsive:{
+        0:{
+            items:1
+        },
+        768:{
+            items:2
+        },
+        1024:{
+            items:3
+        }
+    }
+});
+
+$('.slick-user-info').slick({
+    dots: true,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    arrows: true,
+});
+</script>
+
+<script type="text/javascript" src="{{ asset('js/vue.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/axios.min.js') }}"></script>
+
+<script type="text/javascript">
+    axios.defaults.headers.common = {
+        'X-Requested-With': 'XMLHttpRequest'
+    };
+    var app = new Vue({
+        el: '#package',
+        data: {
+            packages: {!!$singlePackages!!},
+            packageType: 'single',
+        },
+        methods: {
+            getPackages: function(){
+                if(this.packageType == 'single'){
+                    this.packageType = 'combo';
+                }else{
+                    this.packageType = 'single';
+                }
+                var vm = this;
+                axios.post('{{ route('api.package.getPackages') }}', {
+                    type: vm.packageType,
+                }).then(function (response) {
+                    vm.packages = response && response.data;
+                    // vm2 = vm;
+                    // setTimeout(function() {
+                    //     $(vm2.$el).find('.slick-class').slick({
+
+                    //     });
+                    // }, 1);
+
+                });
+
+            }
+        }
+    });
+</script>
+@endpush
