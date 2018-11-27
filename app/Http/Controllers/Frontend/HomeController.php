@@ -45,6 +45,8 @@ class HomeController extends Controller
                     ->get()->first();
                     if(isset($courseId)){
                         $package['course_id'] = $courseId->course_id;
+                    }else{
+                        $package['course_id'] = '';
                     }
 
                     $dataPackages[$package['course_type']][] = $package;
