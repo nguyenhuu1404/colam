@@ -25,10 +25,10 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
     Route::get('/khoa-hoc', 'PackageController@index');
     Route::get('/khoa-hoc-cua-toi', 'PackageController@myPackage');
     Route::get('/khoa-hoc/combo/{id}-{slug}', 'PackageController@combo')->where(['id' => '[0-9]+']);
-    Route::get('/khoa-hoc/{id}-{slug}', 'CourseController@index')->where(['id' => '[0-9]+']);
+    Route::get('/khoa-hoc/{packageId}-{id}-{slug}', 'CourseController@index')->where(['id' => '[0-9]+', 'packageId' => '[0-9]+']);
     Route::get('/khoa-hoc/{course}/{courseId}-{id}-{slug}', 'LessonController@index')->where(['id' => '[0-9]+', 'courseId' => '[0-9]+']);
 
-    Route::get('/kiem-tra/{id}-{slug}', 'TestController@index')->where(['id' => '[0-9]+']);
+    Route::get('/kiem-tra/{courseId}-{lessonId}-{id}-{slug}', 'TestController@index')->where(['id' => '[0-9]+', 'courseId' => '[0-9]+', 'lessonId' => '[0-9]+']);
 
     Route::get('/thanh-toan/{id}-{slug}', 'PaymentController@index')->where(['id' => '[0-9]+']);
 
