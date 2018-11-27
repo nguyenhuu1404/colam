@@ -20,8 +20,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-3">
-                    <a class="btn btn-danger" href="">Mua khóa học này</a>
-                    <a  href=""><h2 class="btn btn-danger">Xem thêm các khóa học khác</h2> </a>
+                    <a class="btn btn-danger w-100 p-3 mb-3" href=""><b>Mua khóa học này</b></a>
+                    <a class="btn p-2 mb-3 btn-warning w-100" href="">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    </a>
                     <div class="title-slidebar">Tiến trình học</div>
                     <div class="section-sb-current">
                         <ul class="section-sb-list">
@@ -50,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-xl-9 pd-0-30">
-                    <h2 class='w-100 left-title-lesson'>Khóa học N5</h2>
+                    <h2 class='w-100 text-uppercase font24 left-title-lesson'>Khóa học N5</h2>
 
                     <div class="alert alert-primary ">Giới thiệu lộ trình học</div>
 

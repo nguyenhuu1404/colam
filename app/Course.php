@@ -10,8 +10,7 @@ class Course extends Model
 
     protected $fillable = ['slug', 'name'];
 
-    public function parentId()
-    {
+    public function parentId(){
         return $this->belongsTo(self::class);
     }
     function lessons(){
