@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-3">
-                    <a class="btn btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['id']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
+                    <a class="btn btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['packageId']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
                     <a class="btn p-2 mb-3 btn-warning w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </a>
                     <div class="title-slidebar">Tiến trình học</div>
