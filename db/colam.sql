@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-11-25 10:42:49
+Date: 2018-11-28 00:47:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -71,6 +71,7 @@ CREATE TABLE `categories` (
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `categories_slug_unique` (`slug`),
   KEY `categories_parent_id_foreign` (`parent_id`),
@@ -80,8 +81,8 @@ CREATE TABLE `categories` (
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
-INSERT INTO `categories` VALUES ('1', '2', '1', 'Category 1', 'category-1', '2018-10-25 08:39:37', '2018-11-24 18:27:05');
-INSERT INTO `categories` VALUES ('2', '1', '2', 'Category 2', 'category-2', '2018-10-25 08:39:37', '2018-11-24 18:27:05');
+INSERT INTO `categories` VALUES ('1', '2', '1', 'Category 1', 'category-1', '2018-10-25 08:39:37', '2018-11-24 18:27:05', null);
+INSERT INTO `categories` VALUES ('2', '1', '2', 'Category 2', 'category-2', '2018-10-25 08:39:37', '2018-11-24 18:27:05', null);
 
 -- ----------------------------
 -- Table structure for comments
@@ -142,15 +143,17 @@ CREATE TABLE `courses` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `test_number` int(11) NOT NULL,
+  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `info` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of courses
 -- ----------------------------
-INSERT INTO `courses` VALUES ('1', 'CL45N', 'N5', '4', '123', '1', 'courses/November2018/OqqFr8KghZB6hM7Vosrx.png', '2018-11-01 07:22:44', '2018-11-01 07:22:44', 'n5', '0');
-INSERT INTO `courses` VALUES ('2', 'N5b', 'N5b', '4', '4', '1', 'courses\\November2018\\AOuoeO41Delttk6ncbu1.png', '2018-11-06 10:31:45', '2018-11-23 14:30:01', 'n5b', '0');
-INSERT INTO `courses` VALUES ('3', 'N4', 'N4', '6', '60', '1', 'courses\\November2018\\3hAIKRQxJkY8n0f7cXC1.png', '2018-11-23 14:31:47', '2018-11-23 14:31:47', 'n4', '10');
+INSERT INTO `courses` VALUES ('1', 'CL45N', 'N5', '4', '123', '1', 'courses/November2018/OqqFr8KghZB6hM7Vosrx.png', '2018-11-01 07:22:44', '2018-11-27 13:39:55', 'n5', '0', 'https://www.youtube.com/watch?v=yU6BSPNnuWA', '<p>&nbsp;this is the n5</p>');
+INSERT INTO `courses` VALUES ('2', 'N5b', 'N5b', '4', '4', '1', 'courses\\November2018\\AOuoeO41Delttk6ncbu1.png', '2018-11-06 10:31:45', '2018-11-23 14:30:01', 'n5b', '0', null, null);
+INSERT INTO `courses` VALUES ('3', 'N4', 'N4', '6', '60', '1', 'courses\\November2018\\3hAIKRQxJkY8n0f7cXC1.png', '2018-11-23 14:31:47', '2018-11-27 13:37:33', 'n4', '10', 'https://www.youtube.com/watch?v=yU6BSPNnuWA', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat.');
 
 -- ----------------------------
 -- Table structure for course_lesson
@@ -161,7 +164,7 @@ CREATE TABLE `course_lesson` (
   `course_id` int(10) unsigned NOT NULL,
   `lesson_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of course_lesson
@@ -169,6 +172,10 @@ CREATE TABLE `course_lesson` (
 INSERT INTO `course_lesson` VALUES ('1', '1', '1');
 INSERT INTO `course_lesson` VALUES ('2', '2', '1');
 INSERT INTO `course_lesson` VALUES ('3', '1', '2');
+INSERT INTO `course_lesson` VALUES ('4', '1', '3');
+INSERT INTO `course_lesson` VALUES ('5', '1', '4');
+INSERT INTO `course_lesson` VALUES ('6', '1', '5');
+INSERT INTO `course_lesson` VALUES ('7', '1', '6');
 
 -- ----------------------------
 -- Table structure for course_package
@@ -181,7 +188,7 @@ CREATE TABLE `course_package` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of course_package
@@ -190,6 +197,7 @@ INSERT INTO `course_package` VALUES ('1', '1', '1', null, null);
 INSERT INTO `course_package` VALUES ('2', '1', '2', null, null);
 INSERT INTO `course_package` VALUES ('3', '3', '3', null, null);
 INSERT INTO `course_package` VALUES ('4', '3', '1', null, null);
+INSERT INTO `course_package` VALUES ('5', '2', '4', null, null);
 
 -- ----------------------------
 -- Table structure for data_rows
@@ -212,7 +220,7 @@ CREATE TABLE `data_rows` (
   PRIMARY KEY (`id`),
   KEY `data_rows_data_type_id_foreign` (`data_type_id`),
   CONSTRAINT `data_rows_data_type_id_foreign` FOREIGN KEY (`data_type_id`) REFERENCES `data_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=181 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of data_rows
@@ -276,27 +284,27 @@ INSERT INTO `data_rows` VALUES ('56', '6', 'image', 'image', 'Page Image', '0', 
 INSERT INTO `data_rows` VALUES ('57', '7', 'id', 'hidden', 'Id', '1', '0', '0', '0', '0', '0', '{}', '1');
 INSERT INTO `data_rows` VALUES ('58', '7', 'code', 'text', 'Code', '0', '1', '1', '1', '1', '1', '{}', '2');
 INSERT INTO `data_rows` VALUES ('59', '7', 'name', 'text', 'Name', '0', '1', '1', '1', '1', '1', '{}', '3');
-INSERT INTO `data_rows` VALUES ('65', '7', 'time', 'number', 'Time', '0', '1', '1', '1', '1', '1', '{}', '6');
+INSERT INTO `data_rows` VALUES ('65', '7', 'time', 'number', 'Time', '0', '1', '1', '1', '1', '1', '{}', '7');
 INSERT INTO `data_rows` VALUES ('66', '7', 'video_number', 'number', 'Video Number', '0', '1', '1', '1', '1', '1', '{}', '8');
-INSERT INTO `data_rows` VALUES ('67', '7', 'status', 'select_dropdown', 'Status', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '9');
-INSERT INTO `data_rows` VALUES ('68', '7', 'image', 'image', 'Image', '0', '1', '1', '1', '1', '1', '{}', '10');
-INSERT INTO `data_rows` VALUES ('70', '7', 'created_at', 'timestamp', 'Created At', '0', '0', '0', '0', '0', '0', '{}', '11');
-INSERT INTO `data_rows` VALUES ('71', '7', 'updated_at', 'timestamp', 'Updated At', '0', '0', '0', '0', '0', '0', '{}', '12');
-INSERT INTO `data_rows` VALUES ('73', '7', 'slug', 'text', 'Slug', '0', '1', '1', '1', '1', '1', '{\"slugify\":{\"origin\":\"name\",\"forceUpdate\":true}}', '5');
-INSERT INTO `data_rows` VALUES ('74', '8', 'id', 'number', 'Id', '1', '0', '0', '0', '0', '0', '{}', '1');
-INSERT INTO `data_rows` VALUES ('75', '8', 'test_id', 'select_dropdown', 'Test Id', '1', '1', '1', '1', '1', '1', '{}', '4');
+INSERT INTO `data_rows` VALUES ('67', '7', 'status', 'select_dropdown', 'Status', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '12');
+INSERT INTO `data_rows` VALUES ('68', '7', 'image', 'image', 'Image', '0', '1', '1', '1', '1', '1', '{}', '11');
+INSERT INTO `data_rows` VALUES ('70', '7', 'created_at', 'timestamp', 'Created At', '0', '0', '0', '0', '0', '0', '{}', '13');
+INSERT INTO `data_rows` VALUES ('71', '7', 'updated_at', 'timestamp', 'Updated At', '0', '0', '0', '0', '0', '0', '{}', '14');
+INSERT INTO `data_rows` VALUES ('73', '7', 'slug', 'text', 'Slug', '0', '1', '1', '1', '1', '1', '{\"slugify\":{\"origin\":\"name\",\"forceUpdate\":true}}', '4');
+INSERT INTO `data_rows` VALUES ('74', '8', 'id', 'hidden', 'Id', '1', '0', '0', '0', '0', '0', '{}', '1');
+INSERT INTO `data_rows` VALUES ('75', '8', 'test_id', 'text', 'Test Id', '1', '0', '1', '1', '1', '1', '{}', '5');
 INSERT INTO `data_rows` VALUES ('76', '8', 'name', 'text', 'Name', '0', '1', '1', '1', '1', '1', '{}', '2');
-INSERT INTO `data_rows` VALUES ('77', '8', 'video', 'text', 'Video', '0', '1', '1', '1', '1', '1', '{}', '5');
-INSERT INTO `data_rows` VALUES ('78', '8', 'content', 'rich_text_box', 'Content', '0', '1', '1', '1', '1', '1', '{}', '6');
-INSERT INTO `data_rows` VALUES ('80', '8', 'view', 'number', 'View', '0', '1', '1', '1', '1', '1', '{}', '8');
-INSERT INTO `data_rows` VALUES ('81', '8', 'trial', 'select_dropdown', 'Trial', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '10');
-INSERT INTO `data_rows` VALUES ('82', '8', 'status', 'select_dropdown', 'Status', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '14');
-INSERT INTO `data_rows` VALUES ('83', '8', 'created_at', 'timestamp', 'Created At', '0', '1', '1', '1', '0', '1', '{}', '15');
-INSERT INTO `data_rows` VALUES ('84', '8', 'updated_at', 'timestamp', 'Updated At', '0', '0', '0', '0', '0', '0', '{}', '16');
-INSERT INTO `data_rows` VALUES ('85', '8', 'parent_id', 'select_dropdown', 'Parent Id', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"-- None --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', '7');
+INSERT INTO `data_rows` VALUES ('77', '8', 'video', 'text', 'Video', '0', '1', '1', '1', '1', '1', '{}', '6');
+INSERT INTO `data_rows` VALUES ('78', '8', 'content', 'rich_text_box', 'Content', '0', '0', '0', '1', '1', '1', '{}', '7');
+INSERT INTO `data_rows` VALUES ('80', '8', 'view', 'number', 'View', '0', '1', '1', '1', '1', '1', '{}', '10');
+INSERT INTO `data_rows` VALUES ('81', '8', 'trial', 'select_dropdown', 'Trial', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '12');
+INSERT INTO `data_rows` VALUES ('82', '8', 'status', 'select_dropdown', 'Status', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '16');
+INSERT INTO `data_rows` VALUES ('83', '8', 'created_at', 'timestamp', 'Created At', '0', '1', '1', '1', '0', '1', '{}', '18');
+INSERT INTO `data_rows` VALUES ('84', '8', 'updated_at', 'timestamp', 'Updated At', '0', '0', '0', '0', '0', '0', '{}', '19');
+INSERT INTO `data_rows` VALUES ('85', '8', 'parent_id', 'select_dropdown', 'Parent Id', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"-- parent --\"},\"relationship\":{\"key\":\"id\",\"label\":\"name\"}}', '9');
 INSERT INTO `data_rows` VALUES ('86', '8', 'slug', 'text', 'Slug', '0', '1', '1', '1', '1', '1', '{\"slugify\":{\"origin\":\"name\",\"forceUpdate\":true}}', '3');
-INSERT INTO `data_rows` VALUES ('87', '8', 'lesson_belongstomany_course_relationship', 'relationship', 'courses', '0', '1', '1', '1', '1', '1', '{\"model\":\"App\\\\Course\",\"table\":\"courses\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"course_lesson\",\"pivot\":\"1\",\"taggable\":\"0\"}', '12');
-INSERT INTO `data_rows` VALUES ('89', '8', 'youtube', 'text', 'Youtube', '0', '1', '1', '1', '1', '1', '{}', '9');
+INSERT INTO `data_rows` VALUES ('87', '8', 'lesson_belongstomany_course_relationship', 'relationship', 'courses', '0', '1', '1', '1', '1', '1', '{\"model\":\"App\\\\Course\",\"table\":\"courses\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"course_lesson\",\"pivot\":\"1\",\"taggable\":\"0\"}', '14');
+INSERT INTO `data_rows` VALUES ('89', '8', 'youtube', 'text', 'Youtube', '0', '0', '0', '1', '1', '1', '{}', '11');
 INSERT INTO `data_rows` VALUES ('90', '9', 'id', 'number', 'Id', '1', '0', '0', '0', '0', '0', '{}', '1');
 INSERT INTO `data_rows` VALUES ('91', '9', 'name', 'text', 'Name', '0', '1', '1', '1', '1', '1', '{}', '2');
 INSERT INTO `data_rows` VALUES ('92', '9', 'status', 'select_dropdown', 'Status', '0', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '4');
@@ -355,8 +363,8 @@ INSERT INTO `data_rows` VALUES ('145', '14', 'created_at', 'timestamp', 'Created
 INSERT INTO `data_rows` VALUES ('146', '14', 'updated_at', 'timestamp', 'Updated At', '0', '0', '0', '0', '0', '0', '{}', '12');
 INSERT INTO `data_rows` VALUES ('147', '14', 'payment_belongsto_course_relationship', 'relationship', 'courses', '0', '1', '1', '1', '1', '1', '{\"model\":\"App\\\\Course\",\"table\":\"courses\",\"type\":\"belongsTo\",\"column\":\"course_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"answers\",\"pivot\":\"0\",\"taggable\":\"0\"}', '5');
 INSERT INTO `data_rows` VALUES ('148', '14', 'payment_belongsto_user_relationship', 'relationship', 'users', '0', '1', '1', '1', '1', '1', '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"answers\",\"pivot\":\"0\",\"taggable\":\"0\"}', '3');
-INSERT INTO `data_rows` VALUES ('149', '8', 'is_home', 'select_dropdown', 'trang chủ', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '11');
-INSERT INTO `data_rows` VALUES ('150', '8', 'image', 'image', 'Image', '0', '1', '1', '1', '1', '1', '{}', '13');
+INSERT INTO `data_rows` VALUES ('149', '8', 'is_home', 'select_dropdown', 'trang chủ', '1', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '13');
+INSERT INTO `data_rows` VALUES ('150', '8', 'image', 'image', 'Image', '0', '1', '1', '1', '1', '1', '{}', '15');
 INSERT INTO `data_rows` VALUES ('151', '15', 'id', 'hidden', 'Id', '1', '0', '0', '0', '0', '0', '{}', '1');
 INSERT INTO `data_rows` VALUES ('152', '15', 'title', 'text', 'Title', '0', '1', '1', '1', '1', '1', '{}', '2');
 INSERT INTO `data_rows` VALUES ('153', '15', 'text_button', 'text', 'Text Button', '0', '1', '1', '1', '1', '1', '{}', '3');
@@ -383,10 +391,15 @@ INSERT INTO `data_rows` VALUES ('173', '16', 'slug', 'text', 'Slug', '0', '1', '
 INSERT INTO `data_rows` VALUES ('174', '16', 'test_number', 'number', 'Test Number', '0', '1', '1', '1', '1', '1', '{}', '13');
 INSERT INTO `data_rows` VALUES ('175', '16', 'created_at', 'timestamp', 'Created At', '0', '1', '1', '1', '0', '1', '{}', '16');
 INSERT INTO `data_rows` VALUES ('176', '16', 'updated_at', 'timestamp', 'Updated At', '0', '0', '0', '0', '0', '0', '{}', '17');
-INSERT INTO `data_rows` VALUES ('177', '7', 'course_belongstomany_package_relationship', 'relationship', 'packages', '0', '1', '1', '1', '1', '1', '{\"model\":\"App\\\\Package\",\"table\":\"packages\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"course_package\",\"pivot\":\"1\",\"taggable\":\"0\"}', '4');
-INSERT INTO `data_rows` VALUES ('178', '7', 'test_number', 'text', 'Test Number', '1', '1', '1', '1', '1', '1', '{}', '7');
+INSERT INTO `data_rows` VALUES ('177', '7', 'course_belongstomany_package_relationship', 'relationship', 'packages', '0', '1', '1', '1', '1', '1', '{\"model\":\"App\\\\Package\",\"table\":\"packages\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"course_package\",\"pivot\":\"1\",\"taggable\":\"0\"}', '5');
+INSERT INTO `data_rows` VALUES ('178', '7', 'test_number', 'text', 'Test Number', '1', '1', '1', '1', '1', '1', '{}', '6');
 INSERT INTO `data_rows` VALUES ('179', '16', 'is_home', 'select_dropdown', 'Is Home', '0', '1', '1', '1', '1', '1', '{\"default\":\"0\",\"options\":{\"0\":\"Ch\\u01b0a k\\u00edch ho\\u1ea1t\",\"1\":\"\\u0110\\u00e3 k\\u00edch ho\\u1ea1t\"}}', '14');
-INSERT INTO `data_rows` VALUES ('180', '8', 'lesson_hasmany_test_relationship', 'relationship', 'tests', '0', '1', '1', '1', '1', '1', '{\"model\":\"App\\\\Test\",\"table\":\"tests\",\"type\":\"hasMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"answers\",\"pivot\":\"0\",\"taggable\":\"0\"}', '17');
+INSERT INTO `data_rows` VALUES ('180', '8', 'lesson_hasmany_test_relationship', 'relationship', 'tests', '0', '1', '1', '1', '1', '1', '{\"model\":\"App\\\\Test\",\"table\":\"tests\",\"type\":\"belongsTo\",\"column\":\"test_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"answers\",\"pivot\":\"0\",\"taggable\":\"0\"}', '4');
+INSERT INTO `data_rows` VALUES ('181', '7', 'youtube', 'text', 'Youtube', '0', '1', '1', '1', '1', '1', '{}', '9');
+INSERT INTO `data_rows` VALUES ('182', '7', 'info', 'rich_text_box', 'Info', '0', '0', '0', '1', '1', '1', '{}', '10');
+INSERT INTO `data_rows` VALUES ('183', '4', 'type', 'text', 'Type', '0', '1', '1', '1', '1', '1', '{}', '8');
+INSERT INTO `data_rows` VALUES ('184', '8', 'order', 'text', 'Order', '0', '1', '1', '1', '1', '1', '{}', '17');
+INSERT INTO `data_rows` VALUES ('185', '8', 'lesson_belongsto_lesson_relationship', 'relationship', 'parent', '0', '1', '1', '1', '1', '1', '{\"model\":\"App\\\\Lesson\",\"table\":\"lessons\",\"type\":\"belongsTo\",\"column\":\"parent_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"answers\",\"pivot\":\"0\",\"taggable\":\"0\"}', '8');
 
 -- ----------------------------
 -- Table structure for data_types
@@ -419,11 +432,11 @@ CREATE TABLE `data_types` (
 INSERT INTO `data_types` VALUES ('1', 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', '', '', '1', '0', null, '2018-10-25 08:39:37', '2018-10-25 08:39:37');
 INSERT INTO `data_types` VALUES ('2', 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', null, '', '', '1', '0', null, '2018-10-25 08:39:37', '2018-10-25 08:39:37');
 INSERT INTO `data_types` VALUES ('3', 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', null, '', '', '1', '0', null, '2018-10-25 08:39:37', '2018-10-25 08:39:37');
-INSERT INTO `data_types` VALUES ('4', 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', null, null, null, '1', '0', '{\"order_column\":null,\"order_display_column\":null}', '2018-10-25 08:39:37', '2018-11-24 18:37:39');
+INSERT INTO `data_types` VALUES ('4', 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', null, null, null, '1', '0', '{\"order_column\":\"order\",\"order_display_column\":\"name\"}', '2018-10-25 08:39:37', '2018-11-27 14:23:24');
 INSERT INTO `data_types` VALUES ('5', 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', '1', '0', null, '2018-10-25 08:39:37', '2018-10-25 08:39:37');
 INSERT INTO `data_types` VALUES ('6', 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', null, '', '', '1', '0', null, '2018-10-25 08:39:37', '2018-10-25 08:39:37');
-INSERT INTO `data_types` VALUES ('7', 'courses', 'courses', 'Course', 'Courses', 'voyager-browser', 'App\\Course', null, null, null, '1', '0', '{\"order_column\":null,\"order_display_column\":null}', '2018-11-01 04:48:42', '2018-11-23 14:01:09');
-INSERT INTO `data_types` VALUES ('8', 'lessons', 'lessons', 'Lesson', 'Lessons', 'voyager-youtube-play', 'App\\Lesson', null, null, null, '1', '0', '{\"order_column\":null,\"order_display_column\":null}', '2018-11-01 07:48:50', '2018-11-24 17:38:09');
+INSERT INTO `data_types` VALUES ('7', 'courses', 'courses', 'Course', 'Courses', 'voyager-browser', 'App\\Course', null, null, null, '1', '0', '{\"order_column\":null,\"order_display_column\":null}', '2018-11-01 04:48:42', '2018-11-27 13:38:28');
+INSERT INTO `data_types` VALUES ('8', 'lessons', 'lessons', 'Lesson', 'Lessons', 'voyager-youtube-play', 'App\\Lesson', null, null, null, '1', '0', '{\"order_column\":\"order\",\"order_display_column\":\"name\"}', '2018-11-01 07:48:50', '2018-11-27 14:52:16');
 INSERT INTO `data_types` VALUES ('9', 'tests', 'tests', 'Test', 'Tests', 'voyager-tree', 'App\\Test', null, null, null, '1', '0', '{\"order_column\":null,\"order_display_column\":null}', '2018-11-06 09:30:45', '2018-11-06 10:01:48');
 INSERT INTO `data_types` VALUES ('10', 'questions', 'questions', 'Question', 'Questions', 'voyager-question', 'App\\Question', null, null, null, '1', '0', '{\"order_column\":null,\"order_display_column\":null}', '2018-11-06 09:48:31', '2018-11-08 09:47:31');
 INSERT INTO `data_types` VALUES ('11', 'answers', 'answers', 'Answer', 'Answers', 'voyager-pen', 'App\\Answer', null, null, null, '1', '0', '{\"order_column\":null,\"order_display_column\":null}', '2018-11-06 10:18:06', '2018-11-18 12:43:38');
@@ -439,7 +452,7 @@ INSERT INTO `data_types` VALUES ('16', 'packages', 'packages', 'Package', 'Packa
 DROP TABLE IF EXISTS `lessons`;
 CREATE TABLE `lessons` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `test_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `test_id` int(10) unsigned DEFAULT '0',
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `video` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `content` text COLLATE utf8mb4_unicode_ci,
@@ -453,14 +466,16 @@ CREATE TABLE `lessons` (
   `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_home` tinyint(4) NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of lessons
 -- ----------------------------
-INSERT INTO `lessons` VALUES ('1', '0', 'Bảng chữ cái hiragana', 'huu.mp4', '<p>ff</p>', '2', '2', '1', '1', '2018-11-01 09:13:00', '2018-11-24 17:07:42', 'bang-chu-cai-hiragana', 'https://www.youtube.com/watch?v=LmVBhe1AyXU', '0', null);
-INSERT INTO `lessons` VALUES ('2', '0', 'Bản chữ cái hiragana', null, null, '0', null, '0', '1', '2018-11-24 17:02:13', '2018-11-24 17:02:13', 'ban-chu-cai-hiragana', null, '0', null);
+INSERT INTO `lessons` VALUES ('4', '0', 'Bảng chữ cái hiragana', null, null, '0', null, '0', '1', '2018-11-27 14:02:00', '2018-11-27 14:26:20', 'bang-chu-cai-hiragana', null, '0', 'lessons\\November2018\\l5D4eptp6sgDq111pZcg.png', '1');
+INSERT INTO `lessons` VALUES ('5', '1', 'Giới thiệu về bảng chữ cái trong tiếng nhật', null, null, '4', '100', '1', '1', '2018-11-27 14:04:00', '2018-11-27 14:52:55', 'gioi-thieu-ve-bang-chu-cai-trong-tieng-nhat', 'https://www.youtube.com/watch?v=LmVBhe1AyXU', '1', 'lessons\\November2018\\0Agt4Hx3PcauzcLyk1j7.png', '2');
+INSERT INTO `lessons` VALUES ('6', null, 'Bài 1 - Hiragana A I Ư Ê Ô', null, null, '4', '100', '1', '1', '2018-11-27 15:04:00', '2018-11-27 15:04:00', 'bai-1-hiragana-a-i-e-o', 'https://www.youtube.com/watch?v=0HfoZT-8xFM', '1', 'lessons\\November2018\\CnUSFGxzaRng4Bop3sgg.png', null);
 
 -- ----------------------------
 -- Table structure for menus
@@ -628,7 +643,7 @@ CREATE TABLE `packages` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_home` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of packages
@@ -636,6 +651,7 @@ CREATE TABLE `packages` (
 INSERT INTO `packages` VALUES ('1', 'CL45N', 'COMBO N4 + N5', null, 'combo', null, '600000', '800000', '10', '149', '1', 'packages\\November2018\\ml1tbBmgHQTbvK0GFrBj.png', 'combo-n4-n5', '50', '2018-11-23 14:20:00', '2018-11-24 14:26:10', '1');
 INSERT INTO `packages` VALUES ('2', 'CL45L', 'N5', 'Khóa học dành cho sinh viên du học', 'single', 'n5', null, '990000', '4', '123', '1', 'packages\\November2018\\DFqLPtRH0CMSqdZ0oj8R.png', 'n5', null, '2018-11-23 14:24:00', '2018-11-24 14:25:55', '0');
 INSERT INTO `packages` VALUES ('3', 'N4', 'N4', 'Khóa học N4', 'single', 'n4', null, '800000', '5', '40', '1', 'packages\\November2018\\SduUGZL086bLIranJhQK.png', 'n4', null, '2018-11-23 14:27:00', '2018-11-24 14:25:34', '0');
+INSERT INTO `packages` VALUES ('4', 'N5b', 'N5b', 'Khóa học dành cho sinh viên du học', 'single', 'n5', null, '500000', '10', '23', '1', 'packages\\November2018\\lSAJXDJyr7NcdG233erf.png', 'n5b', '10', '2018-11-26 16:18:09', '2018-11-26 16:18:09', '0');
 
 -- ----------------------------
 -- Table structure for pages
