@@ -43,7 +43,10 @@ class HomeController extends Controller
                     ->where('packages.id', $package['id'])
                     ->select('course_package.course_id')
                     ->get()->first();
-                    $package['course_id'] = $courseId->course_id;
+                    if(isset($courseId)){
+                        $package['course_id'] = $courseId->course_id;
+                    }
+
                     $dataPackages[$package['course_type']][] = $package;
                 }
             }
