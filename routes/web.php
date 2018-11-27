@@ -36,6 +36,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
     //Route::put('/users/{id}', 'UserController@update')->name('user.update');
 
     Route::get('/tin-tuc', 'NewController@index');
+    Route::get('/ho-tro', 'ContactController@index');
 
 
     Route::get('/', 'HomeController@index')->name('home.index');
