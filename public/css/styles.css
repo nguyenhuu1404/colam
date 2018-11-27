@@ -1106,11 +1106,11 @@ img{
 }
 .breadcrumb-item+.breadcrumb-item::before {
 	transform: rotate(45deg);
-	top: 8px;
+	top: 9px;
 }
 .breadcrumb-item+.breadcrumb-item::after {
 	transform: rotate(-45deg);
-	bottom: 8px;
+	bottom: 9px;
 }
 .lesson-box {
 	width: 100%;
@@ -1740,3 +1740,8 @@ img{
 @media all and (max-width: 767px) {
 	.ketqua-score{    width: calc(20% - 10px); }
 }
+.btn-khoahoc-conlai{border:1px solid #ccc;}
+.btn-my-lesson{line-height:42px;padding:0 !important;border-radius:20px; width:210px;text-align:center;}
+
+.btn-submit-form{width: 206px; height: 60px; border-radius: 30px; text-align: center; }
+.form-contact .form-control{padding: 10px 15px; border-radius: 25px; line-height: 30px; background: #ebebeb; border:0;}
