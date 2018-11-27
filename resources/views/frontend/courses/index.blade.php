@@ -9,8 +9,8 @@
                 <div class="title-breadcrumb">Học tiếng Nhật online</div>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Các khóa học</li>
+                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="/khoa-hoc">Các khóa học</a></li>
                     </ol>
                 </nav>
             </div>
@@ -20,8 +20,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-3">
-                    <a class="btn btn-danger w-100 p-3 mb-3" href=""><b>Mua khóa học này</b></a>
-                    <a class="btn p-2 mb-3 btn-warning w-100" href="">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a class="btn btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['id']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
+                    <a class="btn p-2 mb-3 btn-warning w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </a>
                     <div class="title-slidebar">Tiến trình học</div>
                     <div class="section-sb-current">
@@ -51,17 +51,17 @@
                     </div>
                 </div>
                 <div class="col-xl-9 pd-0-30">
-                    <h2 class='w-100 text-uppercase font24 left-title-lesson'>Khóa học N5</h2>
+                    <h2 class='w-100 text-uppercase font24 left-title-lesson'>Khóa học {{$course['name']}}</h2>
 
                     <div class="alert alert-primary ">Giới thiệu lộ trình học</div>
 
                     <div class="body-content-lesson">
                         <div class="row">
                             <div class="col-xl-12 p-0">
-                                <iframe class="iframe" height="450" src="https://www.youtube.com/embed/yU6BSPNnuWA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe class="iframe" height="450" src="https://www.youtube.com/embed/{{getYoutubeId($course['youtube'])}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                                 <div class="description-body-content-lesson">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat.
+                                    {{$course['info']}}
                                 </div>
 
                             </div>

@@ -32,16 +32,14 @@ class HomeController extends Controller
         $data['courseTrialLesson'] = $courseTrialLesson;
 
         $singlePackages = Package::where(['type' => 'single', 'status' => 1])->get()->toArray();
-            $dataPackages = [];
-            if(count($singlePackages) > 0){
-                foreach($singlePackages as $package){
-                    if($package['course_type'] !== null){
-                        $dataPackages[$package['course_type']][] = $package;
-                    }else{
-                        $dataPackages = $singlePackages;
-                    }
+        $dataPackages = [];
+        if(count($singlePackages) > 0){
+            foreach($singlePackages as $package){
+                if($package['course_type'] !== null){
+                    $dataPackages[$package['course_type']][] = $package;
                 }
             }
+        }
         $data['singlePackages'] = $dataPackages;
         $data['courseTypes'] = config('app.courseTypes');
 
