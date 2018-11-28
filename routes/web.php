@@ -36,6 +36,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
     //Route::put('/users/{id}', 'UserController@update')->name('user.update');
 
     Route::get('/tin-tuc', 'NewController@index');
+    Route::get('/tin-tuc/{id}-{slug}', 'NewController@detail')->where(['id' => '[0-9]+']);
     Route::get('/ho-tro', 'ContactController@index');
 
 

@@ -30,15 +30,15 @@
 								</div>
 								<div class="col-md-7">
 									<div class="">
-										<a href="/new/">
-											<p class="title">
-												<strong>{{ $new['title'] }}</strong>
-											</p>
+										<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" title="{{ $new['title'] }}">
+											<h3 class="title h5">
+												{{ $new['title'] }}
+											</h3>
 										</a>
 										<p>
 											{{ $new['excerpt'] }}
 										</p>
-										<a href="" class="btn-readmore news">Xem chi tiết</a>
+										<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" class="btn-readmore news transition">Xem chi tiết</a>
 									</div>
 								</div>
 							</div>
