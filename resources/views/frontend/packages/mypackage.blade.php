@@ -18,11 +18,11 @@
     </section>
 			<section class="lesson-box">
 				<div class="container">
-					<h1 class="text-center text-uppercase sfd mt-4 mb-5 font30" >Khoa hoc cua toi</h1>
+					<h1 class="text-center text-uppercase sfd mt-4 mb-5 font30" >Khóa học của tôi</h1>
 					<div class="row">
-						<div class="col-xl-4 item-class col-sm-6">
+						<div class="col-sm-6 col-xl-4 item-class mb-5">
 							<div class="thumbnail-tab-class">
-								<img src="/images/img-class.png">
+								<img src="images/img-class.png">
 								<div class="info-class-position">
 									<div class="h3">N5</div>
 									<p>4 tháng</p>
@@ -42,15 +42,17 @@
 										<div class="number-video"></div>
 										Số video: 123
 									</div>
-									<div class="group-btn-item-class">
-										<a href="" class="btn btn-buy m-auto">GIA HẠN</a>
+									<div class="text-center w-100" style="margin-top: 30px;">	
+										<div class="btn btn-my-lesson btn-khoahoc-conlai">
+											<img src="images/icon-clock-hour.png" class="mr-3"><span>Còn lại: <b>85 ngày</b></span>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 item-class col-sm-6">
+						<div class="col-sm-6 col-xl-4 item-class mb-5">
 							<div class="thumbnail-tab-class">
-								<img src="/images/img-class.png">
+								<img src="images/img-class.png">
 								<div class="info-class-position">
 									<div class="h3">N5</div>
 									<p>4 tháng</p>
@@ -71,14 +73,14 @@
 										Số video: 123
 									</div>
 									<div class="group-btn-item-class">
-										<a href="" class="btn btn-buy m-auto">GIA HẠN</a>
+										<a href="" class="btn btn-my-lesson btn-buy m-auto">GIA HẠN</a>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 item-class col-sm-6">
+						<div class="col-sm-6 col-xl-4 item-class mb-5">
 							<div class="thumbnail-tab-class">
-								<img src="/images/img-class.png">
+								<img src="images/img-class.png">
 								<div class="info-class-position">
 									<div class="h3">N5</div>
 									<p>4 tháng</p>
@@ -99,14 +101,14 @@
 										Số video: 123
 									</div>
 									<div class="group-btn-item-class">
-										<a href="" class="btn btn-buy m-auto">GIA HẠN</a>
+										<a href="" class="btn btn-my-lesson btn-buy m-auto">GIA HẠN</a>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 item-class col-sm-6">
+						<div class="col-sm-6 col-xl-4 item-class mb-5">
 							<div class="thumbnail-tab-class">
-								<img src="/images/img-class.png">
+								<img src="images/img-class.png">
 								<div class="info-class-position">
 									<div class="h3">N5</div>
 									<p>4 tháng</p>
@@ -127,7 +129,7 @@
 										Số video: 123
 									</div>
 									<div class="group-btn-item-class">
-										<a href="" class="btn btn-buy m-auto">GIA HẠN</a>
+										<a href="" class="btn btn-my-lesson btn-buy m-auto">GIA HẠN</a>
 									</div>
 								</div>
 							</div>
