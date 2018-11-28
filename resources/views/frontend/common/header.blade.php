@@ -189,9 +189,9 @@
 										<div class="name-user">{{ Auth::user()->name }}</div>
 										<div class="notification-user">2</div>
 										<ul class="nav-toogle">
-											<li><a href="">Khóa học của tôi <i class="fa fa-file-text-o"></i></a></li>
-											<li><a href="">Đổi mật khẩu <i class="fa fa-lock"></i></a></li>
-											<li><a href="">Thông báo (2) <i class="fa fa-exclamation-circle "></i></a></li>
+											<li><a href="/khoa-hoc-cua-toi">Khóa học của tôi <i class="fa fa-file-text-o"></i></a></li>
+											<li><a href="/doi-mat-khau">Đổi mật khẩu <i class="fa fa-lock"></i></a></li>
+											<li><a href="/thong-bao">Thông báo (2) <i class="fa fa-exclamation-circle "></i></a></li>
 
 											<li>
 											<a class="dropdown-item" href="{{route('frontend.logout') }}"
