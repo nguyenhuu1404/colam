@@ -2,25 +2,25 @@
 
 @section('content')
 
-<section class="banner">
-				<img src="/images/banner-lesson.png">
-				<div class="breadcrumb-position">
-					<div class="container">
-						<div class="title-breadcrumb">Học tiếng Nhật online</div>
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Khoa hoc cua toi</li>
-							</ol>
-						</nav>
-					</div>
-				</div>
-			</section>
+    <section class="banner">
+        <img src="/images/banner-lesson.png">
+        <div class="breadcrumb-position">
+            <div class="container">
+                <div class="title-breadcrumb">Học tiếng Nhật online</div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="/khoa-hoc">Các khóa học</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
 			<section class="lesson-box">
 				<div class="container">
-					<h1 class="text-center text-uppercase">Khoa hoc cua toi</h1>
+					<h1 class="text-center text-uppercase sfd mt-4 mb-5 font30" >Khoa hoc cua toi</h1>
 					<div class="row">
-						<div class="col-xl-4 item-class">
+						<div class="col-xl-4 item-class col-sm-6">
 							<div class="thumbnail-tab-class">
 								<img src="/images/img-class.png">
 								<div class="info-class-position">
@@ -48,7 +48,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 item-class">
+						<div class="col-xl-4 item-class col-sm-6">
 							<div class="thumbnail-tab-class">
 								<img src="/images/img-class.png">
 								<div class="info-class-position">
@@ -76,7 +76,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 item-class">
+						<div class="col-xl-4 item-class col-sm-6">
 							<div class="thumbnail-tab-class">
 								<img src="/images/img-class.png">
 								<div class="info-class-position">
@@ -104,7 +104,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4 item-class">
+						<div class="col-xl-4 item-class col-sm-6">
 							<div class="thumbnail-tab-class">
 								<img src="/images/img-class.png">
 								<div class="info-class-position">

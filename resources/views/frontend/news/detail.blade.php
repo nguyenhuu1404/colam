@@ -2,18 +2,20 @@
 
 @section('content')
 
-<section class="banner news">
-				<div>
-					<div class="title-description">
-						<div class="container">
-							<h2 class="title-slider">Học tiếng Nhật online</h2>
-							<div class="ui breadcrumb">
-							    <p id="breadcrumbs"><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb"><a href="/" rel="v:url" property="v:title">Trang chủ</a> > <span rel="v:child" typeof="v:Breadcrumb"><a href="/tin-tuc/" rel="v:url" property="v:title">Tin tức</a><span rel="v:child" typeof="v:Breadcrumb"></p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+  <section class="banner">
+        <img src="images/banner-lesson.png">
+        <div class="breadcrumb-position">
+            <div class="container">
+                <div class="title-breadcrumb">Học tiếng Nhật online</div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Khoa hoc</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
 
 			<section class="w-100 main-news">
 				<div class="container">

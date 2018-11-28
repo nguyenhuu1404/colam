@@ -2,20 +2,20 @@
 
 @section('content')
 
-    <section class="banner">
-				<img src="/images/banner-lesson.png">
-				<div class="breadcrumb-position">
-					<div class="container">
-						<div class="title-breadcrumb">Học tiếng Nhật online</div>
-						<nav aria-label="breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Các khóa học</li>
-							</ol>
-						</nav>
-					</div>
-				</div>
-			</section>
+  <section class="banner">
+        <img src="images/banner-lesson.png">
+        <div class="breadcrumb-position">
+            <div class="container">
+                <div class="title-breadcrumb">Học tiếng Nhật online</div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Khoa hoc</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </section>
 			<section class="lesson-box">
 				<div class="container">
 					<div class="row">

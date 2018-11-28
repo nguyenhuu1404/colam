@@ -2,18 +2,19 @@
 
 @section('content')
 
-<section class="banner news">
-        <div class="title-description">
-            <div class="container">
-                <h2 class="title-slider">Học tiếng Nhật online</h2>
-                <div class="ui breadcrumb">
-                    <p id="breadcrumbs">
-                        <a href="">Trang chủ</a> >
-                        <a href="">Các khóa học</a>
-                    </p>
-                </div>
-            </div>
+<section class="banner">
+    <img src="images/banner-lesson.png">
+    <div class="breadcrumb-position">
+        <div class="container">
+            <div class="title-breadcrumb">Học tiếng Nhật online</div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tin tuc</li>
+                </ol>
+            </nav>
         </div>
+    </div>
 </section>
 
 <section class="w-100 main-news">
