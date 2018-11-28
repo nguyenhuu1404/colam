@@ -1702,7 +1702,7 @@ img{
 .flex-row-reverse{-webkit-box-orient:horizontal!important;-webkit-box-direction:reverse!important;-webkit-flex-direction:row-reverse!important;-ms-flex-direction:row-reverse!important;flex-direction:row-reverse!important;}
 .flex-column{flex-direction:column!important;}
 .flex-row-center, .ketqua-score{display:flex;flex-direction:row;align-items:center;justify-content:center;}
-
+.full{float: left;width: 100%;}
 
 .tit-page{font-size: 30px;}
 .date-page{color: #c4351a; }

@@ -3,7 +3,7 @@
 @section('content')
 
   <section class="banner">
-        <img src="images/banner-lesson.png">
+        <img src="/images/banner-lesson.png">
         <div class="breadcrumb-position">
             <div class="container">
                 <div class="title-breadcrumb">Học tiếng Nhật online</div>
@@ -41,116 +41,52 @@
 							
 							<div class="clearfix"></div>
 							<?php $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>
-							<div class="fb-comments" data-href="{{ $url }}" data-width="100%" data-numposts="5"></div>
+							<div class="fb-comments full" data-href="{{ $url }}" data-width="100%" data-numposts="5"></div>
+							@if (count($related) > 0)
 							<div class="title-other"><span>Bài viết khác</span></div>
 							<div class="clearfix" style="height: 30px;"></div>
-							<!-- item-new -->	
-							<div class="row loop-item news">
-								<div class="col-md-5">
-									<a href="">
-										<img src="/images/new1.jpg">
-									</a>
-								</div>
-								<div class="col-md-7">
-									<div class="">
-										<a href="">
-											<p class="title">
-												<strong>Thủ tướng: Nhà nước được gì khi bán nhà công sản cho Vũ Nhôm?</strong>
-											</p>
-										</a>
-										<p>
-											Ông Đào Minh Tú cho biết vẫn cung ứng đủ tiền lẻ cho thanh toán nhưng không ủng hộ dùng để giải quyết vấn đề của những dự án BOT.
-										</p>
-										<a href="" class="btn-readmore news transition">Xem chi tiết</a>
-									</div>
-								</div>
-							</div>
-							<!-- item-new -->	
-							<!-- item-new -->	
-							<div class="row loop-item news">
-								<div class="col-md-5">
-									<a href="">
-										<img src="/images/new1.jpg">
-									</a>
-								</div>
-								<div class="col-md-7">
-									<div class="">
-										<a href="">
-											<p class="title">
-												<strong>Thủ tướng: Nhà nước được gì khi bán nhà công sản cho Vũ Nhôm?</strong>
-											</p>
-										</a>
-										<p>
-											Ông Đào Minh Tú cho biết vẫn cung ứng đủ tiền lẻ cho thanh toán nhưng không ủng hộ dùng để giải quyết vấn đề của những dự án BOT.
-										</p>
-										<a href="" class="btn-readmore news transition">Xem chi tiết</a>
-									</div>
-								</div>
-							</div>
-							<!-- item-new -->
-							<!-- item-new -->	
-							<div class="row loop-item news">
-								<div class="col-md-5">
-									<a href="">
-										<img src="/images/new1.jpg">
-									</a>
-								</div>
-								<div class="col-md-7">
-									<div class="">
-										<a href="">
-											<p class="title">
-												<strong>Thủ tướng: Nhà nước được gì khi bán nhà công sản cho Vũ Nhôm?</strong>
-											</p>
-										</a>
-										<p>
-											Ông Đào Minh Tú cho biết vẫn cung ứng đủ tiền lẻ cho thanh toán nhưng không ủng hộ dùng để giải quyết vấn đề của những dự án BOT.
-										</p>
-										<a href="" class="btn-readmore news transition">Xem chi tiết</a>
-									</div>
-								</div>
-							</div>
-							<!-- item-new -->	
-							<!-- item-new -->	
-							<div class="row loop-item news">
-								<div class="col-md-5">
-									<a href="">
-										<img src="/images/new1.jpg">
-									</a>
-								</div>
-								<div class="col-md-7">
-									<div class="">
-										<a href="">
-											<p class="title">
-												<strong>Thủ tướng: Nhà nước được gì khi bán nhà công sản cho Vũ Nhôm?</strong>
-											</p>
-										</a>
-										<p>
-											Ông Đào Minh Tú cho biết vẫn cung ứng đủ tiền lẻ cho thanh toán nhưng không ủng hộ dùng để giải quyết vấn đề của những dự án BOT.
-										</p>
-										<a href="" class="btn-readmore news transition">Xem chi tiết</a>
-									</div>
-								</div>
-							</div>
-							<!-- item-new -->
 
-
-
+							@foreach ($related as $new)
+   							<!-- item-new -->	
+							<div class="row loop-item news">
+								
+								<div class="col-md-3">
+									<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" title="{{ $new['title'] }}">
+										<img src="{{ Storage::url( $post['image'] )}}">
+									</a>
+								</div>
+								<div class="col-md-9">
+									<div class="">
+										<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" title="{{ $new['title'] }}">
+											<p class="title">
+												<strong>{{ $new['title'] }}</strong>
+											</p>
+										</a>
+										<p>
+											{{ $new['excerpt'] }}
+										</p>
+										<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" title="{{ $new['title'] }}" class="btn-readmore news transition">Xem chi tiết</a>
+									</div>
+								</div>
+								
+							</div>
+							<!-- item-new -->	
+							@endforeach
+							
+							@endif
 							<div class="clearfix" style="height: 50px;"></div>
 						</div>
 						<div class="col-md-3 pull-left" id="sidebar">
 							<ul class="menu-sidebar">
+								@foreach($categories as $list)
 								<li>
-									<a href="">Tin tức</a>
+									<a href="">{{ $list['name'] }}</a>
 								</li>
-								<li class="current">
+								@endforeach
+								<!-- <li class="current">
 									<a href="">Lộ trình hiệu quả</a>
-								</li>
-								<li>
-									<a href="">Cảm nhận của học viên</a>
-								</li>
-								<li>
-									<a href="">Hỏi đáp</a>
-								</li>
+								</li> -->
+								
 							</ul>
 							<div class="ads-sb mb-4">
 								<a href="">

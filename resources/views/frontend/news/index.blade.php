@@ -60,18 +60,11 @@
 						</div>
 						<div class="col-md-3 pull-left">
 							<ul class="menu-sidebar">
+								@foreach($categories as $list)
 								<li>
-									<a href="">Tin tức</a>
+									<a href="">{{ $list['name'] }}</a>
 								</li>
-								<li class="current">
-									<a href="">Lộ trình hiệu quả</a>
-								</li>
-								<li>
-									<a href="">Cảm nhận của học viên</a>
-								</li>
-								<li>
-									<a href="">Hỏi đáp</a>
-								</li>
+								@endforeach
 							</ul>
 						</div>
 					</div>
