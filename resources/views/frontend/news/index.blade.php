@@ -25,7 +25,7 @@
                             @foreach($news as $new)
 							<div class="row loop-item news">
 								<div class="col-md-5">
-									<a href="">
+									<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" title="{{ $new['title'] }}">
 										<img src="{{ Storage::url($new['image']) }}">
 									</a>
 								</div>
