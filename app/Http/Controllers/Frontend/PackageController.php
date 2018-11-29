@@ -12,6 +12,7 @@ class PackageController extends Controller
     public function combo($packageId){
         $data['package'] = Package::where('id', $packageId)->first()->toArray();
         $data['courses'] = Package::find($packageId)->courses()->get()->toArray();
+        //dd($data);
         return view('frontend.packages.combo', $data);
     }
     public function index(){
