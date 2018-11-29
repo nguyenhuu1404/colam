@@ -21,24 +21,22 @@
             <div class="row">
                 <div class="col-xl-3">
                     <a class="btn btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['packageId']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
-                    <a class="btn p-2 mb-3 btn-warning w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a class="btn p-2 mb-3 btn-outline-danger w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </a>
                     @if($lessons)
                     <div class="title-slidebar">Tiến trình học</div>
                     <div class="section-sb-current">
                         <ul class="section-sb-list">
                         @foreach($lessons as $lesson)
-                            <li class="cat-item {{ () }}has_child">
+                            <li class="cat-item {{ (count($lesson['children']) > 0) ? 'has_child' : '' }}">
                                 <a href="javascript:void(0)">{{$lesson['name']}}</a>
+                                @if(count($lesson['children']) > 0)
                                 <ul class="children">
-                                    <li><a href="#">Giới thiệu về bảng chữ cái trong tiếng nhật</a></li>
-                                    <li><a href="#">Bài 1 - Hiragana A I Ư Ê Ô</a></li>
-                                    <li><a href="#">Bài 2 - Hiragana Ta, Chi, Tsu, Te, To</a></li>
-                                    <li><a href="#">Bài 3 - Hiragana Ga, Gi, Gu, Ge, Go</a></li>
-                                    <li><a href="#">Bài 4 - Hiragana Kya, Kyu, Kyo, Gya, Gyu, Gyo</a></li>
-                                    <li><a href="#">Bài 5: Cách đọc trong tiếng nhật</a></li>
-                                    <li><a href="#">Bài 6: Cách phân biệt đơn giản - Từ có trường âm và không có trường âm.</a></li>
+                                    @foreach($lesson['children'] as $child)
+                                    <li><a href="/khoa-hoc/{{$course['slug']}}/{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">{{$child['name']}}</a></li>
+                                    @endforeach
                                 </ul>
+                                @endif
                             </li>
                         @endforeach
                         </ul>

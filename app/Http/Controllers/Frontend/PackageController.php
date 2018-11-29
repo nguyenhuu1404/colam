@@ -9,8 +9,10 @@ use App\Package;
 
 class PackageController extends Controller
 {
-    public function combo(){
-        return view('frontend.packages.combo');
+    public function combo($packageId){
+        $data['package'] = Package::where('id', $packageId)->first()->toArray();
+        $data['courses'] = Package::find($packageId)->courses()->get()->toArray();
+        return view('frontend.packages.combo', $data);
     }
     public function index(){
         return view('frontend.packages.index');

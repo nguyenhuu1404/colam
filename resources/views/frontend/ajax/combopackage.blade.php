@@ -24,7 +24,7 @@
                         Số video:  {{$package['video_number']}}
                     </div>
                     <div class="group-btn-item-class">
-                        <a href="/khoa-hoc/{{$package['id']}}-{{$package['slug']}}" class="btn btn-more mr-2">CHI TIẾT</a>
+                        <a href="/khoa-hoc/combo/{{$package['id']}}-{{$package['slug']}}" class="btn btn-more mr-2">CHI TIẾT</a>
                         <a href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}" class="btn btn-buy">MUA KHÓA HỌC</a>
                     </div>
                 </div>

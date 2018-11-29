@@ -16,18 +16,11 @@ class CourseController extends Controller
         $course['packageId'] = $packageId;
         $lessons = Course::find($courseId)->lessons()->orderBy('order', 'desc')->get()->toArray();
         $data['course'] = $course;
-        $data['lessons'] = $this->makeParent($lessons);
-        dd($data);
+        $data['lessons'] = buildTree($lessons);
+        //dd($data);
         return view('frontend.courses.index', $data);
     }
-    public function makeParent($items) {
-        $newArr = [];
-        if (count($items) > 0) {
-            foreach ($items as $item) {
-                $newArr[$item['parent_id']][] = $item;
-            }
-        }
-        return $newArr;
-    }
+
+
 
 }
