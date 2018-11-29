@@ -27,13 +27,21 @@
                     <div class="title-slidebar">Tiến trình học</div>
                     <div class="section-sb-current">
                         <ul class="section-sb-list">
-                        @foreach($lessons as $lesson)
-                            <li class="cat-item {{ (count($lesson['children']) > 0) ? 'has_child' : '' }}">
+                        @foreach($lessons as $index => $lesson)
+                            @php $index ++ @endphp
+                            <li class="cat-item {{ $index == 1 ? 'opened' : '' }} {{ (count($lesson['children']) > 0) ? 'has_child' : '' }}">
                                 <a href="javascript:void(0)">{{$lesson['name']}}</a>
                                 @if(count($lesson['children']) > 0)
                                 <ul class="children">
                                     @foreach($lesson['children'] as $child)
-                                    <li><a href="/khoa-hoc/{{$course['slug']}}/{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">{{$child['name']}}</a></li>
+                                    <li><a href="/khoa-hoc/{{$course['slug']}}/{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">{{$child['name']}}
+
+                                    @if($child['trial'] == 1)
+                                    <span class="free">Học thử</span>
+                                    @else
+                                    <i class="fa fa-lock pull-right"></i>
+                                    @endif
+                                </a></li>
                                     @endforeach
                                 </ul>
                                 @endif
