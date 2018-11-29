@@ -65,7 +65,7 @@
 										<p>
 											{{ $new['excerpt'] }}
 										</p>
-										<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" title="{{ $new['title'] }}" class="btn-readmore news transition">Xem chi tiết</a>
+										<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" title="{{ $new['title'] }}" class="btn-readmore btn news transition">Xem chi tiết</a>
 									</div>
 								</div>
 								

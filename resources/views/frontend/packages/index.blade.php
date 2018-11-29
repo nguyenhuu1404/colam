@@ -43,8 +43,8 @@
                                         Số video: 123
                                     </div>
                                     <div class="group-btn-item-class">
-                                        <a href="/khoa-hoc/2-1-n5" class="btn btn-more mr-2">CHI TIẾT</a>
-                                        <a href="/thanh-toan/2-n5" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                        <a href="/khoa-hoc/2-1-n5" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                        <a href="/thanh-toan/2-n5" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                     </div>
                                 </div>
                             </div>
@@ -72,8 +72,8 @@
                                         Số video: 123
                                     </div>
                                     <div class="group-btn-item-class">
-                                        <a href="/khoa-hoc/2-1-n5" class="btn btn-more mr-2">CHI TIẾT</a>
-                                        <a href="/thanh-toan/2-n5" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                        <a href="/khoa-hoc/2-1-n5" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                        <a href="/thanh-toan/2-n5" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                     </div>
                                 </div>
                             </div>
@@ -101,8 +101,8 @@
                                         Số video: 123
                                     </div>
                                     <div class="group-btn-item-class">
-                                        <a href="/khoa-hoc/2-1-n5" class="btn btn-more mr-2">CHI TIẾT</a>
-                                        <a href="/thanh-toan/2-n5" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                        <a href="/khoa-hoc/2-1-n5" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                        <a href="/thanh-toan/2-n5" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                     </div>
                                 </div>
                             </div>
@@ -130,8 +130,8 @@
                                         Số video: 123
                                     </div>
                                     <div class="group-btn-item-class">
-                                        <a href="/khoa-hoc/2-1-n5" class="btn btn-more mr-2">CHI TIẾT</a>
-                                        <a href="/thanh-toan/2-n5" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                        <a href="/khoa-hoc/2-1-n5" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                        <a href="/thanh-toan/2-n5" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                     </div>
                                 </div>
                             </div>

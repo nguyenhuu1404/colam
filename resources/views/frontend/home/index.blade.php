@@ -69,16 +69,16 @@
 
                                 @if($recomand['type'] == 'combo')
 								<div class="group-btn-combo">
-									<a href="/khoa-hoc/combo/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn btn-more mr-3">XEM CHI TIẾT</a>
-									<a href="/thanh-toan/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn btn-buy">MUA KHÓA HỌC</a>
+									<a href="/khoa-hoc/combo/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn transition btn-more mr-3">XEM CHI TIẾT</a>
+									<a href="/thanh-toan/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
 								</div>
                                 @else
                                 @php
 
                                 @endphp
                                 <div class="group-btn-combo">
-									<a href="/khoa-hoc/{{ $recomand['course_id'] }}-{{ $recomand['course_slug'] }}" class="btn btn-more mr-3">XEM CHI TIẾT</a>
-									<a href="/thanh-toan/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn btn-buy">MUA KHÓA HỌC</a>
+									<a href="/khoa-hoc/{{ $recomand['course_id'] }}-{{ $recomand['course_slug'] }}" class="btn transition btn-more mr-3">XEM CHI TIẾT</a>
+									<a href="/thanh-toan/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
 								</div>
                                 @endif
 							</div>
@@ -176,8 +176,8 @@
                                                                 Số video:  {{$package['video_number']}}
                                                             </div>
                                                             <div class="group-btn-item-class">
-                                                                <a href="/khoa-hoc/{{$package['id']}}-{{$package['course_id']}}-{{$package['slug']}}" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                                <a href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                                <a href="/khoa-hoc/{{$package['id']}}-{{$package['course_id']}}-{{$package['slug']}}" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                                                <a href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -280,7 +280,7 @@
 								<div class="h4">Các phương thức thanh toán khóa học</div>
 								<p>Contact us now and we will make your event unique & unforgettable</p>
 							</div>
-							<a href="#" class="btn btn-more more-payment">XEM CHI TIẾT</a>
+							<a href="#" class="btn transition btn-more more-payment">XEM CHI TIẾT</a>
 						</div>
 					</div>
 				</div>
@@ -323,7 +323,7 @@
 									<input type="text" class="form-control" placeholder="Email">
 								</div>
 								<div class="form-group text-center pt-3">
-									<button class="btn btn-more">ĐĂNG KÝ</button>
+									<button class="btn transition btn-more">ĐĂNG KÝ</button>
 								</div>
 							</div>
 						</div>

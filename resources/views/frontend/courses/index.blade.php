@@ -20,8 +20,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-3">
-                    <a class="btn btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['packageId']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
-                    <a class="btn p-2 mb-3 btn-outline-danger w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a class="btn transition btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['packageId']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
+                    <a class="btn transition p-2 mb-3 btn-outline-danger w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </a>
                     @if($lessons)
                     <div class="title-slidebar">Tiến trình học</div>
@@ -180,8 +180,8 @@
                                                                         Số video: 123
                                                                     </div>
                                                                     <div class="group-btn-item-class">
-                                                                        <a href="" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                                        <a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                                        <a href="" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                                                        <a href="" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -209,8 +209,8 @@
                                                                         Số video: 123
                                                                     </div>
                                                                     <div class="group-btn-item-class">
-                                                                        <a href="" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                                        <a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                                        <a href="" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                                                        <a href="" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -238,8 +238,8 @@
                                                                         Số video: 123
                                                                     </div>
                                                                     <div class="group-btn-item-class">
-                                                                        <a href="" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                                        <a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                                        <a href="" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                                                        <a href="" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                                     </div>
                                                                 </div>
                                                             </div>

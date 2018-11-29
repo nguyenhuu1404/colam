@@ -93,7 +93,7 @@
                                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat.
                             </div>
                             <div class="form-group text-center mt-5">
-                                <button type="button" class="btn btn-test">Làm bài Test</button>
+                                <button type="button" class="btn transition btn-test">Làm bài Test</button>
                             </div>
                         </div>
 
@@ -215,8 +215,8 @@
                                                                     Số video: 123
                                                                 </div>
                                                                 <div class="group-btn-item-class">
-                                                                    <a href="" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                                    <a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                                    <a href="" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                                                    <a href="" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -244,8 +244,8 @@
                                                                     Số video: 123
                                                                 </div>
                                                                 <div class="group-btn-item-class">
-                                                                    <a href="" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                                    <a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                                    <a href="" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                                                    <a href="" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -273,8 +273,8 @@
                                                                     Số video: 123
                                                                 </div>
                                                                 <div class="group-btn-item-class">
-                                                                    <a href="" class="btn btn-more mr-2">CHI TIẾT</a>
-                                                                    <a href="" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                                                    <a href="" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                                                    <a href="" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                                 </div>
                                                             </div>
                                                         </div>

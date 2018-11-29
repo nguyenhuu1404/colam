@@ -39,7 +39,7 @@
 										<p>
 											{{ $new['excerpt'] }}
 										</p>
-										<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" class="btn-readmore news transition">Xem chi tiết</a>
+										<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" class="btn-readmore btn news transition">Xem chi tiết</a>
 									</div>
 								</div>
 							</div>

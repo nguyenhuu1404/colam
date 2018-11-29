@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="ml-auto p-0 bd-highlight">
-                        <a class="btn btn-warning mr-3" href="/khoa-hoc/{{$package['id']}}-{{$course['id']}}-{{$course['slug']}}" target="_blank">
+                        <a class="btn transition btn-warning mr-3" href="/khoa-hoc/{{$package['id']}}-{{$course['id']}}-{{$course['slug']}}" target="_blank">
                             <div class="dmr-btn">Xem chi tiết</div>
                         </a>
                     </div>
@@ -64,8 +64,8 @@
                 <div class="text-center">
                     <div class="btn btn-primary w-100 mb-4"><h4>Thông tin khóa học</h4></div>
                     <h2 class="mb-3 text-danger">{{ priceFormat($package['price_sale']) }} vnđ</h2>
-                    <a class="btn btn-danger mb-4" href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}"><b>Mua ngay</b></a>
-                    <a class="btn p-2 mb-3 btn-outline-danger w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <a class="btn transition btn-danger mb-4" href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}"><b>Mua ngay</b></a>
+                    <a class="btn transition p-2 mb-3 btn-outline-danger w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
 

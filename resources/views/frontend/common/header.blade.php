@@ -29,7 +29,7 @@
 
 									<!-- Authentication Links -->
 									@guest
-									<button type="button" data-toggle="modal" data-target="#login" class="info-user pointer">
+									<button type="button" data-toggle="modal" data-target="#login" class="info-user pointer btn transition">
 										<i class="fa fa-user mg4" aria-hidden="true"></i>
 										Đăng nhập
 									</button>

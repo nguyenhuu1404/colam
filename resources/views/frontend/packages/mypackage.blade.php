@@ -43,7 +43,7 @@
 										Số video: 123
 									</div>
 									<div class="text-center w-100" style="margin-top: 30px;">	
-										<div class="btn btn-my-lesson btn-khoahoc-conlai">
+										<div class="btn transition btn-my-lesson btn-khoahoc-conlai">
 											<img src="images/icon-clock-hour.png" class="mr-3"><span>Còn lại: <b>85 ngày</b></span>
 										</div>
 									</div>
@@ -73,7 +73,7 @@
 										Số video: 123
 									</div>
 									<div class="group-btn-item-class">
-										<a href="" class="btn btn-my-lesson btn-buy m-auto">GIA HẠN</a>
+										<a href="" class="btn transition btn-my-lesson btn-buy m-auto">GIA HẠN</a>
 									</div>
 								</div>
 							</div>
@@ -101,7 +101,7 @@
 										Số video: 123
 									</div>
 									<div class="group-btn-item-class">
-										<a href="" class="btn btn-my-lesson btn-buy m-auto">GIA HẠN</a>
+										<a href="" class="btn transition btn-my-lesson btn-buy m-auto">GIA HẠN</a>
 									</div>
 								</div>
 							</div>
@@ -129,7 +129,7 @@
 										Số video: 123
 									</div>
 									<div class="group-btn-item-class">
-										<a href="" class="btn btn-my-lesson btn-buy m-auto">GIA HẠN</a>
+										<a href="" class="btn transition btn-my-lesson btn-buy m-auto">GIA HẠN</a>
 									</div>
 								</div>
 							</div>
