@@ -4,13 +4,13 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @if(isset($global['title']))
-        <title>{{ $global['title'] }}</title>
+    @if(isset($title))
+        <title>{{ $title }}</title>
     @else
         <title>Huunv</title>
     @endif
-    @if(isset($global['description']))
-        <meta name="description" content="{{ $global['description'] }}">
+    @if(isset($description))
+        <meta name="description" content="{{ $description }}">
     @else
         <meta name="description" content="Huunv">
     @endif

@@ -3,14 +3,14 @@
 @section('content')
 
 <section class="banner">
-    <img src="images/banner-lesson.png">
+    <img src="/images/banner-lesson.png">
     <div class="breadcrumb-position">
         <div class="container">
             <div class="title-breadcrumb">Học tiếng Nhật online</div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tin tuc</li>
+                    <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
                 </ol>
             </nav>
         </div>
@@ -47,22 +47,16 @@
                         @endif
 
 
-							<div class="clearfix" style="height: 20px;"></div>
-							<div class="pagination">
-							    <span aria-current="page" class="page-numbers current">1</span>
-								<a class="page-numbers" href="#">2</a>
-								<a class="page-numbers" href="#">3</a>
-								<a class="page-numbers" href="#">4</a>
-								<a class="page-numbers" href="#">5</a>
-								<a class="next page-numbers" href="#">></a>
-							</div>
+                            <div class="clearfix" style="height: 20px;"></div>
+                            {{ $news->links() }}
+
 							<div class="clearfix" style="height: 50px;"></div>
 						</div>
 						<div class="col-md-3 pull-left">
 							<ul class="menu-sidebar">
 								@foreach($categories as $list)
 								<li>
-									<a href="">{{ $list['name'] }}</a>
+									<a href="/danh-muc/{{$list['id']}}-{{$list['slug']}}">{{ $list['name'] }}</a>
 								</li>
 								@endforeach
 							</ul>

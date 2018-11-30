@@ -32,12 +32,11 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
 
     Route::get('/thanh-toan/{id}-{slug}', 'PaymentController@index')->where(['id' => '[0-9]+']);
 
-    //Route::get('/users/{id}', 'UserController@show')->where('id','[0-9]+')->name('user.show');
-    //Route::put('/users/{id}', 'UserController@update')->name('user.update');
-
     Route::get('/tin-tuc', 'NewController@index');
+    Route::get('/danh-muc/{id}-{slug}', 'NewController@category');
     Route::get('/tin-tuc/{id}-{slug}', 'NewController@detail')->where(['id' => '[0-9]+']);
     Route::get('/ho-tro', 'ContactController@index');
+    Route::get('/{slug}', 'PageController@index');
 
 
     Route::get('/', 'HomeController@index')->name('home.index');
