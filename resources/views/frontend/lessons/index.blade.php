@@ -79,16 +79,23 @@
                             @if($curentLesson['trial'] == 1)
                                 <iframe class="iframe" height="450" src="https://www.youtube.com/embed/{{getYoutubeId($curentLesson['youtube'])}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             @else
-                            <link href="https://vjs.zencdn.net/7.3.0/video-js.css" rel="stylesheet">
+                            <link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
 
-                            <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
-                            <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
-                            <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-                            poster="{{ Storage::url($curentLesson['image']) }}" data-setup="{}">
-                                <source src="rtmp://103.15.50.19:1935/vod/video-850-2.mp4" type="rtmp/mp4">
+                            <script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
+                            <script src="https://cdn.streamroot.io/videojs-hlsjs-plugin/1/stable/videojs-hlsjs-plugin.js"></script>
+                            <script src="/videojs-quality-picker/dist/vjs-quality-picker.js"></script>
 
+                            <video id="my-video" class="video-js w-100" controls preload="auto" width="950" height="445" autoplay>
+                            <source src="/hls-{{$curentLesson['video']}}-{{$curentLesson['video']}}.mp4-<?php echo ($t = time())?>-<?php $video = $curentLesson['video']; echo md5("tk.$t.$video.$video.mp4")?>-playlist.m3u8">
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                            </p>
                             </video>
-                            <script src="https://vjs.zencdn.net/7.3.0/video.js"></script>
+                            <script>
+                            videojs('my-video').qualityPickerPlugin();
+                            </script>
+
                             @endif
                             <div class="description-body-content-lesson">
                                 {!! $curentLesson['content'] !!}
