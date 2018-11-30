@@ -4,7 +4,7 @@ $folder = $_REQUEST['folder'];
 $file = $_REQUEST['file'];
 $time = $_REQUEST['time'];
 $token = $_REQUEST['token'];
-if(time() - $time > 3) {
+if(time() - $time > 2) {
 die('Expired');
 }
 if($token !== md5("tk.$time.$folder.$file")) {
@@ -27,6 +27,6 @@ $content = preg_replace_callback('/('.preg_quote($file).'_[\d]+)\.ts/', function
 	return BASE_URL . '/' . $folder .'-'. $matches[1].'-'.$time.'-'.md5("ts.$time.$folder.{$matches[1]}") . '.ts';
 }, $content);
 $strippedFile = preg_replace('/_[\d]+/', '', $file);
-$content = str_replace($strippedFile.'.key', BASE_URL.'/storage/video/'.$folder . '/' . $strippedFile . '.key', $content);
+$content = str_replace($strippedFile.'.key', BASE_URL.'/videos/'.$folder . '/' . $strippedFile . '.key', $content);
 echo $content;
 ?>
