@@ -22,7 +22,7 @@ class LessonController extends Controller
         $data['packageId'] = $packageId;
         $data['title'] = $curentLesson['name'];
         if($curentLesson['trial'] == 1){
-            return view('frontend.lessons.index', $data);
+            return view('frontend.lessons.trial', $data);
         }else{
             if (Auth::check()) {
                 $userId = Auth::id();
