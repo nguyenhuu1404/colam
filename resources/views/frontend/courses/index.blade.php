@@ -34,7 +34,7 @@
                                 @if(count($lesson['children']) > 0)
                                 <ul class="children">
                                     @foreach($lesson['children'] as $child)
-                                    <li><a href="/khoa-hoc/{{$course['slug']}}/{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">{{$child['name']}}
+                                    <li><a href="/khoa-hoc/{{$course['slug']}}/{{$packageId}}-{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">{{$child['name']}}
 
                                     @if($child['trial'] == 1)
                                     <span class="free">Học thử</span>

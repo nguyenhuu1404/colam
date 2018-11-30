@@ -69,7 +69,7 @@ class LoginController extends Controller
         } catch (\Exception $e) {
             return redirect('/');
         }
-        
+
         // check if they're an existing user
         $existingUser = User::where('email', $user->email)->first();
         //dd($existingUser);die();
@@ -88,5 +88,9 @@ class LoginController extends Controller
             Auth::login($newUser, true);
         }
         return redirect()->to('/');
+    }
+    public function authenticated(Request $request, $user){
+        $url = $request->input('url');
+        return redirect($url);
     }
 }

@@ -46,6 +46,7 @@
 														<div class="col-sm-12 col-md-10  offset-md-1 ">
 														<form method="POST" action="{{ route('frontend.login') }}">
                         									@csrf
+                                                            <input type="hidden" name="url" value="<?php if(isset($url)){ echo $url; }else{echo '/';} ?>" />
 															<div class="form-group">
 																<div class="input-group">
 

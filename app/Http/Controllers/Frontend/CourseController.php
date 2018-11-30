@@ -17,6 +17,7 @@ class CourseController extends Controller
         $lessons = Course::find($courseId)->lessons()->orderBy('order', 'desc')->get()->toArray();
         $data['course'] = $course;
         $data['lessons'] = buildTree($lessons);
+        $data['packageId'] = $packageId;
         //dd($data);
         return view('frontend.courses.index', $data);
     }
