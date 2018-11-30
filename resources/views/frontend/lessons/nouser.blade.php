@@ -37,6 +37,8 @@
 
                                         @if($child['trial'] == 1)
                                         <span class="free">Học thử</span>
+                                        @else
+                                        <i class="fa fa-lock pull-right"></i>
                                         @endif
                                     </a>
 
@@ -73,33 +75,16 @@
 
                         </div>
 
-                        <div class="col-xl-12 mt-3 p-0">
-                            @if($curentLesson['trial'] == 1)
-                                <iframe class="iframe" height="450" src="https://www.youtube.com/embed/{{getYoutubeId($curentLesson['youtube'])}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            @else
-                            <link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+                        <div class="d-flex no-login mt-3 bg-light justify-content-center w-100  align-items-center">
+                            <div class="p-2 bd-highlight">
+                                <h4>
+                                <i class="fa fa-asterisk" aria-hidden="true"></i>
+                                Bạn chưa mua khóa học này
+                                </h4>
+                                <div class="mt-3 text-center">
+                                   <a class="btn btn-danger mx-auto" href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}"><i class="fa fa-cart-plus" aria-hidden="true"></i> Mua khóa học này</a>
+                                </div>
 
-                            <script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
-                            <script src="https://cdn.streamroot.io/videojs-hlsjs-plugin/1/stable/videojs-hlsjs-plugin.js"></script>
-                            <script src="/videojs-quality-picker/dist/vjs-quality-picker.js"></script>
-
-                            <video id="my-video" class="video-js w-100" controls preload="auto" width="950" height="445" autoplay>
-                            <source src="/hls-{{$curentLesson['video']}}-{{$curentLesson['video']}}.mp4-<?php echo ($t = time())?>-<?php $video = $curentLesson['video']; echo md5("tk.$t.$video.$video.mp4")?>-playlist.m3u8">
-                            <p class="vjs-no-js">
-                                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                            </p>
-                            </video>
-                            <script>
-                            videojs('my-video').qualityPickerPlugin();
-                            </script>
-
-                            @endif
-                            <div class="description-body-content-lesson">
-                                {!! $curentLesson['content'] !!}
-                            </div>
-                            <div class="form-group text-center mt-5">
-                                <button type="button" class="btn transition btn-test">Làm bài Test</button>
                             </div>
                         </div>
 

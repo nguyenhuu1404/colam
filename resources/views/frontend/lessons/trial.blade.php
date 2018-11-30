@@ -37,6 +37,8 @@
 
                                         @if($child['trial'] == 1)
                                         <span class="free">Học thử</span>
+                                        @else
+                                        <i class="fa fa-lock pull-right"></i>
                                         @endif
                                     </a>
 
