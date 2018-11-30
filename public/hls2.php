@@ -4,7 +4,7 @@ $folder = $_REQUEST['folder'];
 $file = $_REQUEST['file'];
 $time = $_REQUEST['time'];
 $token = $_REQUEST['token'];
-if(time() - $time > 3) {
+if(time() - $time > 2) {
 die('Expired');
 }
 if($token !== md5("tk.$time.$folder.$file")) {
