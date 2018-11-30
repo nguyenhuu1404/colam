@@ -1,7 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
+<<<<<<< HEAD
 /public/videos
+=======
+>>>>>>> 045769f02ffd1e93aabbba833af708584d0443ed
 /public/hls-config.php
 /storage/*.key
 /vendor
