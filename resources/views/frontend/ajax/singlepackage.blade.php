@@ -23,7 +23,7 @@
                     </div>
                     <div class="body-item-class">
                         <div class="title-body-item-class">
-                        {{$package['name']}} {{$package['title']}}
+                        {{$package['name']}} @if($package['title']) - @endif {{$package['title']}}
                             <span class="tuition">học phí: <b>{{priceFormat($package['price'])}}</b></span>
                         </div>
                         <div class="content-item-class">
@@ -36,7 +36,7 @@
                                 Số video:  {{$package['video_number']}}
                             </div>
                             <div class="group-btn-item-class">
-                                <a href="/khoa-hoc/{{$package['course_id']}}-{{$package['slug']}}" class="btn btn-more mr-2">CHI TIẾT</a>
+                                <a href="/khoa-hoc/{{$package['id']}}-{{$package['course_id']}}-{{$package['slug']}}" class="btn btn-more mr-2">CHI TIẾT</a>
                                 <a href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}" class="btn btn-buy">MUA KHÓA HỌC</a>
                             </div>
                         </div>

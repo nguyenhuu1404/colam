@@ -163,7 +163,7 @@
                                                     </div>
                                                     <div class="body-item-class">
                                                         <div class="title-body-item-class">
-                                                        {{$package['name']}} {{$package['title']}}
+                                                        {{$package['name']}} @if($package['title']) - @endif {{$package['title']}}
                                                             <span class="tuition">học phí: <b>{{priceFormat($package['price'])}}</b></span>
                                                         </div>
                                                         <div class="content-item-class">

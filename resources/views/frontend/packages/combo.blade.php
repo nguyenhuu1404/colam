@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="ml-auto p-0 bd-highlight">
-                        <a class="btn transition btn-warning mr-3" href="/khoa-hoc/{{$package['id']}}-{{$course['id']}}-{{$course['slug']}}" target="_blank">
+                        <a class="btn transition btn-warning mr-3" href="/khoa-hoc/{{$package['id']}}-{{$course['id']}}-{{$course['slug']}}">
                             <div class="dmr-btn">Xem chi tiết</div>
                         </a>
                     </div>

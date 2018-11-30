@@ -16,7 +16,25 @@ class PackageController extends Controller
         return view('frontend.packages.combo', $data);
     }
     public function index(){
-        return view('frontend.packages.index');
+        $packageSingle = Package::where('type', 'single')->get()->toArray();
+        $dataPackages = [];
+        foreach($packageSingle as $package){
+            $courseId = DB::table('packages')
+                ->join('course_package', 'packages.id', '=', 'course_package.package_id')
+                ->where('packages.id', $package['id'])
+                ->select('course_package.course_id')
+                ->get()->first();
+            if(isset($courseId)){
+                $package['course_id'] = $courseId->course_id;
+            }else{
+                $package['course_id'] = '';
+            }
+            $dataPackages[] = $package;
+        }
+        $data['title'] = 'Các khóa học';
+        $data['singlePackages'] = $dataPackages;
+        $data['comboPackages'] = Package::where('type', 'combo')->get()->toArray();
+        return view('frontend.packages.index', $data);
     }
     public function myPackage() {
         return view('frontend.packages.mypackage');
@@ -24,7 +42,7 @@ class PackageController extends Controller
     public function getSinglePackages(Request $request){
         $type = $request->input('type');
         if ($request->ajax() && isset($type)) {
-            $packages = Package::where(['type' => $type, 'status' => 1])->get()->toArray();
+            $singlePackages = Package::where(['type' => $type, 'status' => 1])->get()->toArray();
             $dataPackages = [];
             if(count($singlePackages) > 0){
                 foreach($singlePackages as $package){
