@@ -84,8 +84,8 @@
                             <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
                             <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
                             <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-                            poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-                                <source src="rtmp://123.30.240.57:1935/video/huu.mp4" type="rtmp/mp4">
+                            poster="{{ Storage::url($curentLesson['image']) }}" data-setup="{}">
+                                <source src="rtmp://103.15.50.19:1935/vod/video-850-2.mp4" type="rtmp/mp4">
 
                             </video>
                             <script src="https://vjs.zencdn.net/7.3.0/video.js"></script>
