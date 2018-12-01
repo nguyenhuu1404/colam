@@ -17,12 +17,8 @@ class HomeController extends Controller
     function index(){
         $data['banners'] = Banner::orderBy('order', 'desc')->where('status', 1)->get();
 
-        $data['recomand'] = Package::where('status', 1)->where('is_home', 1)->first()->toArray();
-        if($data['recomand']['type'] == 'single'){
-            $courses = Package::find($data['recomand']['id'])->courses()->get()->toArray();
-            $data['recomand']['course_id'] = $courses['id'];
-            $data['recomand']['course_slug'] = $courses['slug'];
-        }
+        $data['packageRecomand'] = Package::where('status', 1)->where('is_home', 1)->first();
+        $data['CourseRecomand'] = Course::where('status', 1)->where('is_home', 1)->first();
 
         $trialLessons = Lesson::where(['status'=> 1, 'is_home'=>1, 'trial' => 1])->get();
         $courseTrialLesson = [];
@@ -32,28 +28,16 @@ class HomeController extends Controller
         $data['trialLessons'] = $trialLessons->toArray();
         $data['courseTrialLesson'] = $courseTrialLesson;
 
-        $singlePackages = Package::where(['type' => 'single', 'status' => 1])->get()->toArray();
-
-        $dataPackages = [];
-        if(count($singlePackages) > 0){
-            foreach($singlePackages as $package){
-                if($package['course_type'] !== null){
-                    $courseId = DB::table('packages')
-                    ->join('course_package', 'packages.id', '=', 'course_package.package_id')
-                    ->where('packages.id', $package['id'])
-                    ->select('course_package.course_id')
-                    ->get()->first();
-                    if(isset($courseId)){
-                        $package['course_id'] = $courseId->course_id;
-                    }else{
-                        $package['course_id'] = '';
-                    }
-
-                    $dataPackages[$package['course_type']][] = $package;
+        $courses = Course::where(['status' => 1])->get()->toArray();
+        $dataCourses = [];
+        if(count($courses) > 0){
+            foreach($courses as $course){
+                if($course['type']){
+                    $dataCourses[strtolower($course['type'])][] = $course;
                 }
             }
         }
-        $data['singlePackages'] = $dataPackages;
+        $data['courses'] = $dataCourses;
         $data['courseTypes'] = config('app.courseTypes');
 
         return view('frontend.home.index', $data);

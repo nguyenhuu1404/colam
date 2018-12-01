@@ -17,8 +17,8 @@
 
 
 
-.sfd{font-family: SFD}
-.sfu{font-family: sf_ui_displayregular}
+.sfd, .SFD{font-family: SFD}
+.sfu, .SFU{font-family: sf_ui_displayregular}
 @media (min-width: 1200px){
 	.container {
 	    max-width: 1170px;
@@ -1702,6 +1702,7 @@ img{
 .flex-row-center, .ketqua-score{display:flex;flex-direction:row;align-items:center;justify-content:center;}
 .full{float: left;width: 100%;}
 
+.marb10{margin-bottom: 10px;}
 .tit-page{font-size: 30px;}
 .date-page{color: #c4351a; }
 .title-other{text-transform: uppercase;}
@@ -1751,6 +1752,11 @@ img{
 	bottom: calc( (100% - 200px)/2 );
 	left: 0;
 }
+
+.pay-price{font-weight: bold;font-size: 30px; color: #239746; margin-bottom: 0; font-family: 'SFD'}
+.item-pay{border:1px solid #e5e5e5; border-radius: 4px;  margin-left: 12px; float: left; padding:10px 30px 25px 30px}
+.item-pay{width: calc((100% - 36px)/4);}
+#list-payment .item-pay:first-child{margin-left: 0;}
 
  .free {
     background: #888;
@@ -1802,9 +1808,11 @@ img{
 	.banner{margin-top: 66px;}
 	.breadcrumb-position{bottom: 10px;}
 	.title-breadcrumb{font-size: 16px;}
+	.item-pay{width: calc(50% - 20px); margin: 15px 10px !important;}
 }
 @media all and (max-width: 767px) {
 	.ketqua-score{    width: calc(20% - 10px); }
+	.item-pay{width: calc(100% - 20px); margin: 15px 10px !important;}
 
 }
 @media all and (max-width: 400px) {

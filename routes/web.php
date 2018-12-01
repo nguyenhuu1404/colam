@@ -24,13 +24,14 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
 
     Route::get('/khoa-hoc', 'PackageController@index');
     Route::get('/khoa-hoc-cua-toi', 'PackageController@myPackage');
-    Route::get('/khoa-hoc/combo/{id}-{slug}', 'PackageController@combo')->where(['id' => '[0-9]+']);
-    Route::get('/khoa-hoc/{packageId}-{id}-{slug}', 'CourseController@index')->where(['id' => '[0-9]+', 'packageId' => '[0-9]+']);
-    Route::get('/khoa-hoc/{course}/{packageId}-{courseId}-{id}-{slug}', 'LessonController@index')->where(['id' => '[0-9]+', 'courseId' => '[0-9]+', 'packageId'  => '[0-9]+']);
+    Route::get('/khoa-hoc/package/{id}-{slug}', 'PackageController@combo')->where(['id' => '[0-9]+']);
+    Route::get('/khoa-hoc/{id}-{slug}', 'CourseController@index')->where(['id' => '[0-9]+']);
+    Route::get('/khoa-hoc/{course}/{courseId}-{id}-{slug}', 'LessonController@index')->where(['id' => '[0-9]+', 'courseId' => '[0-9]+']);
 
     Route::get('/kiem-tra/{packageId}-{courseId}-{lessonId}-{id}-{slug}', 'TestController@index')->where(['id' => '[0-9]+', 'courseId' => '[0-9]+', 'lessonId' => '[0-9]+', 'packageId'  => '[0-9]+']);
 
-    Route::get('/thanh-toan/{id}-{slug}', 'PaymentController@index')->where(['id' => '[0-9]+']);
+    Route::get('/thanh-toan/{id}-{slug}', 'PaymentController@course')->where(['id' => '[0-9]+']);
+    Route::get('/thanh-toan/package/{id}-{slug}', 'PaymentController@combo')->where(['id' => '[0-9]+']);
 
     Route::get('/tin-tuc', 'NewController@index');
     Route::get('/danh-muc/{id}-{slug}', 'NewController@category');
@@ -44,7 +45,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
 });
 
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'Frontend'], function() {
-    Route::post('/package/getSinglePackages', 'PackageController@getSinglePackages')->name('package.getSinglePackages');
+    Route::post('/course/getCourses', 'CourseController@getCourses')->name('course.getCourses');
     Route::post('/package/getComboPackages', 'PackageController@getComboPackages')->name('package.getComboPackages');
 
 });

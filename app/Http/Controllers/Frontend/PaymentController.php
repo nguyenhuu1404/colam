@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
-    public function index(){
+    public function course(){
+        return view('frontend.payment.index');
+    }
+    public function combo(){
         return view('frontend.payment.index');
     }
 }
