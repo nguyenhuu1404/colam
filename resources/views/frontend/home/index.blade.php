@@ -17,76 +17,131 @@
 
         </section>
     @endisset
-        @isset($recomand)
-        @php
-        $sale = false;
-        if(isset($recomand['price_sale'])){
-            $sale = floor(($recomand['price_sale'] * 100) / $recomand['price']);
-        }
 
-        @endphp
-			<section class="combo-box">
-				<div class="container">
-					<div class="row">
-						<div class="col-xl-7 col-lg-7 d-flex">
-							<div class="thumbnail-img">
-								<img src="{{ Storage::url($recomand['image']) }}" alt="">
-							</div>
-							<div class="content-combo">
-								<h4 class="title-combo">{{$recomand['name']}}</h4>
-								@isset($sale)
-                                <span class="sale-combo">SALE {{100-$sale}}%</span>
-								@endisset
-                                <div class="info-combo">
-									<div class="item-info-combo">
-										<i><img src="/images/icon-hours.png" alt="icon"></i>
-										Thời hạn: {{$recomand['time']}} tháng
-									</div>
-									<div class="item-info-combo">
-										<i><img src="/images/icon-video.png" alt="icon"></i>
-										Video: {{$recomand['video_number']}}
-									</div>
-									<div class="item-info-combo">
-										<i><img src="/images/icon-3code.png" alt="icon"></i>
-										Mã số: {{$recomand['code']}}
-									</div>
-									<div class="item-info-combo">
-										<i><img src="/images/icon-file.png" alt="icon"></i>
-										Bài test: {{$recomand['test_number']}}
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-5 col-lg-5">
-							<div class="price-combo">
-                                @if($recomand['price'] > 0)
-								<div class="sale-price-combo">{{ number_format($recomand['price'], 0, ',', '.') }} vnđ</div>
-                                @endif
-                                @if($recomand['price_sale'] > 0)
-								<p class="text-only-price-combo">chỉ còn</p>
-								<div class="after-salce-price-combo">{{ number_format($recomand['price_sale'], 0, ',', '.') }} vnđ</div>
-                                @endif
+@isset($packageRecomand)
+    @php
+    $sale = false;
+    if(isset($packageRecomand['price_sale'])){
+        $sale = floor(($packageRecomand['price_sale'] * 100) / $packageRecomand['price']);
+    }
 
-                                @if($recomand['type'] == 'combo')
-								<div class="group-btn-combo">
-									<a href="/khoa-hoc/combo/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn transition btn-more mr-3">XEM CHI TIẾT</a>
-									<a href="/thanh-toan/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
-								</div>
-                                @else
-                                @php
+    @endphp
+    <section class="combo-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-7 d-flex">
+                    <div class="thumbnail-img">
+                        <img src="{{ Storage::url($packageRecomand['image']) }}" alt="">
+                    </div>
+                    <div class="content-combo">
+                        <h4 class="title-combo">{{$packageRecomand['name']}}</h4>
+                        @isset($sale)
+                        <span class="sale-combo">SALE {{100-$sale}}%</span>
+                        @endisset
+                        <div class="info-combo">
+                            <div class="item-info-combo">
+                                <i><img src="/images/icon-hours.png" alt="icon"></i>
+                                Thời hạn: {{$packageRecomand['time']}} tháng
+                            </div>
+                            <div class="item-info-combo">
+                                <i><img src="/images/icon-video.png" alt="icon"></i>
+                                Video: {{$packageRecomand['video_number']}}
+                            </div>
+                            <div class="item-info-combo">
+                                <i><img src="/images/icon-3code.png" alt="icon"></i>
+                                Mã số: {{$packageRecomand['code']}}
+                            </div>
+                            <div class="item-info-combo">
+                                <i><img src="/images/icon-file.png" alt="icon"></i>
+                                Bài test: {{$packageRecomand['test_number']}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-5">
+                    <div class="price-combo">
+                        @if($packageRecomand['price'] > 0)
+                        <div class="sale-price-combo">{{ number_format($packageRecomand['price'], 0, ',', '.') }} vnđ</div>
+                        @endif
+                        @if($packageRecomand['price_sale'] > 0)
+                        <p class="text-only-price-combo">chỉ còn</p>
+                        <div class="after-salce-price-combo">{{ number_format($packageRecomand['price_sale'], 0, ',', '.') }} vnđ</div>
+                        @endif
 
-                                @endphp
-                                <div class="group-btn-combo">
-									<a href="/khoa-hoc/{{ $recomand['course_id'] }}-{{ $recomand['course_slug'] }}" class="btn transition btn-more mr-3">XEM CHI TIẾT</a>
-									<a href="/thanh-toan/{{ $recomand['id'] }}-{{ $recomand['slug'] }}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
-								</div>
-                                @endif
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-        @endisset
+                        <div class="group-btn-combo">
+                            <a href="/khoa-hoc/package/{{ $packageRecomand['id'] }}-{{ $packageRecomand['slug'] }}" class="btn transition btn-more mr-3">XEM CHI TIẾT</a>
+                            <a href="/thanh-toan/package/{{ $packageRecomand['id'] }}-{{ $packageRecomand['slug'] }}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endisset
+
+@isset($courseRecomand)
+    @php
+    $sale = false;
+    if(isset($courseRecomand['price_sale'])){
+        $sale = floor(($courseRecomand['price_sale'] * 100) / $courseRecomand['price']);
+    }
+
+    @endphp
+    <section class="combo-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-7 col-lg-7 d-flex">
+                    <div class="thumbnail-img">
+                        <img src="{{ Storage::url($courseRecomand['image']) }}" alt="">
+                    </div>
+                    <div class="content-combo">
+                        <h4 class="title-combo">{{$courseRecomand['name']}}</h4>
+                        @isset($sale)
+                        <span class="sale-combo">SALE {{100-$sale}}%</span>
+                        @endisset
+                        <div class="info-combo">
+                            <div class="item-info-combo">
+                                <i><img src="/images/icon-hours.png" alt="icon"></i>
+                                Thời hạn: {{$courseRecomand['time']}} tháng
+                            </div>
+                            <div class="item-info-combo">
+                                <i><img src="/images/icon-video.png" alt="icon"></i>
+                                Video: {{$courseRecomand['video_number']}}
+                            </div>
+                            <div class="item-info-combo">
+                                <i><img src="/images/icon-3code.png" alt="icon"></i>
+                                Mã số: {{$courseRecomand['code']}}
+                            </div>
+                            <div class="item-info-combo">
+                                <i><img src="/images/icon-file.png" alt="icon"></i>
+                                Bài test: {{$courseRecomand['test_number']}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-5">
+                    <div class="price-combo">
+                        @if($courseRecomand['price'] > 0)
+                        <div class="sale-price-combo">{{ number_format($courseRecomand['price'], 0, ',', '.') }} vnđ</div>
+                        @endif
+                        @if($courseRecomand['price_sale'] > 0)
+                        <p class="text-only-price-combo">chỉ còn</p>
+                        <div class="after-salce-price-combo">{{ number_format($courseRecomand['price_sale'], 0, ',', '.') }} vnđ</div>
+                        @endif
+
+                        <div class="group-btn-combo">
+                            <a href="/khoa-hoc/{{ $courseRecomand['id'] }}-{{ $courseRecomand['slug'] }}" class="btn transition btn-more mr-3">XEM CHI TIẾT</a>
+                            <a href="/thanh-toan/{{ $courseRecomand['id'] }}-{{ $courseRecomand['slug'] }}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endisset
+
             @php
                 $href = str_replace('\\', '/', setting('gioi-thieu.background_img'));
                 $link_youtube = setting('gioi-thieu.youtube');
@@ -151,33 +206,33 @@
 									<div class="tab-pane fade {{$courseType == 'n5' ? 'show active' : ''}}" id="{{$courseType}}" role="tabpanel" aria-labelledby="profile-tab">
 
 										<div class="owl-carousel owl-theme owl-3-items" id="huu4">
-                                            @if(isset($singlePackages[$courseType]) >0 )
-                                                @foreach($singlePackages[$courseType] as $key => $package)
+                                            @if(isset($courses[$courseType]) >0 )
+                                                @foreach($courses[$courseType] as $key => $course)
                                                 <div class="item-class {{ $key % 2 !=0 ? 'yellow' : ''}}">
                                                     <div class="thumbnail-tab-class">
-                                                        <img src="{{ Storage::url($package['image']) }}">
+                                                        <img src="{{ Storage::url($course['image']) }}">
                                                         <div class="info-class-position">
-                                                            <div class="h3">{{$package['name']}}</div>
-                                                            <p>{{$package['time']}} tháng</p>
+                                                            <div class="h3">{{$course['name']}}</div>
+                                                            <p>{{$course['time']}} tháng</p>
                                                         </div>
                                                     </div>
                                                     <div class="body-item-class">
                                                         <div class="title-body-item-class">
-                                                        {{$package['name']}} @if($package['title']) - @endif {{$package['title']}}
-                                                            <span class="tuition">học phí: <b>{{priceFormat($package['price'])}}</b></span>
+                                                        {{$course['name']}} @if($course['title']) - @endif {{$course['title']}}
+                                                            <span class="tuition">học phí: <b>{{priceFormat($course['price'])}}</b></span>
                                                         </div>
                                                         <div class="content-item-class">
                                                             <div class="info-item-class">
                                                                 <div class="duration">L</div>
-                                                                Thời gian học:  {{$package['time']}} tháng
+                                                                Thời gian học:  {{$course['time']}} tháng
                                                             </div>
                                                             <div class="info-item-class">
                                                                 <div class="number-video"></div>
-                                                                Số video:  {{$package['video_number']}}
+                                                                Số video:  {{$course['video_number']}}
                                                             </div>
                                                             <div class="group-btn-item-class">
-                                                                <a href="/khoa-hoc/{{$package['id']}}-{{$package['course_id']}}-{{$package['slug']}}" class="btn transition btn-more mr-2">CHI TIẾT</a>
-                                                                <a href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
+                                                                <a href="/khoa-hoc/{{$course['id']}}-{{$course['slug']}}" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                                                <a href="/thanh-toan/{{$course['id']}}-{{$course['slug']}}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -369,7 +424,7 @@ function getPackages(){
         $.ajax({
             method: "POST",
             url: "{{ route('api.package.getComboPackages') }}",
-            data: {_token: CSRF_TOKEN, type: "combo"}
+            data: {_token: CSRF_TOKEN}
         })
         .done(function( data ) {
             $('#resultPackage').html(data);
@@ -378,8 +433,8 @@ function getPackages(){
     }else{
         $.ajax({
             method: "POST",
-            url: "{{ route('api.package.getSinglePackages') }}",
-            data: {_token: CSRF_TOKEN, type: "single"}
+            url: "{{ route('api.course.getCourses') }}",
+            data: {_token: CSRF_TOKEN}
         })
         .done(function( data ) {
             $('#resultPackage').html(data);

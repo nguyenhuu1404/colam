@@ -32,7 +32,7 @@
 
                                 @foreach($lesson['children'] as $child)
                                     <li class="{{($curentLesson['id'] == $child['id']) ? 'active' : ''}}" >
-                                    <a href="/khoa-hoc/{{$course['slug']}}/{{$packageId}}-{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">
+                                    <a href="/khoa-hoc/{{$course['slug']}}/{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">
                                         {{$child['name']}}
 
                                         @if($child['trial'] == 1)
@@ -82,7 +82,7 @@
                                 Bạn chưa mua khóa học này
                                 </h4>
                                 <div class="mt-3 text-center">
-                                   <a class="btn btn-danger mx-auto" href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}"><i class="fa fa-cart-plus" aria-hidden="true"></i> Mua khóa học này</a>
+                                   <a class="btn btn-danger mx-auto" href="/thanh-toan/{{$course['id']}}-{{$course['slug']}}"><i class="fa fa-cart-plus" aria-hidden="true"></i> Mua khóa học này</a>
                                 </div>
 
                             </div>

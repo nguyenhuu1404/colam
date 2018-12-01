@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-3">
-                    <a class="btn transition btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['packageId']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
+                    <a class="btn transition btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['id']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
                     <a class="btn transition p-2 mb-3 btn-outline-danger w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </a>
                     @if($lessons)
@@ -34,7 +34,7 @@
                                 @if(count($lesson['children']) > 0)
                                 <ul class="children">
                                     @foreach($lesson['children'] as $child)
-                                    <li><a href="/khoa-hoc/{{$course['slug']}}/{{$packageId}}-{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">{{$child['name']}}
+                                    <li><a href="/khoa-hoc/{{$course['slug']}}/{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">{{$child['name']}}
 
                                     @if($child['trial'] == 1)
                                     <span class="free">Học thử</span>

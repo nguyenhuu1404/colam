@@ -32,7 +32,7 @@
 
                                 @foreach($lesson['children'] as $child)
                                     <li class="{{($curentLesson['id'] == $child['id']) ? 'active' : ''}}" >
-                                    <a href="/khoa-hoc/{{$course['slug']}}/{{$packageId}}-{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">
+                                    <a href="/khoa-hoc/{{$course['slug']}}/{{$course['id']}}-{{$child['id']}}-{{$child['slug']}}">
                                         {{$child['name']}}
 
                                         @if($child['trial'] == 1)

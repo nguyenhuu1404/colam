@@ -12,14 +12,14 @@ use App\Package;
 
 class LessonController extends Controller
 {
-    public function index($course, $packageId, $courseId, $lessonId){
+    public function index($course, $courseId, $lessonId){
         $lessons = Course::find($courseId)->lessons()->orderBy('order', 'desc')->get()->toArray();
         $course = Course::where('id', $courseId)->get()->first()->toArray();
         $data['course'] = $course;
         $data['lessons'] = buildTree($lessons);
         $curentLesson = Lesson::where('id', $lessonId)->first()->toArray();
         $data['curentLesson'] = $curentLesson;
-        $data['packageId'] = $packageId;
+
         $data['title'] = $curentLesson['name'];
         if($curentLesson['trial'] == 1){
             return view('frontend.lessons.trial', $data);
@@ -30,7 +30,7 @@ class LessonController extends Controller
                 if($checkUser > 0){
                     return view('frontend.lessons.index', $data);
                 }else{
-                    $data['package'] = Package::where('id', $packageId)->get()->first()->toArray();
+
                     return view('frontend.lessons.nouser', $data);
                 }
 

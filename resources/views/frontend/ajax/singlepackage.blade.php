@@ -11,33 +11,33 @@
     <div class="tab-pane fade {{$courseType == 'n5' ? 'show active' : ''}}" id="{{$courseType}}" role="tabpanel" aria-labelledby="profile-tab">
 
         <div class="owl-carousel owl-theme owl-3-items">
-            @if(isset($singlePackages[$courseType]) >0 )
-                @foreach($singlePackages[$courseType] as $key => $package)
+            @if(isset($courses[$courseType]) >0 )
+                @foreach($courses[$courseType] as $key => $course)
                 <div class="item-class {{ $key % 2 !=0 ? 'yellow' : ''}}">
                     <div class="thumbnail-tab-class">
-                        <img src="{{ Storage::url($package['image']) }}">
+                        <img src="{{ Storage::url($course['image']) }}">
                         <div class="info-class-position">
-                            <div class="h3">{{$package['name']}}</div>
-                            <p>{{$package['time']}} tháng</p>
+                            <div class="h3">{{$course['name']}}</div>
+                            <p>{{$course['time']}} tháng</p>
                         </div>
                     </div>
                     <div class="body-item-class">
                         <div class="title-body-item-class">
-                        {{$package['name']}} @if($package['title']) - @endif {{$package['title']}}
-                            <span class="tuition">học phí: <b>{{priceFormat($package['price'])}}</b></span>
+                        {{$course['name']}} @if($course['title']) - @endif {{$course['title']}}
+                            <span class="tuition">học phí: <b>{{priceFormat($course['price'])}}</b></span>
                         </div>
                         <div class="content-item-class">
                             <div class="info-item-class">
                                 <div class="duration">L</div>
-                                Thời gian học:  {{$package['time']}} tháng
+                                Thời gian học:  {{$course['time']}} tháng
                             </div>
                             <div class="info-item-class">
                                 <div class="number-video"></div>
-                                Số video:  {{$package['video_number']}}
+                                Số video:  {{$course['video_number']}}
                             </div>
                             <div class="group-btn-item-class">
-                                <a href="/khoa-hoc/{{$package['id']}}-{{$package['course_id']}}-{{$package['slug']}}" class="btn btn-more mr-2">CHI TIẾT</a>
-                                <a href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}" class="btn btn-buy">MUA KHÓA HỌC</a>
+                                <a href="/khoa-hoc/{{$course['id']}}-{{$course['slug']}}" class="btn btn-more mr-2">CHI TIẾT</a>
+                                <a href="/thanh-toan/{{$course['id']}}-{{$course['slug']}}" class="btn btn-buy">MUA KHÓA HỌC</a>
                             </div>
                         </div>
                     </div>
