@@ -82,9 +82,13 @@
                                 Bạn cần đăng nhập để học hoặc bình luận
                                 </h4>
                                 <div class="mt-3 text-center">
-                                    <button type="button" data-toggle="modal" data-target="#login" class="info-user pointer mx-auto btn transition">
+                                    <button type="button" data-toggle="modal" data-target="#login" class="btn-warning pointer mx-auto btn transition">
 										<i class="fa fa-user mg4" aria-hidden="true"></i>
 										Đăng nhập
+								    </button>
+                                    <button type="button" data-toggle="modal" data-target="#signup" class="btn-warning pointer mx-auto btn transition">
+										<i class="fa fa-user mg4" aria-hidden="true"></i>
+										Đăng kí
 								    </button>
                                 </div>
 

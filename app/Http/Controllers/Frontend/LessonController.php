@@ -26,7 +26,8 @@ class LessonController extends Controller
         }else{
             if (Auth::check()) {
                 $userId = Auth::id();
-                $checkUser = Payment::where(['user_id' => $userId, 'course_id' => $course['id'], 'status' => 1])->get()->count();
+                $dateNow = date('Y-m-d');;
+                $checkUser = Payment::where(['user_id' => $userId, 'course_id' => $course['id'], 'status' => 1])->where('end_date', '>=', $dateNow)->get()->count();
                 if($checkUser > 0){
                     return view('frontend.lessons.index', $data);
                 }else{

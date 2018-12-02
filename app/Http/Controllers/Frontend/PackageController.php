@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Package;
 use App\Course;
+use App\Payment;
+use App\User;
 
 class PackageController extends Controller
 {
@@ -24,7 +28,44 @@ class PackageController extends Controller
         return view('frontend.packages.index', $data);
     }
     public function myPackage() {
-        return view('frontend.packages.mypackage');
+        $userId = Auth::id();
+
+        $packages = Package::all()->toArray();
+        $allPackages = [];
+        if($packages){
+            foreach($packages as $package){
+                $allPackages[$package['id']] = $package;
+            }
+        }
+        $courses = Course::all()->toArray();
+        $allCourses = [];
+        if($courses){
+            foreach($courses as $course){
+                $allCourses[$course['id']] = $course;
+            }
+        }
+
+        $myPackages = User::find($userId)->payments;
+        $dataMyPackages = [];
+        if($myPackages){
+            foreach($myPackages as $myPackage){
+                if($myPackage['package_id'] != null){
+                    $allPackages[$myPackage['package_id']]['start_date'] = $myPackage['start_date'];
+                    $allPackages[$myPackage['package_id']]['end_date'] = $myPackage['end_date'];
+                    $dataMyPackages['packages'][] = $allPackages[$myPackage['package_id']];
+
+                }else{
+                    $allCourses[$myPackage['course_id']]['start_date'] = $myPackage['start_date'];
+                    $allCourses[$myPackage['course_id']]['end_date'] = $myPackage['end_date'];
+                    $dataMyPackages['courses'][] = $allCourses[$myPackage['course_id']];
+
+                }
+
+            }
+        }
+        $data['title'] = 'Khóa học của tôi';
+        $data['myPackages'] = $dataMyPackages;
+        return view('frontend.packages.mypackage', $data);
     }
 
     public function getComboPackages(Request $request){

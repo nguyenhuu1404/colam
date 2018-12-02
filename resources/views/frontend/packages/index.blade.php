@@ -24,7 +24,7 @@
                             @foreach($courses as $key => $course)
                             <div class=" {{ $key % 2 !=0 ? 'yellow' : ''}} col-sm-6 col-xl-4 item-class mb-5">
                                 <div class="thumbnail-tab-class">
-                                    <img src="images/img-class.png">
+                                    <img class="w-100" src="{{ Storage::url($course['image']) }}">
                                     <div class="info-class-position">
                                         <div class="h3">{{$course['name']}}</div>
                                         <p>{{$course['time']}} tháng</p>
@@ -58,7 +58,7 @@
                             @foreach($comboPackages as $key => $package)
                             <div class=" {{ $key % 2 !=0 ? 'yellow' : ''}} col-sm-6 col-xl-4 item-class mb-5">
                                 <div class="thumbnail-tab-class">
-                                    <img src="images/img-class.png">
+                                    <img class="w-100" src="{{ Storage::url($package['image']) }}">
                                     <div class="info-class-position">
                                         <div class="h3">{{$package['name']}}</div>
                                         <p>{{$package['time']}} tháng</p>

@@ -151,100 +151,46 @@
                                                 </div>
 
                                             </div>
+                                            @if($others)
                                             <div class="other-classroom">
                                                 <div class="title-other"><span>Khóa học khác</span></div>
                                                 <div class="body-other-classroom">
                                                     <div class="row">
-                                                        <div class="col-xl-12 item-class">
+                                                    @foreach($others as $other)
+                                                        <div class="col-xl-12 mb-3 item-class">
                                                             <div class="thumbnail-tab-class">
-                                                                <img src="/images/img-class.png">
+                                                                <img class="w-100" src="{{ Storage::url($other['image']) }}" />
                                                                 <div class="info-class-position">
-                                                                    <div class="h3">N5</div>
-                                                                    <p>4 tháng</p>
+                                                                    <div class="h3">{{$other['name']}}</div>
+                                                                    <p>{{$other['time']}} tháng</p>
                                                                 </div>
                                                             </div>
                                                             <div class="body-item-class">
                                                                 <div class="title-body-item-class">
-                                                                    N5 - Khóa học dành cho sinh viên du học
-                                                                    <span class="tuition">học phí: <b>990,000</b></span>
+                                                                {{$other['name']}} - {{$other['title']}}
+                                                                    <span class="tuition">học phí: <b>{{priceFormat($course['price'])}}</b></span>
                                                                 </div>
                                                                 <div class="content-item-class">
                                                                     <div class="info-item-class">
                                                                         <div class="duration">L</div>
-                                                                        Thời gian học: 4 tháng
+                                                                        Thời gian học: {{$other['time']}} tháng
                                                                     </div>
                                                                     <div class="info-item-class">
                                                                         <div class="number-video"></div>
-                                                                        Số video: 123
+                                                                        Số video: {{$other['video_number']}}
                                                                     </div>
                                                                     <div class="group-btn-item-class">
-                                                                        <a href="" class="btn transition btn-more mr-2">CHI TIẾT</a>
-                                                                        <a href="" class="btn transition btn-buy">MUA KHÓA HỌC</a>
+                                                                        <a href="/khoa-hoc/{{$other['id']}}-{{$other['slug']}}" class="btn transition btn-more mr-2">CHI TIẾT</a>
+                                                                        <a href="/thanh-toan/{{$other['id']}}-{{$other['slug']}}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-12 item-class">
-                                                            <div class="thumbnail-tab-class">
-                                                                <img src="/images/img-class.png">
-                                                                <div class="info-class-position">
-                                                                    <div class="h3">N5</div>
-                                                                    <p>4 tháng</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="body-item-class">
-                                                                <div class="title-body-item-class">
-                                                                    N5 - Khóa học dành cho sinh viên du học
-                                                                    <span class="tuition">học phí: <b>990,000</b></span>
-                                                                </div>
-                                                                <div class="content-item-class">
-                                                                    <div class="info-item-class">
-                                                                        <div class="duration">L</div>
-                                                                        Thời gian học: 4 tháng
-                                                                    </div>
-                                                                    <div class="info-item-class">
-                                                                        <div class="number-video"></div>
-                                                                        Số video: 123
-                                                                    </div>
-                                                                    <div class="group-btn-item-class">
-                                                                        <a href="" class="btn transition btn-more mr-2">CHI TIẾT</a>
-                                                                        <a href="" class="btn transition btn-buy">MUA KHÓA HỌC</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-12 item-class">
-                                                            <div class="thumbnail-tab-class">
-                                                                <img src="/images/img-class.png">
-                                                                <div class="info-class-position">
-                                                                    <div class="h3">N5</div>
-                                                                    <p>4 tháng</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="body-item-class">
-                                                                <div class="title-body-item-class">
-                                                                    N5 - Khóa học dành cho sinh viên du học
-                                                                    <span class="tuition">học phí: <b>990,000</b></span>
-                                                                </div>
-                                                                <div class="content-item-class">
-                                                                    <div class="info-item-class">
-                                                                        <div class="duration">L</div>
-                                                                        Thời gian học: 4 tháng
-                                                                    </div>
-                                                                    <div class="info-item-class">
-                                                                        <div class="number-video"></div>
-                                                                        Số video: 123
-                                                                    </div>
-                                                                    <div class="group-btn-item-class">
-                                                                        <a href="" class="btn transition btn-more mr-2">CHI TIẾT</a>
-                                                                        <a href="" class="btn transition btn-buy">MUA KHÓA HỌC</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    @endforeach
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                         </div>
                                         <div class="tab-pane container fade" id="facebook">
                                             <div class="fb-comments full" data-href="{{ url()->full() }}" data-width="100%" data-numposts="5"></div>
