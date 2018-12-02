@@ -196,7 +196,9 @@
                                         </div>
 
                                     </div>
-                                    <div class="tab-pane container fade" id="facebook"></div>
+                                    <div class="tab-pane container fade" id="facebook">
+                                    <div class="fb-comments full" data-href="{{ url()->full() }}" data-width="100%" data-numposts="5"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

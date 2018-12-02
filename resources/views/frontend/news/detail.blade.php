@@ -40,8 +40,7 @@
 							<div class="clearfix"></div>
 
 							<div class="clearfix"></div>
-							<?php $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>
-							<div class="fb-comments full" data-href="{{ $url }}" data-width="100%" data-numposts="5"></div>
+							<div class="fb-comments full" data-href="{{ url()->full() }}" data-width="100%" data-numposts="5"></div>
 							@if (count($related) > 0)
 							<div class="title-other"><span>Bài viết khác</span></div>
 							<div class="clearfix" style="height: 30px;"></div>

@@ -20,7 +20,7 @@ class CourseController extends Controller
         return view('frontend.courses.index', $data);
     }
 
-    public function getCourses(){
+    public function getCourses(Request $request){
         if ($request->ajax()) {
             $courses = Package::where(['status' => 1])->get()->toArray();
             $dataCourses = [];

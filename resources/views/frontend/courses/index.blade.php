@@ -83,46 +83,26 @@
                                     <div class="tab-content">
                                         <div class="tab-pane container active" id="comment">
                                             <div class="body-comment">
+                                                @if(Auth::check())
                                                 <div class="item-body-comment">
                                                     <div class="parent-itemt">
-                                                        <div class="avartar-item-comment">
-                                                            <img src="/images/img-avatar-1.png">
-                                                        </div>
+                                                    <div class="avartar-item-comment"></div>
                                                         <div class="text-item-comment">
-                                                            <div class="name-info-item-comment">Trường Chiến <span>24/10/2018 18:24</span></div>
-                                                            <div class="content-post-item-comment">Thầy ơi thầy có thể cho em vài đề thi thử n5 không ạ . E chuẩn bị thi topj</div>
+                                                            <div class="row">
+                                                                <div class="col-md-9">
+                                                                    <textarea class="w-100"></textarea>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <input class="btn w-100 btn-warning" value="Đăng" />
+                                                                </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="item-body-comment">
-                                                    <div class="parent-itemt">
-                                                        <div class="avartar-item-comment"></div>
-                                                        <div class="text-item-comment">
-                                                            <div class="name-info-item-comment">Hoanhbc <span>24/10/2018 18:24</span></div>
-                                                            <div class="content-post-item-comment">Thi thử trên wep có mất phí k ạ</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="children-item">
-                                                        <div class="avartar-item-comment">
-                                                            <img src="/images/img-avatar-1.png">
-                                                        </div>
-                                                        <div class="text-item-comment">
-                                                            <div class="name-info-item-comment">Trường Chiến <span>24/10/2018 18:24</span></div>
-                                                            <div class="content-post-item-comment">Thầy ơi thầy có thể cho em vài đề thi thử n5 không ạ . E chuẩn bị thi topj</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="item-body-comment">
-                                                    <div class="parent-itemt">
-                                                        <div class="avartar-item-comment">
-                                                            <img src="/images/img-avatar-1.png">
-                                                        </div>
-                                                        <div class="text-item-comment">
-                                                            <div class="name-info-item-comment">Trường Chiến <span>24/10/2018 18:24</span></div>
-                                                            <div class="content-post-item-comment">Thầy ơi thầy có thể cho em vài đề thi thử n5 không ạ . E chuẩn bị thi topj</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endif
+
+
                                                 <div class="item-body-comment">
                                                     <div class="parent-itemt">
                                                         <div class="avartar-item-comment">
@@ -137,9 +117,11 @@
                                                         <a href="#"><i class="fa fa-comment"></i>
                                                         trả lời</a>
                                                     </div>
-                                                </div>
-                                                <div class="item-body-comment">
-                                                    <div class="parent-itemt">
+                                                    <div class="reply-comment">
+                                                        <a href="#"><i class="fa fa-comments"></i>
+                                                        1 phản hồi</a>
+                                                    </div>
+                                                    <div class="children-item">
                                                         <div class="avartar-item-comment">
                                                             <img src="/images/img-avatar-1.png">
                                                         </div>
@@ -148,18 +130,26 @@
                                                             <div class="content-post-item-comment">Thầy ơi thầy có thể cho em vài đề thi thử n5 không ạ . E chuẩn bị thi topj</div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="item-body-comment">
-                                                    <div class="parent-itemt">
+
+                                                    <div class="children-item">
                                                         <div class="avartar-item-comment">
                                                             <img src="/images/img-avatar-1.png">
                                                         </div>
                                                         <div class="text-item-comment">
-                                                            <div class="name-info-item-comment">Trường Chiến <span>24/10/2018 18:24</span></div>
-                                                            <div class="content-post-item-comment">Thầy ơi thầy có thể cho em vài đề thi thử n5 không ạ . E chuẩn bị thi topj</div>
+                                                            <div class="row">
+                                                                <div class="col-md-9">
+                                                                    <textarea class="w-100"></textarea>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <input class="btn w-100 btn-warning" value="Đăng" />
+                                                                </div>
+
+                                                            </div>
                                                         </div>
                                                     </div>
+
                                                 </div>
+
                                             </div>
                                             <div class="other-classroom">
                                                 <div class="title-other"><span>Khóa học khác</span></div>
@@ -256,7 +246,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane container fade" id="facebook"></div>
+                                        <div class="tab-pane container fade" id="facebook">
+                                            <div class="fb-comments full" data-href="{{ url()->full() }}" data-width="100%" data-numposts="5"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

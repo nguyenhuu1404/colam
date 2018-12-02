@@ -395,7 +395,7 @@
 							<div class="title-comment">FANPAGE</div>
 							<div class="h3 tiengnhatcolam mb-5">TIENGNHATCOLAM</div>
 
-							<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="5"></div>
+							<div class="fb-comments" data-href="{{ url()->full() }}" data-width="100%" data-numposts="5"></div>
 						</div>
 					</div>
 				</div>
