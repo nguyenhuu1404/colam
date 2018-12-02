@@ -22,7 +22,7 @@ class CourseController extends Controller
 
     public function getCourses(Request $request){
         if ($request->ajax()) {
-            $courses = Package::where(['status' => 1])->get()->toArray();
+            $courses = Course::where(['status' => 1])->get()->toArray();
             $dataCourses = [];
             if(count($courses) > 0){
                 foreach($courses as $course){
