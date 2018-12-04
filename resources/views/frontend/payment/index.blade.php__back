@@ -16,22 +16,24 @@
             </div>
         </div>
     </section>
-    <section class="contact-box SFD mb-5 w-100">
+    <section class="contact-box SFD my-5 w-100">
         <div class="container">
             <div class="main">
-              <h1 class=" text-uppercase sfd mt-5 mb-5 font30">Thanh toán</h1>
+              <h1 class="tit-page text-uppercase sfd mt-4 mb-5 font30">Thanh toán</h1>
                <div class="main-center main-payment" style="opacity: 1;">
                   <ul class="nav nav-wizard ">
                      <li class="active"><a><span class="step">1</span> <span class="step-text">Thông tin khách hàng</span></a></li>
                      <li><a><span class="step">2</span> <span class="step-text">Lựa chọn hình thức thanh toán</span></a></li>
                      <li><a><span class="step">3</span> <span class="step-text">Tạo thành công đơn hàng</span></a></li>
                   </ul>
-                  
+                  <!----> <!----> 
+                  <h4 class="mb-stt"><a><span class="step-mb">1</span>&nbsp;&nbsp;Nhập thông tin khách hàng</a></h4>
+                  <!----> <!----> 
                   <div class="row">
-                     <div class="col-sm-8 col-md-9 ">
-                        <div class="step-1-container bg_f8f8f8 pb-4 my-4 ">
+                     <div class="col-sm-8 col-md-9">
+                        <div class="step-1-container">
                            <div class="customer-info-container">
-                              <div class=" payment-heading"><span>Thông tin khách hàng</span> <a class="refresh">
+                              <div class="my-4 payment-heading"><span>Thông tin khách hàng</span> <a class="refresh">
                                  Làm mới <i class="fa fa-refresh"></i></a>
                               </div>
                               <div class=" customer-info-table py-4 px-4">
@@ -69,59 +71,15 @@
                                  </table>
                               </div>
                            </div>
-                            <div class="col-12"><a href="" class="btn transition btn-buy"><span>Tiếp Tục <i class="fa fa-angle-right" aria-hidden="true"></i></span></a></div>
+                           <div class="continue-container">
+                              <div class="continue"><a href="" class="btn transition btn-buy"><span>Tiếp Tục <i class="fa fa-angle-right" aria-hidden="true"></i></span></a></div>
+                           </div>
                         </div>
                         <!----> <!---->
-                <!-- chờ AJAX-->
-                <div class="step-2-container bg_f8f8f8 my-4 full">
-                <div class=" payment-heading"><span>Chọn hình thức thanh toán</span></div>
-                <div class="px-4  py-4 full">
-                 <div class="row">
-                   <div class="col-md-4" id="choice_payment_method">
-                    <label class="tcb-inline choice_payment_method"><input type="radio" value="4"> <span class="labels">Chuyển phát nhanh mã thẻ kích hoạt - Ship toàn quốc</span></label>
-                    <label class="tcb-inline choice_payment_method"><input type="radio" value="3"> <span class="labels">Nộp tại văn phòng</span></label>
-                    <label class="tcb-inline choice_payment_method"><input type="radio" value="2"> <span class="labels">Chuyển khoản ngân hàng tại Việt Nam</span></label>
-                  </div>
-                   
-                   <div class="col-md-8">
-
-                      <div id="result_choice">
-                        <div class="payment-right-info-area" style="text-align: justify;"><span style="font-size:16px;"><span style="color:#e74c3c"><span style="font-size:18px;">Chú ý: Điền thông tin chi tiết địa chỉ nhận hàng.</span></span><br>
-                           <br>
-                           <span style="color:#000000;">* Khi bạn nhấp chuột vào xác nhận đơn hàng, bạn đã đồng ý với </span><a href="#"><span style="color:#ff0000;">Điều khoản sử dụng</span></a><span style="color:#000000;"> và </span><a href="#"><span style="color:#ff0000;">Chính sách bảo mật</span></a><span style="color:#000000;"> của website</span></span><br>
-                        </div>
-                        <div class="delivery-info">
-                           <div class="row form-group">
-                              <div class="col-sm-5 important">Tên người nhận <span title="Thông tin bắt buộc">*</span></div>
-                              <div class="col-sm-7"><input type="text" placeholder="Tên người nhận" class="form-control"></div>
-                           </div>
-                           <div class="row form-group">
-                              <div class="col-sm-5 important">Số điện thoại <span title="Thông tin bắt buộc">*</span></div>
-                              <div class="col-sm-7"><input type="text" placeholder="Số điện thoại" class="form-control"></div>
-                           </div>
-                           <div class="row form-group">
-                              <div class="col-sm-5 important">Địa chỉ người nhận hàng <span title="Thông tin bắt buộc">*</span> <br>(vui lòng điền đầy đủ)</div>
-                              <div class="col-sm-7"><textarea rows="3" placeholder="Địa chỉ giao hàng" class="form-control"></textarea></div>
-                           </div>
-                        </div>
-                      </div>
-                     
-
-                   </div>
-                  </div>
-                  </div>
-                </div> <!--./step-2-->
-
-                <div class="step-3-container bg_f8f8f8 my-4 full">
-                  <div class=" payment-heading"><span>Tạo đơn hàng thành công</span></div>
-                  <div class="px-4  py-4 full"></div>                 
-                </div> <!--./step-3-->
-
-
                      </div>
                      <div class="col-sm-4 col-md-3">
-                        <div class="payment-info-container bg_f8f8f8 my-4 pb-4">
-                           <div class="payment-heading"><span>Thông tin đơn hàng</span></div>
+                        <div class="payment-info-container">
+                           <div class="my-4 payment-heading"><span>Thông tin đơn hàng</span></div>
                            <div class="payment-sb">
                               <div class="title-body-item-class">
                               COMBO N4 + N5  
@@ -143,17 +101,172 @@
                         </div>
                      </div>
                   </div>
-
                </div>
             </div>
         </div>
     </section>
 
-
-
-
-
-
 @endsection
 
 
+
+<style>
+.payment-sb .title-body-item-class:before{display: none;}
+.nav-wizard {
+    margin-top: 20px
+}
+
+.nav-wizard li {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    cursor: pointer
+}
+
+.nav-wizard>li:not(:first-child)>a:before,
+.nav-wizard>li:not(:last-child)>a:after {
+    width: 0;
+    height: 0;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    content: "";
+    top: 0
+}
+
+.nav-wizard .step {
+    padding: 0 4px;
+    border-radius: 50%;
+    background-color: #ffd800;
+    color: #fff;
+    width: 20px;
+    line-height: 20px;
+    float: left;
+}
+
+.nav-wizard .active .step {
+    background-color: #fff;
+    color: #000;
+}
+
+.mb-stt {
+    display: none
+}
+
+.nav-wizard>li>a {
+    position: relative;
+    background-color: #eee;
+    padding: 8px 15px;
+    display: block;
+}
+.nav-wizard>li>a .badge {
+    margin-left: 3px;
+    color: #eee;
+    background-color: #428bca
+}
+
+.nav-wizard>li:not(:first-child)>a {
+    padding-left: 34px
+}
+
+.nav-wizard>li:not(:first-child)>a:before {
+    border-left: 20px solid #fff;
+    position: absolute;
+    left: 0
+}
+
+.nav-wizard>li:not(:last-child)>a {
+    margin-right: 6px
+}
+
+.nav-wizard>li:not(:last-child)>a:after {
+    border-left: 20px solid #eee;
+    position: absolute;
+    right: -20px;
+    z-index: 2
+}
+
+.nav-wizard>li:first-child>a {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px
+}
+
+.nav-wizard>li:last-child>a {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px
+}
+
+.nav-wizard>li.done:hover>a,
+.nav-wizard>li:hover>a {
+    background-color: #d5d5d5
+}
+
+.nav-wizard>li.done:hover>a:before,
+.nav-wizard>li:hover>a:before {
+    border-right-color: #d5d5d5
+}
+
+.nav-wizard>li.done:hover>a:after,
+.nav-wizard>li:hover>a:after {
+    border-left-color: #d5d5d5
+}
+
+.nav-wizard>li.done>a {
+    background-color: #e2e2e2
+}
+
+.nav-wizard>li.done>a:before {
+    border-right-color: #e2e2e2
+}
+
+.nav-wizard>li.done>a:after {
+    border-left-color: #e2e2e2
+}
+
+.nav-wizard>li.active>a,
+.nav-wizard>li.active>a:focus,
+.nav-wizard>li.active>a:hover {
+    color: #000;
+    background-color: #ffd800;
+}
+.nav-wizard>li.active>a:after {
+    border-left-color: #ffd800;
+}
+ .payment-heading {
+    width: 100%;
+    float: left;
+    background: #ccc;
+    color: #444;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    text-align: center
+}
+
+ .payment-heading span {
+    font-size: 20px
+}
+
+ .payment-heading {
+    width: 100%;
+    float: left;
+    background: #ccc;
+    color: #444;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    text-align: left
+}
+
+ .payment-heading span {
+    font-size: 20px;
+    margin-left: 50px
+}
+
+ .payment-heading .refresh {
+    float: right;
+    font-size: 18px;
+    margin-top: 3px;
+    padding-right: 25px;
+    cursor: pointer;
+    color: #71846d
+}
+
+</style>
