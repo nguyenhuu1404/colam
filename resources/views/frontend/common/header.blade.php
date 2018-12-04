@@ -184,7 +184,7 @@
 										</div>
 									</div>
 									@else
-									<button type="button" class="info-user">
+									<button type="button" class="info-user pointer">
 										<div class="avatar-user">
 											<img src="/images/avatar.png" alt="avatar">
 										</div>
