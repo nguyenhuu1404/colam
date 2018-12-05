@@ -19,7 +19,7 @@ class LessonController extends Controller
         $data['lessons'] = buildTree($lessons);
         $curentLesson = Lesson::where('id', $lessonId)->first()->toArray();
         $data['curentLesson'] = $curentLesson;
-
+        $data['tests'] = Lesson::find($lessonId)->tests()->get();
         $data['title'] = $curentLesson['name'];
         if($curentLesson['trial'] == 1){
             return view('frontend.lessons.trial', $data);

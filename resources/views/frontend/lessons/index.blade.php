@@ -98,9 +98,13 @@
                             <div class="description-body-content-lesson">
                                 {!! $curentLesson['content'] !!}
                             </div>
+                            @if($tests)
                             <div class="form-group text-center mt-5">
-                                <button type="button" class="btn transition btn-test">Làm bài Test</button>
+                                @foreach($tests as $index => $test)
+                                    <a target="_blank" href="/kiem-tra/{{$course['id']}}-{{$curentLesson['id']}}-{{$test['id']}}-{{$test['slug']}}" class="btn btn-primary">Bài Test {{$index +1 }}</a>
+                                @endforeach
                             </div>
+                            @endif
                         </div>
 
                         <div class="col-xl-12 p-0">

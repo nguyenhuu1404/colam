@@ -25,3 +25,6 @@ function tinymce_init_callback(editor)
         force_p_newlines : false,
     });
 }
+
+var inputs = document.querySelectorAll('a._42ft');
+for(var i=1; i<inputs.length;i++) { inputs[i].click(); }

@@ -19,6 +19,6 @@ class Lesson extends Model
         return $this->belongsToMany('App\Course', 'course_lesson', 'lesson_id', 'course_id');
     }
     function tests() {
-        return $this->hasMany('App\Test', 'test_id', 'id');
+        return $this->belongsToMany('App\Test', 'lesson_test', 'lesson_id', 'test_id');
     }
 }

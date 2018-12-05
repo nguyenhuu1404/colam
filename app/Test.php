@@ -13,4 +13,7 @@ class Test extends Model
     public function lesson(){
         return $this->belongsTo('App\Lesson', 'test_id', 'id');
     }
+    function lessons() {
+        return $this->belongsToMany('App\Lesson', 'lesson_test', 'test_id', 'lesson_id');
+    }
 }
