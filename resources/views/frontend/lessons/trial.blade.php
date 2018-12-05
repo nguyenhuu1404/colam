@@ -9,8 +9,8 @@
             <div class="title-breadcrumb">Học tiếng Nhật online</div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Các khóa học</li>
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Học thử</li>
                 </ol>
             </nav>
         </div>

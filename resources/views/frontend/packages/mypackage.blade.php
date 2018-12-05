@@ -10,7 +10,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"><a href="/khoa-hoc">Các khóa học</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="/khoa-hoc">Khóa học của tôi</a></li>
                     </ol>
                 </nav>
             </div>
