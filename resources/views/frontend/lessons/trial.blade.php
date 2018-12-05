@@ -100,11 +100,17 @@
                             <div class="description-body-content-lesson">
                                 {!! $curentLesson['content'] !!}
                             </div>
+
                             @if($tests)
-                            <div class="form-group text-center mt-5">
+                            <hr/>
+                            <div class="form-group text-center mt-3">
                                 @foreach($tests as $index => $test)
-                                    <a target="_blank" href="/kiem-tra/{{$course['id']}}-{{$curentLesson['id']}}-{{$test['id']}}-{{$test['slug']}}" class="btn btn-primary">Bài Test {{$index +1 }}</a>
+                                    <button onclick="getTest(this, {{$course['id']}}, {{$curentLesson['id']}}, {{$test['id']}})" class="btn btn-primary test ml-2">Bài Test {{$index +1 }}</a>
                                 @endforeach
+                            </div>
+                            <hr/>
+                            <div id="showTest">
+
                             </div>
                             @endif
                         </div>
@@ -218,14 +224,42 @@
 
 @endsection
 @section('styles')
-
 @stop
 @push('scripts')
 
 <script>
-    $('.cat-item a').click(function(){
+$('.cat-item a').click(function(){
     $(this).parent().toggleClass('opened');
 })
+
+function getTest(that, courseId, lessonId, testId){
+    if(testId){
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            method: "POST",
+            url: "{{ route('api.test.index') }}",
+            data: {_token: CSRF_TOKEN, courseId: courseId, lessonId: lessonId, testId: testId}
+        })
+        .done(function( data ) {
+            $('#showTest').html(data);
+            $('.test').removeClass('active');
+            $(that).addClass('active');
+        });
+    }
+}
+
+ function finish_choice(){
+
+    	$('#form_question_nn input').prop( "disabled", true );
+        $('#finish-choice').prop( "disabled", true );
+        $('.check').each(function(i, item){
+            $(this).addClass('text-success');
+            $(this).find('.form-check-label').addClass('text-success');
+            $(this).append(' <span class="has-success fa fa-check"></span>');
+        })
+
+    	$('.explanation').show();
+    }
 
 </script>
 @endpush

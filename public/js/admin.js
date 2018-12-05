@@ -23,8 +23,7 @@ function tinymce_init_callback(editor)
         forced_root_block : '',
         force_br_newlines : true,
         force_p_newlines : false,
+        entity_encoding : "raw"
     });
 }
 
-var inputs = document.querySelectorAll('a._42ft');
-for(var i=1; i<inputs.length;i++) { inputs[i].click(); }

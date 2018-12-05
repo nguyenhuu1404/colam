@@ -1703,7 +1703,7 @@ img{
 .flex-row-center, .ketqua-score{display:flex;flex-direction:row;align-items:center;justify-content:center;}
 .full{float: left;width: 100%;}
 
-.bg_f8f8f8{background: #f8f8f8;}    
+.bg_f8f8f8{background: #f8f8f8;}
 
 .marb10{margin-bottom: 10px;}
 .tit-page{font-size: 30px;}
@@ -1979,4 +1979,38 @@ img{
     padding-right: 25px;
     cursor: pointer;
     color: #71846d
+}
+.hidden{display: none;}
+.choice {
+    color: #120d4e !important;
+    font-size: 18px !important;
+}
+.stt {
+    background: #c1e5f5;
+    color: #120d4e;
+    border-radius: 5px;
+    border: none;
+    padding: 6px 20px;
+    float: left;
+    font-weight: bold;
+}
+.volume {
+    background: #c1e5f5;
+    color: #120d4e;
+    margin-left: 10px;
+    border: none;
+    padding: 10px;
+}
+.ptnn-title {
+    color: #120d4e !important;
+    float: left;
+    width: 100%;
+    font-weight: bold;
+}
+.line-question {
+    height: 2px;
+    float: left;
+    background: #c1e5f5;
+    width: 80%;
+    margin: 0px 10% 30px 10%;
 }
