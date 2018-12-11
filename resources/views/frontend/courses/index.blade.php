@@ -20,7 +20,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-3">
-                    <a class="btn transition btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['id']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
+                    @if($course['isBuy'] === true)
+                        <button class="btn transition btn-success w-100 p-3 mb-3" ><b>Đã mua</b></button>
+                    @else
+                        <a class="btn transition btn-danger w-100 p-3 mb-3" href="/thanh-toan/{{$course['id']}}-{{$course['slug']}}"><b>Mua khóa học này</b></a>
+                    @endif
+
                     <a class="btn transition p-2 mb-3 btn-outline-danger w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </a>
                     @if($lessons)

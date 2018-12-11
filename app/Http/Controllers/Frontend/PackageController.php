@@ -15,10 +15,27 @@ use App\User;
 class PackageController extends Controller
 {
     public function combo($packageId){
-        $data['package'] = Package::where('id', $packageId)->first()->toArray();
+        $package = Package::where('id', $packageId)->first()->toArray();
+        $package['isBuy'] = false;
+        if (Auth::check()) {
+            $userId = Auth::id();
+            if($this->checkPaymentByPackage($userId, $package['id'])){
+                $package['isBuy'] = true;
+            }
+        }
+        $data['package'] = $package;
         $data['courses'] = Package::find($packageId)->courses()->get()->toArray();
         //dd($data);
         return view('frontend.packages.combo', $data);
+    }
+    public function checkPaymentByPackage($userId, $packageId){
+
+        $checkPayment = Payment::where(['user_id' => $userId, 'package_id' =>  $packageId, 'status' => 1])->get()->count();
+        if($checkPayment > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
     public function index(){
 

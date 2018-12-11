@@ -124,24 +124,24 @@
                            <div class="payment-heading"><span>Thông tin đơn hàng</span></div>
                            <div class="payment-sb">
                               <div class="title-body-item-class">
-                                {{$course['name']}}
+                                {{$package['name']}}
                                   <span class="tuition">học phí: <b>
-                                  {{ $course['price_sale'] ? priceFormat($course['price']) : priceFormat($course['price'])}} đ
+                                  {{ $package['price_sale'] ? priceFormat($package['price']) : priceFormat($package['price'])}} đ
                                   </b></span>
                               </div>
                               <div class="content-item-class">
                                   <div class="info-item-class">
                                       <div class="duration">L</div>
-                                      Thời gian học: {{$course['time']}} tháng
+                                      Thời gian học: {{$package['time']}} tháng
                                   </div>
                                   <div class="info-item-class">
                                       <div class="number-video"></div>
-                                      Số video: {{$course['video_number']}}
+                                      Số video: {{$package['video_number']}}
                                   </div>
                               </div>
                            </div>
                            <hr>
-                           <h4 class="total-payment">Tổng tiền  <span> {{ $course['price_sale'] ? priceFormat($course['price']) : priceFormat($course['price'])}} ₫</span></h4>
+                           <h4 class="total-payment">Tổng tiền  <span> {{ $package['price_sale'] ? priceFormat($package['price']) : priceFormat($package['price'])}} ₫</span></h4>
                         </div>
                      </div>
                   </div>

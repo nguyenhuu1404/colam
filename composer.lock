@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "804336c8dea24e9875566d7ccf0720f6",
+    "content-hash": "0e39a202fee7485a5ce45a3ab6e63dc1",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -4116,6 +4116,56 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
+            "name": "tongvanduc/nganluong",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tongvanduc/nganluong.git",
+                "reference": "f9716bc93dda62d465ba6bfb03f3166379bc29d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tongvanduc/nganluong/zipball/f9716bc93dda62d465ba6bfb03f3166379bc29d2",
+                "reference": "f9716bc93dda62d465ba6bfb03f3166379bc29d2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.1",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TongVanDuc\\NganLuong\\NganLuongServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TongVanDuc\\NganLuong\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tong Van Duc",
+                    "email": "tongduc315@gmail.com",
+                    "homepage": "http://ahihi.space"
+                }
+            ],
+            "description": "Tích hợp thanh toán qua Ngân Lượng cho website Laravel 5.6.",
+            "keywords": [
+                "laravel",
+                "nganluong",
+                "tongvanduc"
+            ],
+            "time": "2018-05-29T15:53:21+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.5.1",
             "source": {
@@ -6055,7 +6105,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "tongvanduc/nganluong": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -115,7 +115,7 @@
 
 					</div>
                 @else
-                    <div class="alert alert-warning">Bạn chưa có khóa học nào!</div>
+                    <div class="alert alert-warning">Bạn chưa mua khóa học nào!</div>
                 @endif
 				</div>
 			</section>

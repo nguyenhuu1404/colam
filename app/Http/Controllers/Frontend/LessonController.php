@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 use App\Course;
 use App\Lesson;
 use App\Payment;
@@ -26,12 +28,13 @@ class LessonController extends Controller
         }else{
             if (Auth::check()) {
                 $userId = Auth::id();
-                $dateNow = date('Y-m-d');;
-                $checkUser = Payment::where(['user_id' => $userId, 'course_id' => $course['id'], 'status' => 1])->where('end_date', '>=', $dateNow)->get()->count();
-                if($checkUser > 0){
-                    return view('frontend.lessons.index', $data);
+                if($this->checkPayment($userId, $courseId)){
+                    if($this->checkUser($userId, $courseId)){
+                        return view('frontend.lessons.index', $data);
+                    }else{
+                        return view('frontend.lessons.more', $data);
+                    }
                 }else{
-
                     return view('frontend.lessons.nouser', $data);
                 }
 
@@ -41,5 +44,56 @@ class LessonController extends Controller
             }
         }
 
+    }
+    public function checkPayment($userId, $courseId){
+
+        $checkPayment = Payment::where(['user_id' => $userId, 'course_id' =>  $courseId, 'status' => 1])->get()->count();
+        if($checkPayment > 0){
+            return true;
+        }else{
+            $packages =  DB::table('course_package')->select('package_id')->where('course_id', $courseId)->get();
+
+            if($packages){
+                $packageIds = [];
+                foreach($packages as $package){
+                    $packageIds[] = $package->package_id;
+                }
+
+                $checkPackagePayment = Payment::where(['user_id' => $userId, 'status' => 1])->whereIn('package_id', $packageIds)->get()->count();
+                if($checkPackagePayment >0 ){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+        }
+    }
+    public function checkUser($userId, $courseId){
+        $dateNow = date('Y-m-d');
+        $checkUser = Payment::where(['user_id' => $userId, 'course_id' =>  $courseId, 'status' => 1])->where('end_date', '>=', $dateNow)->get()->count();
+        if($checkUser > 0){
+            return true;
+        }else{
+            $packages =  DB::table('course_package')->select('package_id')->where('course_id', $courseId)->get();
+            //dd($packages);
+            if($packages){
+                $packageIds = [];
+                foreach($packages as $package){
+                    $packageIds[] = $package->package_id;
+                }
+                $checkPackageUser = DB::table('payments')->where(['user_id' => $userId, 'status' => 1])->whereIn('package_id', $packageIds)->where('end_date', '>=', $dateNow)->get()->count();
+                if($checkPackageUser > 0 ){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+        }
     }
 }

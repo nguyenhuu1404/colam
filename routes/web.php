@@ -33,6 +33,9 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
     Route::get('/thanh-toan/{id}-{slug}', 'PaymentController@course')->where(['id' => '[0-9]+']);
     Route::get('/thanh-toan/package/{id}-{slug}', 'PaymentController@combo')->where(['id' => '[0-9]+']);
 
+    Route::get('/gia-han/{id}-{slug}', 'PaymentController@moreCourse')->where(['id' => '[0-9]+']);
+    Route::get('/gia-han/package/{id}-{slug}', 'PaymentController@moreCombo')->where(['id' => '[0-9]+']);
+
     Route::get('/tin-tuc', 'NewController@index');
     Route::get('/danh-muc/{id}-{slug}', 'NewController@category');
     Route::get('/tin-tuc/{id}-{slug}', 'NewController@detail')->where(['id' => '[0-9]+']);

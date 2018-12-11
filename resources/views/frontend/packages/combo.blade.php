@@ -64,7 +64,12 @@
                 <div class="text-center">
                     <div class="btn btn-primary w-100 mb-4"><h4>Thông tin khóa học</h4></div>
                     <h2 class="mb-3 text-danger">{{ priceFormat($package['price_sale']) }} vnđ</h2>
-                    <a class="btn transition btn-danger mb-4" href="/thanh-toan/{{$package['id']}}-{{$package['slug']}}"><b>Mua ngay</b></a>
+                    @if($package['isBuy'] === true)
+                        <button class="btn btn-success mb-4"><b>Đã mua</b></button>
+                    @else
+                        <a class="btn transition btn-danger mb-4" href="/thanh-toan/package/{{$package['id']}}-{{$package['slug']}}"><b>Mua ngay</b></a>
+                    @endif
+
                     <a class="btn transition p-2 mb-3 btn-outline-danger w-100" href="/khoa-hoc">Xem thêm các khóa học khác <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     </a>
                 </div>
