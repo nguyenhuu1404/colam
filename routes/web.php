@@ -52,6 +52,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'Frontend'], fun
     Route::post('/course/getCourses', 'CourseController@getCourses')->name('course.getCourses');
     Route::post('/package/getComboPackages', 'PackageController@getComboPackages')->name('package.getComboPackages');
     Route::post('/test/getTests', 'TestController@index')->name('test.index');
+    Route::post('/payment/updatePhone', 'PaymentController@updatePhone')->name('payment.updatePhone');
 
 });
 

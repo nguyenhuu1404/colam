@@ -11,9 +11,18 @@ use App\Payment;
 use App\Order;
 use App\Package;
 use App\Course;
+use App\User;
 
 class PaymentController extends Controller
 {
+    public function updatePhone(Request $request){
+        if ($request->ajax()) {
+            $phone = $request->input('phone');
+            $user = User::find(Auth::id());
+            $user->phone = $phone;
+            $user->save();
+        }
+    }
     public function course($courseId){
         $data['title'] = 'Thanh toán';
         $course = Course::where('id', $courseId)->get()->first();
@@ -28,6 +37,7 @@ class PaymentController extends Controller
                     return redirect('/gia-han/'.$course['id'].'-'.$course['slug']);
                 }
             }else{
+                $data['user'] = $user;
                 return view('frontend.payment.index', $data);
             }
 

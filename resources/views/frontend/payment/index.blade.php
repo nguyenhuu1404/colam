@@ -9,8 +9,8 @@
                 <div class="title-breadcrumb">Học tiếng Nhật online</div>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Thanh toan</li>
+                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Thanh toán</li>
                     </ol>
                 </nav>
             </div>
@@ -41,35 +41,43 @@
                                     <tbody>
                                        <tr>
                                           <td width="200" class="user-form-item important">Tên khách hàng <span>*</span></td>
-                                          <td class="user-form-item"><b>Cuong Nguyen test</b>
+                                          <td class="user-form-item"><b>{{$user['name']}}</b>
                                           </td>
                                           <!---->
                                        </tr>
                                        <tr>
                                           <td class="user-form-item important">Số điện thoại <span>*</span></td>
-                                          <td class="user-form-item"><span>9856635370</span>
+                                          <td class="user-form-item">
+                                          <span id="textPhone">{{$user['phone'] ? $user['phone'] : 'Chưa có thông tin' }}
+                                          </span>
+                                          <span id="inputPhone" class="hidden">
+                                            <input value="{{$user['phone']}}" type="text" id="phone" name="phone" />
+                                            <button onclick="addPhone();" class="btn btn-sm btn-warning">Lưu lại</button>
+                                            <button onclick="showPhone();" class="btn btn-sm btn-danger">Hủy bỏ</button>
+                                          </span>
+
+                                          <span onclick="showPhone();" class="float-right badge badge-warning pointer">Chỉnh sửa</span>
+                                          <p id="errorPhone" class="hidden alert alert-danger">Số điện thoại không được bỏ trống!</p>
                                           </td>
                                           <!---->
                                        </tr>
                                        <tr>
                                           <td class="user-form-item important">Email <span>*</span></td>
-                                          <td class="user-form-item"><span>ccodon6889@gmail.com</span></td>
+                                          <td class="user-form-item"><span>{{$user['email']}}</span></td>
                                        </tr>
-                                       <tr>
-                                          <td class="user-form-item">Ngày sinh</td>
-                                          <td class="user-form-item">
-                                             02/06/1989
-                                          </td>
-                                       </tr>
+
                                        <tr>
                                           <td class="user-form-item">Địa chỉ</td>
-                                          <td class="user-form-item"><span class="empty-info">Chưa có thông tin</span></td>
+                                          <td class="user-form-item"><span class="empty-info">{{$user['address'] ? $user['address'] : 'Chưa có thông tin' }}</span>
+                                          </td>
                                        </tr>
                                     </tbody>
                                  </table>
                               </div>
                            </div>
-                            <div class="col-12"><a href="" class="btn transition btn-buy"><span>Tiếp Tục <i class="fa fa-angle-right" aria-hidden="true"></i></span></a></div>
+                            <div class="col-12">
+                            <button onclick="chociePay()" class="btn transition btn-buy"><span>Tiếp Tục <i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+                            </div>
                         </div>
                         <!----> <!---->
                 <!-- chờ AJAX-->
@@ -153,4 +161,40 @@
 
 @endsection
 
+@push('scripts')
+
+<script>
+    function showPhone(){
+        $('#inputPhone').toggle();
+        $('#textPhone').toggle();
+    }
+    function addPhone(){
+        var phone = $('#phone').val();
+        if(phone != ''){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                method: "POST",
+                url: "{{ route('api.payment.updatePhone') }}",
+                data: {_token: CSRF_TOKEN, phone: phone}
+            })
+            .done(function( data ) {
+                location.reload();
+            });
+        }else{
+            $('#errorPhone').show();
+
+        }
+    }
+    function chociePay(){
+        var phone = $('#phone').val();
+        if(phone != ''){
+
+        }else{
+            $('#errorPhone').show();
+        }
+    }
+
+</script>
+
+@endpush
 
