@@ -6,6 +6,11 @@ function tinymce_init_callback(editor)
     tinymce.init({
         menubar: false,
         selector:'textarea.richTextBox',
+        setup: function (editor) {
+            editor.on('change', function (e) {
+                editor.save();
+            });
+        },
         skin: 'voyager',
         min_height: 600,
         resize: 'vertical',
