@@ -1,4 +1,5 @@
 <?php
+//57514, f51b597d7446d94fecf5557df7ba8ffa, lamdaothanh305@gmail.com
 return [
     /*
      * Link api duyệt thanh toán
@@ -19,7 +20,7 @@ return [
      *
      *
      * */
-    'merchant_password' => env('MERCHANT_PASSWORD', ''),
+    'merchant_password' => env('MERCHANT_PASSWORD', 'matkhauketnoi'),
 
     /*
      * Email tài khoản Ngân Lượng
