@@ -31,6 +31,8 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
 
 
     Route::get('/thanh-toan/{id}-{slug}', 'PaymentController@course')->where(['id' => '[0-9]+']);
+    Route::post('/payment/paymentCourse', 'PaymentController@paymentCourse');
+
     Route::get('/thanh-toan/package/{id}-{slug}', 'PaymentController@combo')->where(['id' => '[0-9]+']);
 
     Route::get('/gia-han/{id}-{slug}', 'PaymentController@moreCourse')->where(['id' => '[0-9]+']);
@@ -53,6 +55,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'Frontend'], fun
     Route::post('/package/getComboPackages', 'PackageController@getComboPackages')->name('package.getComboPackages');
     Route::post('/test/getTests', 'TestController@index')->name('test.index');
     Route::post('/payment/updatePhone', 'PaymentController@updatePhone')->name('payment.updatePhone');
+
 
 });
 

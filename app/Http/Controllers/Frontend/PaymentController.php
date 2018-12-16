@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use TongVanDuc\NganLuong\Facades\NLBankCharge;
 
 use App\Payment;
 use App\Order;
@@ -46,6 +47,19 @@ class PaymentController extends Controller
             return view('frontend.payment.login', $data);
         }
     }
+    public function paymentCourse(Request $request){
+        //dd($request->input());
+        //dd(NLBankCharge::ATM($request->input()));
+        $nl_result = NLBankCharge::ATM($request->input());
+        if ($nl_result->error_code =='00'){
+
+            header('Location: '.$nl_result->checkout_url);
+            exit;
+        }else{
+            echo $nl_result->error_message;
+        }
+    }
+
     public function combo($packageId){
         $data['title'] = 'Thanh toán';
         $package = Package::where('id', $packageId)->get()->first();
