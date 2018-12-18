@@ -19,13 +19,9 @@
     <section class="contact-box SFD mb-5 w-100">
         <div class="container">
             <div class="main">
-              <h1 class=" text-uppercase sfd mt-5 mb-5 font30">Thanh toán</h1>
+              <h1 class=" text-uppercase sfd mt-5 font30">Thanh toán</h1>
                <div class="main-center main-payment" style="opacity: 1;">
-                  <ul class="nav nav-wizard ">
-                     <li class="active"><a><span class="step">1</span> <span class="step-text">Thông tin khách hàng</span></a></li>
-                     <li><a><span class="step">2</span> <span class="step-text">Lựa chọn hình thức thanh toán</span></a></li>
-                     <li><a><span class="step">3</span> <span class="step-text">Tạo thành công đơn hàng</span></a></li>
-                  </ul>
+
 
                   <div class="row">
                      <div class="col-sm-8 col-md-9 ">
