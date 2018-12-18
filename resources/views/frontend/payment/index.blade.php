@@ -18,8 +18,17 @@
     </section>
     <section class="contact-box SFD mb-5 w-100">
         <div class="container">
-            <form  name="NLpayBank" action="/payment/paymentCourse" method="post">
+            <form id="payment" name="NLpayBank" action="/payment/paymentCourse" method="post">
             @csrf
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="main">
               <h1 class=" text-uppercase sfd mt-5 font30">Thanh toán</h1>
                <div class="main-center main-payment" style="opacity: 1;">
@@ -297,7 +306,7 @@
 		</li>
 
 	</ul>
-
+    <div class="alert alert-danger hidden" id="errorOption">Chưa chọn hình thức thanh toán</div>
 
 
                     </div>
@@ -339,8 +348,9 @@
 
                </div>
             </div>
-
-            <input onclick="chociePay()" type="submit" name="nlpayment" class="btn btn-warning" value="thanh toán"/>
+            <input type="hidden" name="course_id" value="{{ $course['id']}}" />
+            <input type="hidden" name="course_url" value="{{ $course['slug']}}" />
+            <input onclick="chociePay()" type="button" name="nlpayment" class="btn btn-warning" value="thanh toán"/>
         </form>
         </div>
 
@@ -374,11 +384,19 @@
     }
     function chociePay(){
         var phone = $('#phone').val();
-        if(phone != ''){
-            return true;
-        }else{
+        var option_payment = $('input[name=option_payment]:checked', '#payment').val();
+        if(!phone){
             $('#errorPhone').show();
             return false;
+        }
+        if(!option_payment){
+            $('#errorOption').show();
+            return false;
+        }
+        if(phone != '' && typeof option_payment !== 'undefined' && option_payment != ''){
+            $('#errorPhone').hide();
+            $('#errorOption').hide();
+            $( "#payment" ).submit();
         }
     }
 

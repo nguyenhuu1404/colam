@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use TongVanDuc\NganLuong\Facades\NLBankCharge;
+use Validator;
 
 use App\Payment;
 use App\Order;
@@ -50,14 +51,55 @@ class PaymentController extends Controller
     public function paymentCourse(Request $request){
         //dd($request->input());
         //dd(NLBankCharge::ATM($request->input()));
-        $nl_result = NLBankCharge::ATM($request->input());
-        if ($nl_result->error_code =='00'){
 
-            header('Location: '.$nl_result->checkout_url);
-            exit;
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required',
+            'option_payment' => 'required',
+        ],[
+            'required' => ':attribute không được bỏ trống.',
+        ]);
+
+        if($validator->fails()) {
+            return redirect('/thanh-toan/'.$request->input('course_id').'-'.$request->input('course_url'))
+                        ->withErrors($validator)
+                        ->withInput();
         }else{
-            echo $nl_result->error_message;
+            if($request->input('option_payment') == 'CK'){
+
+            }else if($request->input('option_payment') == 'ATM_ONLINE'){
+                $nl_result = NLBankCharge::ATM($request->input());
+
+                if(isset($nl_result->error_code)){
+                    if($nl_result->error_code =='00'){
+                        header('Location: '.$nl_result->checkout_url);
+                        exit;
+                    }else{
+                        return redirect('/thanh-toan/'.$request->input('course_id').'-'.$request->input('course_url'))
+                        ->withErrors(['bank_code' => 'Chưa chọn ngân hàng.'])
+                        ->withInput();
+                    }
+
+                }else{
+                    return redirect('/thanh-toan/'.$request->input('course_id').'-'.$request->input('course_url'))
+                        ->withErrors(['bank_code' => 'Chưa chọn ngân hàng.'])
+                        ->withInput();
+                }
+
+            }else if($request->input('option_payment') == 'VISA'){
+                $nl_result = NLBankCharge::ATM($request->input());
+                if ($nl_result->error_code && $nl_result->error_code =='00'){
+
+                    header('Location: '.$nl_result->checkout_url);
+                    exit;
+                }else{
+                    echo $nl_result->error_message;
+                }
+            }
         }
+
+
+
+
     }
 
     public function combo($packageId){
