@@ -86,19 +86,32 @@ class PaymentController extends Controller
                 }
 
             }else if($request->input('option_payment') == 'VISA'){
-                $nl_result = NLBankCharge::ATM($request->input());
-                if ($nl_result->error_code && $nl_result->error_code =='00'){
+                $nl_result = NLBankCharge::VISA($request->input());
+                if(isset($nl_result->error_code)){
+                    if($nl_result->error_code =='00'){
+                        header('Location: '.$nl_result->checkout_url);
+                        exit;
+                    }else{
+                        return redirect('/thanh-toan/'.$request->input('course_id').'-'.$request->input('course_url'))
+                        ->withErrors(['bank_code' => 'Chưa chọn ngân hàng.'])
+                        ->withInput();
+                    }
 
-                    header('Location: '.$nl_result->checkout_url);
-                    exit;
                 }else{
-                    echo $nl_result->error_message;
+                    return redirect('/thanh-toan/'.$request->input('course_id').'-'.$request->input('course_url'))
+                        ->withErrors(['bank_code' => 'Chưa chọn thẻ.'])
+                        ->withInput();
                 }
             }
         }
 
-
-
+    }
+    public function successCourse(Request $request, $courseId){
+        //dd($courseId);
+        $result = NLBankCharge::TransactionDetail($request->input('token'));
+        dd($result);
+    }
+    public function thankCourse($orderId){
 
     }
 

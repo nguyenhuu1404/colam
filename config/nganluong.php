@@ -6,7 +6,7 @@ return [
      *
      *
      * */
-    'url_api' => env('URL_API', 'https://www.nganluong.vn/checkout.api.nganluong.post.php'),
+    'url_api' => env('URL_API', 'https://sandbox.nganluong.vn:8088/nl30/checkout.api.nganluong.post.php'),
 
     /*
      * Mã kết nối

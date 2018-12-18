@@ -350,6 +350,7 @@
             </div>
             <input type="hidden" name="course_id" value="{{ $course['id']}}" />
             <input type="hidden" name="course_url" value="{{ $course['slug']}}" />
+            <input type="hidden" name="return_url" value="http://colam.vn/payment/successCourse/{{$course['id']}}" />
             <input onclick="chociePay()" type="button" name="nlpayment" class="btn btn-warning" value="thanh toán"/>
         </form>
         </div>
