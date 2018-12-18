@@ -21,18 +21,13 @@
             <form  name="NLpayBank" action="/payment/paymentCourse" method="post">
             @csrf
             <div class="main">
-              <h1 class=" text-uppercase sfd mt-5 mb-5 font30">Thanh toán</h1>
+              <h1 class=" text-uppercase sfd mt-5 font30">Thanh toán</h1>
                <div class="main-center main-payment" style="opacity: 1;">
-                  <ul class="nav nav-wizard ">
-                     <li class="active"><a><span class="step">1</span> <span class="step-text">Thông tin khách hàng</span></a></li>
-                     <li><a><span class="step">2</span> <span class="step-text">Lựa chọn hình thức thanh toán</span></a></li>
-                     <li><a><span class="step">3</span> <span class="step-text">Tạo thành công đơn hàng</span></a></li>
-                  </ul>
 
                   <div class="row">
                      <div class="col-sm-8 col-md-9 ">
 
-                        <div class="step-1-container bg_f8f8f8 pb-4 my-4 ">
+                        <div class="step-1-container bg_f8f8f8 my-4 ">
                            <div class="customer-info-container">
                               <div class=" payment-heading"><span>Thông tin khách hàng</span> <a class="refresh">
                                  Làm mới <i class="fa fa-refresh"></i></a>
@@ -84,9 +79,7 @@
                                  </table>
                               </div>
                            </div>
-                            <div class="col-12">
-                            <button onclick="chociePay()" class="btn transition btn-buy"><span>Tiếp Tục <i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
-                            </div>
+
                         </div>
                         <!----> <!---->
                 <!-- chờ AJAX-->
@@ -310,10 +303,7 @@
                     </div>
                 </div> <!--./step-2-->
 
-                <div class="step-3-container bg_f8f8f8 my-4 full">
-                  <div class=" payment-heading"><span>Tạo đơn hàng thành công</span></div>
-                  <div class="px-4  py-4 full"></div>
-                </div> <!--./step-3-->
+
 
 
                      </div>
@@ -350,7 +340,7 @@
                </div>
             </div>
 
-            <input type="submit" name="nlpayment" class="btn btn-warning" value="thanh toán"/>
+            <input onclick="chociePay()" type="submit" name="nlpayment" class="btn btn-warning" value="thanh toán"/>
         </form>
         </div>
 
@@ -385,9 +375,10 @@
     function chociePay(){
         var phone = $('#phone').val();
         if(phone != ''){
-
+            return true;
         }else{
             $('#errorPhone').show();
+            return false;
         }
     }
 
