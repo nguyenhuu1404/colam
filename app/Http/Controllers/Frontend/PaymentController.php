@@ -129,6 +129,7 @@ class PaymentController extends Controller
                     return redirect('/gia-han/package/'.$package['id'].'-'.$package['slug']);
                 }
             }else{
+                $data['user'] = $user;
                 return view('frontend.payment.combo', $data);
             }
 
@@ -143,7 +144,7 @@ class PaymentController extends Controller
         $data['url']='/thanh-toan/'.$courseId.'-'.$course->slug;
         if (Auth::check()) {
             $user = Auth::user();
-            dd($user);
+            $data['user'] = $user;
             return view('frontend.payment.index', $data);
         }else{
             return view('frontend.payment.login', $data);
@@ -155,6 +156,8 @@ class PaymentController extends Controller
         $data['package'] = $package;
         $data['url']='/thanh-toan/package/'.$packageId.'-'.$package->slug;
         if (Auth::check()) {
+            $user = Auth::user();
+            $data['user'] = $user;
             return view('frontend.payment.combo', $data);
         }else{
             return view('frontend.payment.logincombo', $data);

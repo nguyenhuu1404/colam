@@ -21,6 +21,8 @@
             <div class="main">
               <h1 class=" text-uppercase sfd mt-5 font30">Thanh toán</h1>
                <div class="main-center main-payment" style="opacity: 1;">
+
+
                   <div class="row">
                      <div class="col-sm-8 col-md-9 ">
                         <div class="step-1-container bg_f8f8f8 pb-4 my-4 ">
