@@ -4,6 +4,14 @@ return [
     'courseTypes' => [
         'n1', 'n2', 'n3', 'n4', 'n5'
     ],
+    'order_status' => [
+        'processing' => 'Đang xử lí',
+        'completed' => 'Thành công',
+        'cancelled' => 'Đã hủy',
+        'refunded' => 'Đã hoàn tiền',
+        'shipping' => 'Đang được chuyển',
+        'on-hold' => 'Chờ thanh toán'
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Name

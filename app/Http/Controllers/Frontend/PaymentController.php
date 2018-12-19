@@ -108,11 +108,64 @@ class PaymentController extends Controller
     }
     public function successCourse(Request $request, $courseId){
         //dd($courseId);
-        $result = NLBankCharge::TransactionDetail($request->input('token'));
-        dd($result);
-    }
-    public function thankCourse($orderId){
+        $course = Course::where('id', $courseId)->get()->first();
 
+        $price = $course['price'];
+        if($course['price_sale']){
+            $price = $course['price_sale'];
+        }
+        $userId = Auth::id();
+        $key = uniqid();
+        $order = [
+            'user_id' => $userId,
+            'course_id' => $courseId,
+            'price' => $price,
+            'key' => $key,
+
+        ];
+        $result = NLBankCharge::TransactionDetail($request->input('token'));
+        if(isset($result['status']) && $result['status'] === true){
+            $courseTime = $course['time'];
+            $xml = $result['data'];
+            $json = json_encode($xml);
+            $dataNl = json_decode($json,TRUE);
+
+            $order['payment_method'] = $dataNl['payment_method'];
+            $order['bank_code'] = $dataNl['bank_code'];
+            $order['fullname'] = $dataNl['buyer_fullname'];
+            $order['email'] = $dataNl['buyer_email'];
+            $order['phone'] = $dataNl['buyer_mobile'];
+            $order['address_ship'] = $dataNl['buyer_address'];
+            $order['status'] = 1;
+            $order['order_status'] = 'completed';
+
+            $insertOder = Order::create($order);
+            //active tai khoan
+            $strMonth = '+'.$courseTime.' months';
+            $end_date = date('Y-m-d', strtotime($strMonth, strtotime(date('Y-m-d'))));
+            $payment = [
+                'user_id' => $userId,
+                'course_id' => $courseId,
+                'price' => $price,
+                'start_date' =>  date('Y-m-d'),
+                'end_date' => $end_date,
+                'status' => 1
+            ];
+            Payment::create($payment);
+
+            return redirect('/payment/thank/'.$key);
+        }else{
+
+        }
+
+    }
+    public function thank($key){
+        $order = Order::where('key', $key)->get()->first();
+        $data['order'] = $order;
+        if($order['payment_method'] == 'ATM_ONLINE'){
+            $data['message'] = 'Thanh toán thành công! tài khoản của bạn đã được kích hoạt!';
+            return  view('frontend.payment.thank', $data);
+        }
     }
 
     public function combo($packageId){
