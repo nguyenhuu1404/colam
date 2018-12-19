@@ -25,6 +25,14 @@ class PaymentController extends Controller
             $user->save();
         }
     }
+    public function updateAddress(Request $request){
+        if ($request->ajax()) {
+            $address = $request->input('address');
+            $user = User::find(Auth::id());
+            $user->address = $address;
+            $user->save();
+        }
+    }
     public function course($courseId){
         $data['title'] = 'Thanh toán';
         $course = Course::where('id', $courseId)->get()->first();

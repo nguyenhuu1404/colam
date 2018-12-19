@@ -80,8 +80,18 @@
 
                                        <tr>
                                           <td class="user-form-item">Địa chỉ</td>
-                                          <td class="user-form-item"><span class="empty-info">{{$user['address'] ? $user['address'] : 'Chưa có thông tin' }}</span>
-                                          <input type="hidden" name="address" value="{{ $user['address'] ? $user['address'] : 'hanoi'}}" />
+                                          <td class="user-form-item">
+                                          <span id="textAddress" class="empty-info">{{$user['address'] ? $user['address'] : 'Chưa có thông tin' }}</span>
+
+                                          <input id="address" type="hidden" name="address" value="{{ $user['address']}}" />
+                                          <span id="inputAddress" class="hidden">
+                                            <input value="{{$user['address']}}" type="text" id="addAddress" name="addAddress" />
+                                            <span onclick="addAddress();" class="btn btn-sm btn-warning">Lưu lại</span>
+                                            <span onclick="showAddress();" class="btn btn-sm btn-danger">Hủy bỏ</span>
+                                          </span>
+
+                                          <span onclick="showAddress();" class="float-right badge badge-warning pointer">Chỉnh sửa</span>
+                                          <p id="errorAddress" class="hidden alert alert-danger">Địa chỉ không được để trống!</p>
                                           </td>
                                        </tr>
                                     </tbody>
@@ -367,6 +377,29 @@
         $('#inputPhone').toggle();
         $('#textPhone').toggle();
         $('#errorPhone').hide();
+        $('#errorAddress').hide();
+    }
+    function showAddress(){
+        $('#inputAddress').toggle();
+        $('#textAddress').toggle();
+        $('#errorPhone').hide();
+        $('#errorAddress').hide();
+    }
+    function addAddress(){
+        var address = $('#addAddress').val();
+        if(address != ''){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                method: "POST",
+                url: "{{ route('api.payment.updateAddress') }}",
+                data: {_token: CSRF_TOKEN, address: address}
+            }).done(function( data ) {
+                location.reload();
+            });
+        }else{
+            $('#errorAddress').show();
+
+        }
     }
     function addPhone(){
         var phone = $('#phone').val();
@@ -376,8 +409,7 @@
                 method: "POST",
                 url: "{{ route('api.payment.updatePhone') }}",
                 data: {_token: CSRF_TOKEN, phone: phone}
-            })
-            .done(function( data ) {
+            }).done(function( data ) {
                 location.reload();
             });
         }else{
@@ -387,11 +419,16 @@
     }
     function showPay(){
         var phone = $('#mobile').val();
+        var address = $('#address').val();
         if(!phone){
             $('#errorPhone').show();
             return false;
+        }else if(!address){
+            $('#errorAddress').show();
+            return false;
         }else{
             $('#errorPhone').hide();
+            $('#errorAddress').hide();
             $('#thanhtoan').show();
             $('#choicePay').show();
         }
@@ -416,7 +453,6 @@
 
 </script>
 
-<script src="https://www.nganluong.vn/webskins/javascripts/jquery_min.js" type="text/javascript"></script>
 <script language="javascript">
     $('input[name="option_payment"]').bind('click', function() {
     $('.list-content li').removeClass('active');
