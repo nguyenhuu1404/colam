@@ -13,19 +13,19 @@ return [
      *
      *
      * */
-    'merchant_id' => env('MERCHANT_ID', '36680'),
+    'merchant_id' => env('MERCHANT_ID', '57514'),
 
     /*
      * Mật khẩu kết nối
      *
      *
      * */
-    'merchant_password' => env('MERCHANT_PASSWORD', 'matkhauketnoi'),
+    'merchant_password' => env('MERCHANT_PASSWORD', 'f51b597d7446d94fecf5557df7ba8ffa'),
 
     /*
      * Email tài khoản Ngân Lượng
      *
      *
      * */
-    'receiver_email' => env('RECEIVER_EMAIL', 'demo@nganluong.vn')
+    'receiver_email' => env('RECEIVER_EMAIL', 'lamdaothanh305@gmail.com')
 ];

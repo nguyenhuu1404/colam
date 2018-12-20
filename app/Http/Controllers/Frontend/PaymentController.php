@@ -171,7 +171,7 @@ class PaymentController extends Controller
     public function thank($key){
         $order = Order::where('key', $key)->get()->first();
         $data['order'] = $order;
-        if($order['payment_method'] == 'ATM_ONLINE'){
+        if($order['payment_method'] == 'ATM_ONLINE' || $order['payment_method'] == 'VISA'){
             $data['message'] = 'Thanh toán thành công! tài khoản của bạn đã được kích hoạt!';
             return  view('frontend.payment.thank', $data);
         }
