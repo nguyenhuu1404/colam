@@ -1,5 +1,5 @@
 <?php
-//57514, f51b597d7446d94fecf5557df7ba8ffa, lamdaothanh305@gmail.com
+//57763, f51b597d7446d94fecf5557df7ba8ffa, lamdaothanh305@gmail.com
 return [
     /*
      * Link api duyệt thanh toán
@@ -13,7 +13,7 @@ return [
      *
      *
      * */
-    'merchant_id' => env('MERCHANT_ID', '57514'),
+    'merchant_id' => env('MERCHANT_ID', '57763'),
 
     /*
      * Mật khẩu kết nối
