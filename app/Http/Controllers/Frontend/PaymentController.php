@@ -77,7 +77,7 @@ class PaymentController extends Controller
             }else if($request->input('option_payment') == 'ATM_ONLINE'){
                 //dd($request->input());
                 $nl_result = NLBankCharge::ATM($request->input());
-                dd($nl_result);
+                //dd($nl_result);
                 if(isset($nl_result->error_code)){
                     if($nl_result->error_code =='00'){
                         header('Location: '.$nl_result->checkout_url);
