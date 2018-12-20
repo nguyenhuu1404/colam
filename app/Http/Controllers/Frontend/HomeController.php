@@ -37,6 +37,8 @@ class HomeController extends Controller
                 }
             }
         }
+        $data['title'] = setting('site.title');
+        $data['description'] = setting('site.description');
         $data['courses'] = $dataCourses;
         $data['courseTypes'] = config('app.courseTypes');
 

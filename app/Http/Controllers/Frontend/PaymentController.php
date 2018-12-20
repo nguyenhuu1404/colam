@@ -75,15 +75,16 @@ class PaymentController extends Controller
             if($request->input('option_payment') == 'CK'){
 
             }else if($request->input('option_payment') == 'ATM_ONLINE'){
+                //dd($request->input());
                 $nl_result = NLBankCharge::ATM($request->input());
-
+                //dd($nl_result);
                 if(isset($nl_result->error_code)){
                     if($nl_result->error_code =='00'){
                         header('Location: '.$nl_result->checkout_url);
                         exit;
                     }else{
                         return redirect('/thanh-toan/'.$request->input('course_id').'-'.$request->input('course_url'))
-                        ->withErrors(['bank_code' => 'Chưa chọn ngân hàng.'])
+                        ->withErrors(['bank_code' => 'Lỗi kết nối với Ngân Lượng'])
                         ->withInput();
                     }
 
@@ -101,7 +102,7 @@ class PaymentController extends Controller
                         exit;
                     }else{
                         return redirect('/thanh-toan/'.$request->input('course_id').'-'.$request->input('course_url'))
-                        ->withErrors(['bank_code' => 'Chưa chọn ngân hàng.'])
+                        ->withErrors(['bank_code' => 'Lỗi kết nối với Ngân Lượng'])
                         ->withInput();
                     }
 
