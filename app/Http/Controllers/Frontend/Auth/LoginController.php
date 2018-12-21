@@ -56,8 +56,28 @@ class LoginController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
     public function handleProviderCallbackFacebook(){
-        $user = Socialite::driver('facebook')->user();
-
+        try {
+            $user = Socialite::driver('facebook')->user();
+        } catch (\Exception $e) {
+            return redirect('/');
+        }
+        $existingUser = User::where('email', $user->email)->first();
+        //dd($existingUser);die();
+        if($existingUser){
+            // log them in
+            Auth::login($existingUser);
+        } else {
+            // create a new user
+            $newUser                  = new User;
+            $newUser->name            = $user->name;
+            $newUser->email           = $user->email;
+            $newUser->facebook_id       = $user->id;
+            $newUser->avatar          = $user->avatar;
+            $newUser->avatar_original = $user->avatar_original;
+            $newUser->save();
+            Auth::login($newUser, true);
+        }
+        return redirect()->to('/');
         // $user->token;
     }
     public function redirectToProviderGoogle(){
