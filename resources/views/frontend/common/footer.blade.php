@@ -11,7 +11,7 @@
                     <img src="/images/icon-hotline-footer.png">
                     <div class="text-footer-sns">
                         Hotline
-                        <span>0982735392</span>
+                        <span>{{ setting('site.hotline') }}</span>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,9 @@
                     <img src="/images/icon-youtube-footer.png">
                     <div class="text-footer-sns">
                         Youtube Chanel
-                        <span>youtube.com/lamsensei</span>
+                        <span>https://www.youtube.com/
+                            channel/UCsVnn22UuJBBQBA
+                            Ru-4IFeg/videos</span>
                     </div>
                 </div>
             </div>
@@ -29,7 +31,8 @@
                     <img src="/images/icon-facebook-footer.png">
                     <div class="text-footer-sns">
                         Fanpage FB
-                        <span>info@harmoni.com</span>
+                        <span>https://www.facebook.com/
+                            hoctiengnhatcolam</span>
                     </div>
                 </div>
             </div>
@@ -38,8 +41,8 @@
     <div class="bottom-footer">
         <div class="container">
             <div class="d-flex justify-content-between">
-                <div class="copy-right">©2018<a href="#"> Lamsensei.com </a>all right reserved, made with <span>hoanhbc</span></div>
-                <a href="tel:0982735392"><img src="/images/icon-hotline-bottom-footer.png"></a>
+                <div class="copy-right">©2018<a href="#"> tiengnhatcolam.vn </a>all right reserved</div>
+                <a href="tel:0372232268"><img src="/images/icon-hotline-bottom-footer.png"></a>
             </div>
         </div>
     </div>

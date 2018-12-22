@@ -17,7 +17,7 @@
     </section>
 	<section class="contact-box my-5 w-100">
 		<div class="container">
-			<div class="alert alert-success">{{$message}}</div>
+			<div class="alert alert-success">{!!$message!!}</div>
 		</div>
 	</section>
 

@@ -10,7 +10,7 @@ return [
         'cancelled' => 'Đã hủy',
         'refunded' => 'Đã hoàn tiền',
         'shipping' => 'Đang được chuyển',
-        'on-hold' => 'Chờ thanh toán'
+        'onhold' => 'Chờ thanh toán'
     ],
     /*
     |--------------------------------------------------------------------------

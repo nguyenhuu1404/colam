@@ -50,7 +50,7 @@
 															<div class="form-group">
 																<div class="input-group">
 
-																	<input id="email" type="email" class="sign-input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Tài khoản" />
+																	<input id="email" type="email" class="sign-input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="Email" />
 
 																	@if ($errors->has('email'))
 																		<span class="invalid-feedback" role="alert">
@@ -126,7 +126,7 @@
                                                             <input type="hidden" name="url" value="<?php if(isset($url)){ echo $url; }else{echo '/';} ?>" />
 															<div class="form-group">
 																<div class="input-group">
-																	<input placeholder="Tài khoản" id="name" type="text" class="sign-input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+																	<input placeholder="Họ tên" id="name" type="text" class="sign-input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
 																	@if ($errors->has('name'))
 																		<span class="invalid-feedback" role="alert">

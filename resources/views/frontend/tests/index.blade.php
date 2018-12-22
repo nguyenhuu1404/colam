@@ -29,7 +29,7 @@
                 <div class="col-md-12 mb-3">
                     <input type="hidden" name="questions[{{$value['id']}}]" value="{{$value['id']}}"/>
 
-                    <div class="ptnn-title mb-3"> {{$value['name']}} </div>
+                    <div class="ptnn-title mb-3"> {!!$value['name']!!} </div>
                     <?php
                         //answer
                         $dataAnswer['answers'] = $processAnswer[$value['id']];

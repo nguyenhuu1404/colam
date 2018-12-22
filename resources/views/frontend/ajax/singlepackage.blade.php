@@ -24,7 +24,12 @@
                     <div class="body-item-class">
                         <div class="title-body-item-class">
                         {{$course['name']}} @if($course['title']) - @endif {{$course['title']}}
-                            <span class="tuition">học phí: <b>{{priceFormat($course['price'])}}</b></span>
+                            <span class="tuition fs18">
+                            học phí: <b>{{$course['price_sale'] ? priceFormat($course['price_sale']) : priceFormat($course['price'])}}</b>
+                            @if($course['price_sale'])
+                            <b class="sale-price">{{priceFormat($course['price'])}}</b>
+                            @endif
+                            </span>
                         </div>
                         <div class="content-item-class">
                             <div class="info-item-class">

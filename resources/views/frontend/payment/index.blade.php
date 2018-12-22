@@ -38,8 +38,7 @@
 
                         <div class="step-1-container bg_f8f8f8 my-4 ">
                            <div class="customer-info-container">
-                              <div class=" payment-heading"><span>Thông tin khách hàng</span> <a class="refresh">
-                                 Làm mới <i class="fa fa-refresh"></i></a>
+                              <div class=" payment-heading"><span>Thông tin khách hàng</span>
                               </div>
                               <div class=" customer-info-table py-4 px-4">
                                  <p style="font-size: 14px; margin-bottom: 25px;">(<span style="color: rgb(231, 76, 60);">*</span>) Thông tin bắt buộc</p>
@@ -334,7 +333,7 @@
                               <div class="title-body-item-class">
                                 {{$course['name']}}
                                   <span class="tuition">học phí: <b>
-                                  {{ $course['price_sale'] ? priceFormat($course['price']) : priceFormat($course['price'])}} đ
+                                  {{ $course['price_sale'] ? priceFormat($course['price_sale']) : priceFormat($course['price'])}} đ
                                   </b></span>
                               </div>
                               <div class="content-item-class">
@@ -349,7 +348,7 @@
                               </div>
                            </div>
                            <hr>
-                           <h4 class="total-payment">Tổng tiền  <span> {{ $course['price_sale'] ? priceFormat($course['price']) : priceFormat($course['price'])}} ₫</span></h4>
+                           <h4 class="total-payment">Tổng tiền  <span> {{ $course['price_sale'] ? priceFormat($course['price_sale']) : priceFormat($course['price'])}} ₫</span></h4>
                            <input type="hidden" name="total_amount" value="{{ $course['price_sale'] ? $course['price'] : $course['price']}}" />
                            <input type="hidden" name="product_name" value="{{ $course['name']}}" />
 
@@ -359,9 +358,10 @@
 
                </div>
             </div>
+            <input type="hidden" name="user_id" value="{{ Auth::id() }}" />
             <input type="hidden" name="course_id" value="{{ $course['id']}}" />
             <input type="hidden" name="course_url" value="{{ $course['slug']}}" />
-            <input type="hidden" name="return_url" value="http://colam.vn/payment/successCourse/{{$course['id']}}" />
+            <input type="hidden" name="return_url" value="{{url('/')}}/payment/successCourse/{{$course['id']}}" />
             <input id="choicePay" onclick="chociePay()" type="button" name="nlpayment" class="btn hidden btn-warning" value="thanh toán"/>
         </form>
         </div>

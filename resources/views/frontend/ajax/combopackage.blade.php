@@ -12,7 +12,12 @@
             <div class="body-item-class">
                 <div class="title-body-item-class">
                 {{$package['name']}} {{$package['title']}}
-                    <span class="tuition">học phí: <b>{{priceFormat($package['price'])}}</b></span>
+                    <span class="tuition fs18">
+                    học phí: <b>{{$package['price_sale'] ? priceFormat($package['price_sale']) : priceFormat($package['price'])}}</b>
+                    @if($package['price_sale'])
+                    <b class="sale-price">{{priceFormat($package['price'])}}</b>
+                    @endif
+                    </span>
                 </div>
                 <div class="content-item-class">
                     <div class="info-item-class">

@@ -17,7 +17,7 @@ class CourseController extends Controller
     public function index($courseId){
 
         $course = Course::where(['id'=> $courseId])->get()->first()->toArray();
-        $lessons = Course::find($courseId)->lessons()->orderBy('order', 'desc')->get()->toArray();
+        $lessons = Course::find($courseId)->lessons()->orderBy('order', 'asc')->get()->toArray();
         $course['isBuy'] = false;
         if (Auth::check()) {
             $userId = Auth::id();

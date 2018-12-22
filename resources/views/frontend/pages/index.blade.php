@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="hotro-img text-right col-md-2 align-midle d-none d-sm-block"><img src="/images/logo-footer.png" alt=""></div>
                                 <div class="hotro-p-content col-md-10 ">
-                                    <a href="" class="font20 bold" style="color: #272727"> <i class="fa fa-mobile"></i> 0982735392</a>
+                                    <a href="" class="font20 bold" style="color: #272727"> <i class="fa fa-mobile"></i> {{ setting('site.hotline') }}</a>
                                     <p class="font13">Hãy gọi cho chúng tôi nếu bạn đang có vấn đề về da cần được giải đáp <br>
                                         Hoặc bấm <b>ĐĂNG KÝ TƯ VẤN</b> chúng tôi sẽ hỗ trợ ngay cho bạn <br>
                                         Hoặc gửi thư qua: <b>tuvan.tiengnhatcolam@gmail.com</b> nếu bạn muốn kể chi tiết hơn</p>

@@ -32,10 +32,12 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
 
     Route::get('/thanh-toan/{id}-{slug}', 'PaymentController@course')->where(['id' => '[0-9]+']);
     Route::post('/payment/paymentCourse', 'PaymentController@paymentCourse');
-    Route::get('/payment/successCourse/{courseId}', 'PaymentController@successCourse')->where(['id' => '[0-9]+']);
-    Route::get('/payment/thank/{courseId}', 'PaymentController@thank')->where(['id' => '[0-9]+']);
+    Route::get('/payment/successCourse/{courseId}', 'PaymentController@successCourse')->where(['courseId' => '[0-9]+']);
+    Route::get('/payment/thank/{key}', 'PaymentController@thank');
 
     Route::get('/thanh-toan/package/{id}-{slug}', 'PaymentController@combo')->where(['id' => '[0-9]+']);
+    Route::post('/payment/paymentPackage', 'PaymentController@paymentPackage');
+    Route::get('/payment/successPackage/{packageId}', 'PaymentController@successPackage')->where(['packageId' => '[0-9]+']);
 
     Route::get('/gia-han/{id}-{slug}', 'PaymentController@moreCourse')->where(['id' => '[0-9]+']);
     Route::get('/gia-han/package/{id}-{slug}', 'PaymentController@moreCombo')->where(['id' => '[0-9]+']);

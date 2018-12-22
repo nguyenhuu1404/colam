@@ -15,7 +15,7 @@ use App\Package;
 class LessonController extends Controller
 {
     public function index($course, $courseId, $lessonId){
-        $lessons = Course::find($courseId)->lessons()->orderBy('order', 'desc')->get()->toArray();
+        $lessons = Course::find($courseId)->lessons()->orderBy('order', 'asc')->get()->toArray();
         $course = Course::where('id', $courseId)->get()->first()->toArray();
         $data['course'] = $course;
         $data['lessons'] = buildTree($lessons);

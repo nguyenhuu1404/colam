@@ -73,6 +73,25 @@ class PaymentController extends Controller
                         ->withInput();
         }else{
             if($request->input('option_payment') == 'CK'){
+                $userId = Auth::id();
+                $key = uniqid();
+                $order = [
+                    'user_id' => $userId,
+                    'course_id' => $request->input('course_id'),
+                    'price' => $request->input('total_amount'),
+                    'key' => $key,
+                    'payment_method' => $request->input('option_payment'),
+                    'fullname' => $request->input('fullname'),
+                    'email' => $request->input('email'),
+                    'phone' => $request->input('mobile'),
+                    'address_ship' => $request->input('address'),
+                    'order_status' => 'onhold',
+                    'status' => 1
+                ];
+                //dd($order);
+                Order::create($order);
+                return redirect('/payment/thank/'.$key);
+
 
             }else if($request->input('option_payment') == 'ATM_ONLINE'){
                 //dd($request->input());
@@ -123,10 +142,9 @@ class PaymentController extends Controller
         if($course['price_sale']){
             $price = $course['price_sale'];
         }
-        $userId = Auth::id();
+
         $key = uniqid();
         $order = [
-            'user_id' => $userId,
             'course_id' => $courseId,
             'price' => $price,
             'key' => $key,
@@ -134,11 +152,17 @@ class PaymentController extends Controller
         ];
         $result = NLBankCharge::TransactionDetail($request->input('token'));
         if(isset($result['status']) && $result['status'] === true){
+
             $courseTime = $course['time'];
             $xml = $result['data'];
             $json = json_encode($xml);
             $dataNl = json_decode($json,TRUE);
-
+            if(Auth::id()){
+                $userId = Auth::id();
+            }else{
+                $userId = $dataNl['user_id'];
+            }
+            $order['user_id'] = $userId;
             $order['payment_method'] = $dataNl['payment_method'];
             $order['bank_code'] = $dataNl['bank_code'];
             $order['fullname'] = $dataNl['buyer_fullname'];
@@ -174,6 +198,12 @@ class PaymentController extends Controller
         if($order['payment_method'] == 'ATM_ONLINE' || $order['payment_method'] == 'VISA'){
             $data['message'] = 'Thanh toán thành công! tài khoản của bạn đã được kích hoạt!';
             return  view('frontend.payment.thank', $data);
+        }else if($order['payment_method'] == 'CK'){
+            $data['message'] = 'Thanh toán thành công. Mã đơn hàng <b>#'.$order->id.'</b>
+            <p>Quý khách vui lòng đến ngân hàng hoặc sử dụng internet banking để chuyển khoản cho chúng tôi. Khi nhận được tiền chúng tôi sẽ kích hoạt tài khoản cho bạn.</p>
+            <p><strong>Trong phần ghi chú nội dung chuyển tiền, bạn ghi rõ:</strong><br> Họ tên - Mã đơn hàng.<br> Ví dụ:<br> Nguyen Van A - 5421</p><p><strong>Lưu ý</strong>:</p>
+            <p>+ Nếu bạn thanh toán vào chiều tối thứ 6, thứ 7, chủ nhật thì phải sáng thứ 2 chúng tôi mới xử lí đơn hàng của bạn. Vì ngân hàng không cập nhật giao dịch vào các ngày cuối tuần. Do đó, vui lòng đợi nếu bạn thanh toán vào những ngày trên.</p>';
+            return  view('frontend.payment.thank', $data);
         }
     }
 
@@ -198,6 +228,141 @@ class PaymentController extends Controller
         }else{
             return view('frontend.payment.logincombo', $data);
         }
+    }
+    public function paymentPackage(Request $request){
+        //dd($request->input());
+        //dd(NLBankCharge::ATM($request->input()));
+
+        $validator = Validator::make($request->all(), [
+            'mobile' => 'required',
+            'option_payment' => 'required',
+        ],[
+            'required' => ':attribute không được bỏ trống.',
+        ]);
+
+        if($validator->fails()) {
+            return redirect('/thanh-toan/package/'.$request->input('package_id').'-'.$request->input('course_url'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }else{
+            if($request->input('option_payment') == 'CK'){
+                $userId = Auth::id();
+                $key = uniqid();
+                $order = [
+                    'user_id' => $userId,
+                    'package_id' => $request->input('package_id'),
+                    'price' => $request->input('total_amount'),
+                    'key' => $key,
+                    'payment_method' => $request->input('option_payment'),
+                    'fullname' => $request->input('fullname'),
+                    'email' => $request->input('email'),
+                    'phone' => $request->input('mobile'),
+                    'address_ship' => $request->input('address'),
+                    'order_status' => 'onhold',
+                    'status' => 1
+                ];
+                //dd($order);
+                Order::create($order);
+                return redirect('/payment/thank/'.$key);
+
+
+            }else if($request->input('option_payment') == 'ATM_ONLINE'){
+                //dd($request->input());
+                $nl_result = NLBankCharge::ATM($request->input());
+                //dd($nl_result);
+                if(isset($nl_result->error_code)){
+                    if($nl_result->error_code =='00'){
+                        header('Location: '.$nl_result->checkout_url);
+                        exit;
+                    }else{
+                        return redirect('/thanh-toan/package/'.$request->input('package_id').'-'.$request->input('package_url'))
+                        ->withErrors(['bank_code' => 'Lỗi kết nối với Ngân Lượng'])
+                        ->withInput();
+                    }
+
+                }else{
+                    return redirect('/thanh-toan/package/'.$request->input('package_id').'-'.$request->input('package_url'))
+                        ->withErrors(['bank_code' => 'Chưa chọn ngân hàng.'])
+                        ->withInput();
+                }
+
+            }else if($request->input('option_payment') == 'VISA'){
+                $nl_result = NLBankCharge::VISA($request->input());
+                if(isset($nl_result->error_code)){
+                    if($nl_result->error_code =='00'){
+                        header('Location: '.$nl_result->checkout_url);
+                        exit;
+                    }else{
+                        return redirect('/thanh-toan/package/'.$request->input('package_id').'-'.$request->input('package_url'))
+                        ->withErrors(['bank_code' => 'Lỗi kết nối với Ngân Lượng'])
+                        ->withInput();
+                    }
+
+                }else{
+                    return redirect('/thanh-toan/package/'.$request->input('package_id').'-'.$request->input('package_url'))
+                        ->withErrors(['bank_code' => 'Chưa chọn thẻ.'])
+                        ->withInput();
+                }
+            }
+        }
+
+    }
+    public function successPackage(Request $request, $packageId){
+        //dd($packageId);
+        $package = Package::where('id', $packageId)->get()->first();
+
+        $price = $package['price'];
+        if($package['price_sale']){
+            $price = $package['price_sale'];
+        }
+        $key = uniqid();
+        $order = [
+            'package_id' => $packageId,
+            'price' => $price,
+            'key' => $key,
+
+        ];
+        $result = NLBankCharge::TransactionDetail($request->input('token'));
+        if(isset($result['status']) && $result['status'] === true){
+            $packageTime = $package['time'];
+            $xml = $result['data'];
+            $json = json_encode($xml);
+            $dataNl = json_decode($json,TRUE);
+
+            if(Auth::id()){
+                $userId = Auth::id();
+            }else{
+                $userId = $dataNl['user_id'];
+            }
+            $order['user_id'] = $userId;
+            $order['payment_method'] = $dataNl['payment_method'];
+            $order['bank_code'] = $dataNl['bank_code'];
+            $order['fullname'] = $dataNl['buyer_fullname'];
+            $order['email'] = $dataNl['buyer_email'];
+            $order['phone'] = $dataNl['buyer_mobile'];
+            $order['address_ship'] = $dataNl['buyer_address'];
+            $order['status'] = 1;
+            $order['order_status'] = 'completed';
+
+            $insertOder = Order::create($order);
+            //active tai khoan
+            $strMonth = '+'.$packageTime.' months';
+            $end_date = date('Y-m-d', strtotime($strMonth, strtotime(date('Y-m-d'))));
+            $payment = [
+                'user_id' => $userId,
+                'package_id' => $packageId,
+                'price' => $price,
+                'start_date' =>  date('Y-m-d'),
+                'end_date' => $end_date,
+                'status' => 1
+            ];
+            Payment::create($payment);
+
+            return redirect('/payment/thank/'.$key);
+        }else{
+
+        }
+
     }
     public function moreCourse($courseId){
         $data['title'] = 'Gia hạn khóa học';

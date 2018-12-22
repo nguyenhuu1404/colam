@@ -71,35 +71,42 @@
                 </div>
                 <div class="body-content-lesson">
                     <div class="row">
+                        @if($curentLesson['youtube'] || $curentLesson['video'])
                         <div class="col-xl-12 bd-top-gray p-0">
 
                         </div>
+                        @endif
 
                         <div class="col-xl-12 mt-3 p-0">
                             @if($curentLesson['trial'] == 1)
+                                @if($curentLesson['youtube'])
                                 <iframe class="iframe" height="450" src="https://www.youtube.com/embed/{{getYoutubeId($curentLesson['youtube'])}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                @endif
                             @else
-                            <link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+                            @if($curentLesson['video'])
+                                <link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
 
-                            <script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
-                            <script src="https://cdn.streamroot.io/videojs-hlsjs-plugin/1/stable/videojs-hlsjs-plugin.js"></script>
-                            <script src="/videojs-quality-picker/dist/vjs-quality-picker.js"></script>
+                                <script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
+                                <script src="https://cdn.streamroot.io/videojs-hlsjs-plugin/1/stable/videojs-hlsjs-plugin.js"></script>
+                                <script src="/videojs-quality-picker/dist/vjs-quality-picker.js"></script>
 
-                            <video id="my-video" class="video-js w-100" controls preload="auto" width="950" height="445" autoplay>
-                            <source src="/hls-{{$curentLesson['video']}}-{{$curentLesson['video']}}.mp4-<?php echo ($t = time())?>-<?php $video = $curentLesson['video']; echo md5("tk.$t.$video.$video.mp4")?>-playlist.m3u8">
-                            <p class="vjs-no-js">
-                                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                            </p>
-                            </video>
-                            <script>
-                            videojs('my-video').qualityPickerPlugin();
-                            </script>
-
+                                <video id="my-video" class="video-js w-100" controls preload="auto" width="950" height="445" autoplay>
+                                <source src="/hls-{{$curentLesson['video']}}-{{$curentLesson['video']}}.mp4-<?php echo ($t = time())?>-<?php $video = $curentLesson['video']; echo md5("tk.$t.$video.$video.mp4")?>-playlist.m3u8">
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                                </p>
+                                </video>
+                                <script>
+                                videojs('my-video').qualityPickerPlugin();
+                                </script>
                             @endif
-                            <div class="description-body-content-lesson">
+                            @endif
+                            @if($curentLesson['content'])
+                            <div class="mt-3">
                                 {!! $curentLesson['content'] !!}
                             </div>
+                            @endif
 
                             @if($tests)
                             <hr/>
@@ -109,6 +116,7 @@
                                 @endforeach
                             </div>
                             <hr/>
+
                             <div id="showTest">
 
                             </div>
@@ -248,6 +256,7 @@ function getTest(that, courseId, lessonId, testId){
     }
 }
 
+getTest(this, <?=$course['id']?>,<?=$curentLesson['id']?>, <?=$tests[0]['id']?>);
  function finish_choice(){
 
     	$('#form_question_nn input').prop( "disabled", true );
@@ -262,5 +271,8 @@ function getTest(that, courseId, lessonId, testId){
     }
 
 </script>
+@if($tests)
+    getTest(this, <?=$course['id']?>,<?=$curentLesson['id']?>, <?=$tests[0]['id']?>);
+@endif
 @endpush
 

@@ -1,5 +1,4 @@
 @extends('frontend.layouts.master')
-
 @section('content')
     @isset($banners)
         <section class="banner">
@@ -21,7 +20,7 @@
 @isset($packageRecomand)
     @php
     $sale = false;
-    if(isset($packageRecomand['price_sale'])){
+    if(isset($packageRecomand['price_sale']) && isset($packageRecomand['price'])){
         $sale = floor(($packageRecomand['price_sale'] * 100) / $packageRecomand['price']);
     }
 
@@ -83,7 +82,7 @@
 @isset($courseRecomand)
     @php
     $sale = false;
-    if(isset($courseRecomand['price_sale'])){
+    if(isset($courseRecomand['price_sale']) && isset($courseRecomand['price'])){
         $sale = floor(($courseRecomand['price_sale'] * 100) / $courseRecomand['price']);
     }
 
@@ -175,7 +174,6 @@
 				</div>
 			</section>
 
-
 		<section class="courses-box">
 				<div class="container">
 					<div class="row">
@@ -219,7 +217,12 @@
                                                     <div class="body-item-class">
                                                         <div class="title-body-item-class">
                                                         {{$course['name']}} @if($course['title']) - @endif {{$course['title']}}
-                                                            <span class="tuition">học phí: <b>{{priceFormat($course['price'])}}</b></span>
+                                                            <span class="tuition fs18">học phí: <b>{{$course['price_sale'] ? priceFormat($course['price_sale']) : priceFormat($course['price'])}}</b>
+
+                                                            @if($course['price_sale'])
+                                                            <b class="sale-price">{{priceFormat($course['price'])}}</b>
+                                                            @endif
+                                                            </span>
                                                         </div>
                                                         <div class="content-item-class">
                                                             <div class="info-item-class">

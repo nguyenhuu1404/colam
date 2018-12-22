@@ -2047,6 +2047,9 @@ ul.bankList li {
 .list-content li .boxContent ul {
     height:280px;
 }
+.fs18{font-size: 18px !important;}
+.sale-price{color: #b8b8b8;
+    text-decoration: line-through; font-size: 14px;}
 
 i.VISA, i.MASTE, i.AMREX, i.JCB, i.VCB, i.TCB, i.MB, i.VIB, i.ICB, i.EXB, i.ACB, i.HDB, i.MSB, i.NVB, i.DAB, i.SHB, i.OJB, i.SEA, i.TPB, i.PGB, i.BIDV, i.AGB, i.SCB, i.VPB, i.VAB, i.GPB, i.SGB,i.NAB,i.BAB
 { width:80px; height:30px; display:block; background:url(https://www.nganluong.vn/webskins/skins/nganluong/checkout/version3/images/bank_logo.png) no-repeat;}
