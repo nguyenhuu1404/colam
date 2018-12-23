@@ -75,6 +75,8 @@ class PaymentController extends Controller
             if($request->input('option_payment') == 'CK'){
                 $userId = Auth::id();
                 $key = uniqid();
+                //gia han
+                $more = $request->input('more');
                 $order = [
                     'user_id' => $userId,
                     'course_id' => $request->input('course_id'),
@@ -86,11 +88,16 @@ class PaymentController extends Controller
                     'phone' => $request->input('mobile'),
                     'address_ship' => $request->input('address'),
                     'order_status' => 'onhold',
+                    'more' => $more,
                     'status' => 1
                 ];
-                //dd($order);
                 Order::create($order);
-                return redirect('/payment/thank/'.$key);
+                if($more == 'giahan'){
+                    return redirect('/payment/more/'.$key);
+                }else{
+                    return redirect('/payment/thank/'.$key);
+                }
+
 
 
             }else if($request->input('option_payment') == 'ATM_ONLINE'){
@@ -171,24 +178,39 @@ class PaymentController extends Controller
             $order['address_ship'] = $dataNl['buyer_address'];
             $order['status'] = 1;
             $order['order_status'] = 'completed';
+            if($this->hasPaymentCourse($userId, $courseId)){
+                $order['more'] = 'giahan';
+                Order::create($order);
+            }else{
+                Order::create($order);
+            }
 
-            $insertOder = Order::create($order);
             //active tai khoan
             $strMonth = '+'.$courseTime.' months';
             $end_date = date('Y-m-d', strtotime($strMonth, strtotime(date('Y-m-d'))));
-            $payment = [
-                'user_id' => $userId,
-                'course_id' => $courseId,
-                'price' => $price,
-                'start_date' =>  date('Y-m-d'),
-                'end_date' => $end_date,
-                'status' => 1
-            ];
-            Payment::create($payment);
+            if($this->hasPaymentCourse($userId, $courseId)){
+                $payment = $this->hasPaymentCourse($userId, $courseId);
+                $mpay = Payment::find($payment['id']);
+                $mpay->end_date = $end_date;
+                $mpay->save();
+                return redirect('/payment/more/'.$key);
+            }else{
 
-            return redirect('/payment/thank/'.$key);
+                $dataPayment = [
+                    'user_id' => $userId,
+                    'course_id' => $courseId,
+                    'price' => $price,
+                    'start_date' =>  date('Y-m-d'),
+                    'end_date' => $end_date,
+                    'status' => 1
+                ];
+                Payment::create($dataPayment);
+                return redirect('/payment/thank/'.$key);
+            }
+
+
         }else{
-
+            return redirect('/');
         }
 
     }
@@ -201,8 +223,20 @@ class PaymentController extends Controller
         }else if($order['payment_method'] == 'CK'){
             $data['message'] = 'Thanh toán thành công. Mã đơn hàng <b>#'.$order->id.'</b>
             <p>Quý khách vui lòng đến ngân hàng hoặc sử dụng internet banking để chuyển khoản cho chúng tôi. Khi nhận được tiền chúng tôi sẽ kích hoạt tài khoản cho bạn.</p>
-            <p><strong>Trong phần ghi chú nội dung chuyển tiền, bạn ghi rõ:</strong><br> Họ tên - Mã đơn hàng.<br> Ví dụ:<br> Nguyen Van A - 5421</p><p><strong>Lưu ý</strong>:</p>
-            <p>+ Nếu bạn thanh toán vào chiều tối thứ 6, thứ 7, chủ nhật thì phải sáng thứ 2 chúng tôi mới xử lí đơn hàng của bạn. Vì ngân hàng không cập nhật giao dịch vào các ngày cuối tuần. Do đó, vui lòng đợi nếu bạn thanh toán vào những ngày trên.</p>';
+            <p>'.setting('site.bankinfo');
+            return  view('frontend.payment.thank', $data);
+        }
+    }
+    public function more($key){
+        $order = Order::where('key', $key)->get()->first();
+        $data['order'] = $order;
+        if($order['payment_method'] == 'ATM_ONLINE' || $order['payment_method'] == 'VISA'){
+            $data['message'] = 'Tài khoản của bạn được gia hạn thành công!';
+            return  view('frontend.payment.thank', $data);
+        }else if($order['payment_method'] == 'CK'){
+            $data['message'] = 'Gia hạn thành công. Mã đơn hàng <b>#'.$order->id.'</b>
+            <p>Quý khách vui lòng đến ngân hàng hoặc sử dụng internet banking để chuyển khoản cho chúng tôi. Khi nhận được tiền chúng tôi sẽ gia hạn tài khoản cho bạn.</p>
+            '.setting('site.bankinfo');
             return  view('frontend.payment.thank', $data);
         }
     }
@@ -248,6 +282,7 @@ class PaymentController extends Controller
             if($request->input('option_payment') == 'CK'){
                 $userId = Auth::id();
                 $key = uniqid();
+                $more = $request->input('more');
                 $order = [
                     'user_id' => $userId,
                     'package_id' => $request->input('package_id'),
@@ -259,11 +294,16 @@ class PaymentController extends Controller
                     'phone' => $request->input('mobile'),
                     'address_ship' => $request->input('address'),
                     'order_status' => 'onhold',
+                    'more' => $more,
                     'status' => 1
                 ];
                 //dd($order);
                 Order::create($order);
-                return redirect('/payment/thank/'.$key);
+                if($more == 'giahan'){
+                    return redirect('/payment/more/'.$key);
+                }else{
+                    return redirect('/payment/thank/'.$key);
+                }
 
 
             }else if($request->input('option_payment') == 'ATM_ONLINE'){
@@ -344,23 +384,38 @@ class PaymentController extends Controller
             $order['status'] = 1;
             $order['order_status'] = 'completed';
 
-            $insertOder = Order::create($order);
+            if($this->hasPaymentPackage($userId, $packageId)){
+                $order['more'] = 'giahan';
+                Order::create($order);
+            }else{
+                Order::create($order);
+            }
+
             //active tai khoan
             $strMonth = '+'.$packageTime.' months';
             $end_date = date('Y-m-d', strtotime($strMonth, strtotime(date('Y-m-d'))));
-            $payment = [
-                'user_id' => $userId,
-                'package_id' => $packageId,
-                'price' => $price,
-                'start_date' =>  date('Y-m-d'),
-                'end_date' => $end_date,
-                'status' => 1
-            ];
-            Payment::create($payment);
+            //gia han
+            if($this->hasPaymentPackage($userId, $packageId)){
+                $payment = $this->hasPaymentPackage($userId, $packageId);
+                $mpay = Payment::find($payment['id']);
+                $mpay->end_date = $end_date;
+                $mpay->save();
+                return redirect('/payment/more/'.$key);
+            }else{
+                $payment = [
+                    'user_id' => $userId,
+                    'package_id' => $packageId,
+                    'price' => $price,
+                    'start_date' =>  date('Y-m-d'),
+                    'end_date' => $end_date,
+                    'status' => 1
+                ];
+                Payment::create($payment);
 
-            return redirect('/payment/thank/'.$key);
+                return redirect('/payment/thank/'.$key);
+            }
         }else{
-
+            return redirect('/');
         }
 
     }
@@ -372,6 +427,7 @@ class PaymentController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $data['user'] = $user;
+            $data['more'] = 'giahan';
             return view('frontend.payment.index', $data);
         }else{
             return view('frontend.payment.login', $data);
@@ -385,6 +441,7 @@ class PaymentController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             $data['user'] = $user;
+            $data['more'] = 'giahan';
             return view('frontend.payment.combo', $data);
         }else{
             return view('frontend.payment.logincombo', $data);
@@ -455,6 +512,22 @@ class PaymentController extends Controller
         $checkUser = Payment::where(['user_id' => $userId, 'package_id' =>  $packageId, 'status' => 1])->where('end_date', '>=', $dateNow)->get()->count();
         if($checkUser > 0){
             return true;
+        }else{
+            return false;
+        }
+    }
+    public function hasPaymentCourse($userId, $courseId){
+        $checkPayment = Payment::where(['user_id' => $userId, 'course_id' =>  $courseId, 'status' => 1])->get()->count();
+        if($checkPayment > 0){
+            return Payment::where(['user_id' => $userId, 'course_id' =>  $courseId, 'status' => 1])->get()->first()->toArray();
+        }else{
+            return false;
+        }
+    }
+    public function hasPaymentPackage($userId, $packageId){
+        $checkPayment = Payment::where(['user_id' => $userId, 'package_id' =>  $packageId, 'status' => 1])->get()->count();
+        if($checkPayment > 0){
+            return Payment::where(['user_id' => $userId, 'package_id' =>  $packageId, 'status' => 1])->get()->first()->toArray();
         }else{
             return false;
         }

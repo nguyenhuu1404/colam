@@ -111,9 +111,7 @@
                             <li class="active">
                                 <label><input type="radio" value="CK" name="option_payment" selected="true">Chuyển khoản</label>
                                 <div class="boxContent">
-                                    <p>
-                                    Thanh toán chuyển khoản
-                                    </p>
+                                    {!!setting('site.bankinfo')!!}
                                 </div>
                             </li>
                             <li>
@@ -358,6 +356,9 @@
 
                </div>
             </div>
+            @if(isset($more))
+            <input type="hidden" name="more" value="{{ $more }}" />
+            @endif
             <input type="hidden" name="user_id" value="{{ Auth::id() }}" />
             <input type="hidden" name="package_id" value="{{ $package['id']}}" />
             <input type="hidden" name="package_url" value="{{ $package['slug']}}" />

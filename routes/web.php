@@ -34,6 +34,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
     Route::post('/payment/paymentCourse', 'PaymentController@paymentCourse');
     Route::get('/payment/successCourse/{courseId}', 'PaymentController@successCourse')->where(['courseId' => '[0-9]+']);
     Route::get('/payment/thank/{key}', 'PaymentController@thank');
+    Route::get('/payment/more/{key}', 'PaymentController@more');
 
     Route::get('/thanh-toan/package/{id}-{slug}', 'PaymentController@combo')->where(['id' => '[0-9]+']);
     Route::post('/payment/paymentPackage', 'PaymentController@paymentPackage');

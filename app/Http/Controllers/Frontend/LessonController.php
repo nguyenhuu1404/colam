@@ -28,6 +28,7 @@ class LessonController extends Controller
         }else{
             if (Auth::check()) {
                 $userId = Auth::id();
+
                 if($this->checkPayment($userId, $courseId)){
                     if($this->checkUser($userId, $courseId)){
                         return view('frontend.lessons.index', $data);

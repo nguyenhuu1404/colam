@@ -10,7 +10,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Học thử</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$curentLesson['name']}}</li>
                 </ol>
             </nav>
         </div>
@@ -108,7 +108,7 @@
                             </div>
                             @endif
 
-                            @if($tests)
+                            <?php if(isset($tests) && count($tests) > 0) { ?>
                             <hr/>
                             <div class="form-group text-center mt-3">
                                 @foreach($tests as $index => $test)
@@ -120,7 +120,7 @@
                             <div id="showTest">
 
                             </div>
-                            @endif
+                            <?php } ?>
                         </div>
 
                         <div class="col-xl-12 p-0">
@@ -256,7 +256,6 @@ function getTest(that, courseId, lessonId, testId){
     }
 }
 
-getTest(this, <?=$course['id']?>,<?=$curentLesson['id']?>, <?=$tests[0]['id']?>);
  function finish_choice(){
 
     	$('#form_question_nn input').prop( "disabled", true );
@@ -269,10 +268,10 @@ getTest(this, <?=$course['id']?>,<?=$curentLesson['id']?>, <?=$tests[0]['id']?>)
 
     	$('.explanation').show();
     }
-
-</script>
-@if($tests)
-    getTest(this, <?=$course['id']?>,<?=$curentLesson['id']?>, <?=$tests[0]['id']?>);
+@if(isset($tests) && count($tests) > 0)
+    getTest(this, <?=$course['id'];?>,<?=$curentLesson['id'];?>, <?=$tests[0]['id'];?>);
 @endif
+</script>
+
 @endpush
 

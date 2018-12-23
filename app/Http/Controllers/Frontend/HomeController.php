@@ -18,7 +18,7 @@ class HomeController extends Controller
         $data['banners'] = Banner::orderBy('order', 'desc')->where('status', 1)->get();
 
         $data['packageRecomand'] = Package::where('status', 1)->where('is_home', 1)->first();
-        $data['CourseRecomand'] = Course::where('status', 1)->where('is_home', 1)->first();
+        $data['courseRecomand'] = Course::where('status', 1)->where('is_home', 1)->first();
 
         $trialLessons = Lesson::where(['status'=> 1, 'is_home'=>1, 'trial' => 1])->get();
         $courseTrialLesson = [];

@@ -10,7 +10,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Các khóa học</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{$curentLesson['name']}}</li>
                 </ol>
             </nav>
         </div>
@@ -50,6 +50,7 @@
                     </ul>
                 </div>
             @endif
+
                 <div class="section-sb-current">
                     <img src="/images/sale-qc.png">
                 </div>
@@ -98,6 +99,7 @@
                                 <script>
                                 videojs('my-video').qualityPickerPlugin();
                                 </script>
+
                                 @endif
 
                             @endif
@@ -106,20 +108,20 @@
                                 {!! $curentLesson['content'] !!}
                             </div>
                             @endif
-                            @if($tests)
-                            <div class="form-group text-center mt-5">
+
+                            <?php if(isset($tests) && count($tests) > 0) { ?>
+                            <hr/>
+                            <div class="form-group text-center mt-3">
                                 @foreach($tests as $index => $test)
-                                <button onclick="getTest(this, {{$course['id']}}, {{$curentLesson['id']}}, {{$test['id']}})" class="btn btn-primary test ml-2">Bài Test {{$index +1 }}</a>
+                                    <button onclick="getTest(this, {{$course['id']}}, {{$curentLesson['id']}}, {{$test['id']}})" class="btn btn-primary test ml-2">Bài Test {{$index +1 }}</a>
                                 @endforeach
                             </div>
-                            <script>
-                               getTest(this, <?=$course['id']?>, <?=$curentLesson['id']?>, <?=$tests[0]['id']?>);
-                            </script>
+                            <hr/>
+
                             <div id="showTest">
 
                             </div>
-                            @endif
-
+                            <?php } ?>
                         </div>
 
                         <div class="col-xl-12 p-0">
@@ -266,9 +268,10 @@ function getTest(that, courseId, lessonId, testId){
 
     	$('.explanation').show();
     }
-</script>
-@if($tests)
+@if(isset($tests) && count($tests) > 0)
     getTest(this, <?=$course['id']?>,<?=$curentLesson['id']?>, <?=$tests[0]['id']?>);
 @endif
+</script>
+
 @endpush
 

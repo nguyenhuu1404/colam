@@ -20,9 +20,7 @@
                     <img src="/images/icon-youtube-footer.png">
                     <div class="text-footer-sns">
                         Youtube Chanel
-                        <span>https://www.youtube.com/
-                            channel/UCsVnn22UuJBBQBA
-                            Ru-4IFeg/videos</span>
+                        <span><a class="vang" href="https://www.youtube.com/channel/UCsVnn22UuJBBQBARu-4IFeg/videos">Tiếng Nhật cô Lam </a></span>
                     </div>
                 </div>
             </div>
@@ -31,8 +29,8 @@
                     <img src="/images/icon-facebook-footer.png">
                     <div class="text-footer-sns">
                         Fanpage FB
-                        <span>https://www.facebook.com/
-                            hoctiengnhatcolam</span>
+                        <span><a class="vang" href="https://www.facebook.com/hoctiengnhatcolam">https://www.facebook.com/
+                            hoctiengnhatcolam</a></span>
                     </div>
                 </div>
             </div>
