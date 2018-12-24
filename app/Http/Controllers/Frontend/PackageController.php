@@ -44,6 +44,16 @@ class PackageController extends Controller
         $data['comboPackages'] = Package::where('status', '1')->get()->toArray();
         return view('frontend.packages.index', $data);
     }
+    public function course(){
+        $data['title'] = 'Các khóa học đơn';
+        $data['courses'] = Course::where(['status' => 1])->get()->toArray();
+        return view('frontend.packages.index', $data);
+    }
+    public function coursecombo(){
+        $data['title'] = 'Các khóa học combo';
+        $data['comboPackages'] = Package::where('status', '1')->get()->toArray();
+        return view('frontend.packages.index', $data);
+    }
     public function myPackage() {
         $userId = Auth::id();
 

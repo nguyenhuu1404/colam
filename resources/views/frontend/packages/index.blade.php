@@ -3,7 +3,7 @@
 @section('content')
 
             <section class="banner">
-                <img src="images/banner-lesson.png">
+                <img src="/images/banner-lesson.png">
                 <div class="breadcrumb-position">
                     <div class="container">
                         <div class="title-breadcrumb">Học tiếng Nhật online</div>
@@ -18,9 +18,9 @@
             </section>
             <section class="lesson-box py-5" style="background: #ebebeb;">
                 <div class="container">
-                    <h1 class="text-center text-uppercase sfd mb-5 font30">Khóa học</h1>
+                    <h1 class="text-center text-uppercase sfd mb-5 font30">{{$title}}</h1>
                     <div class="row">
-                        @if($courses)
+                        @if(isset($courses))
                             @foreach($courses as $key => $course)
                             <div class=" {{ $key % 2 !=0 ? 'yellow' : ''}} col-sm-6 col-xl-4 item-class mb-5">
                                 <div class="thumbnail-tab-class">
@@ -58,7 +58,7 @@
                             @endforeach
                         @endif
 
-                         @if($comboPackages)
+                         @if(isset($comboPackages))
                             @foreach($comboPackages as $key => $package)
                             <div class=" {{ $key % 2 !=0 ? 'yellow' : ''}} col-sm-6 col-xl-4 item-class mb-5">
                                 <div class="thumbnail-tab-class">

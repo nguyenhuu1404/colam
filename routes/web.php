@@ -23,6 +23,8 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
     Route::get('/login/google/callback', 'Auth\LoginController@handleProviderCallbackGoogle');
 
     Route::get('/khoa-hoc', 'PackageController@index');
+    Route::get('/khoa-hoc/don', 'PackageController@course');
+    Route::get('/khoa-hoc/combo', 'PackageController@coursecombo');
     Route::get('/khoa-hoc-cua-toi', 'PackageController@myPackage');
     Route::get('/khoa-hoc/package/{id}-{slug}', 'PackageController@combo')->where(['id' => '[0-9]+']);
     Route::get('/khoa-hoc/{id}-{slug}', 'CourseController@index')->where(['id' => '[0-9]+']);

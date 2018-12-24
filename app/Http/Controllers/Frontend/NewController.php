@@ -20,6 +20,7 @@ class NewController extends Controller
     function detail($id){
         $post = Post::where('id', $id)->first()->toArray();
         $data['title'] = $post['title'];
+        $data['description'] = $post['meta_description'];
         $data['curentCate'] = $post['category_id'];
         $data['post'] = $post;
         $data['related'] = [];
@@ -37,6 +38,7 @@ class NewController extends Controller
         $data['curentCate'] = Category::where('id', $categoryId)->get()->first()->toArray();
         $data['categories'] = Category::get()->toArray();
         $data['title'] = $data['curentCate']['name'];
+        $data['description'] = $data['curentCate']['description'];
         return view('frontend.news.category', $data);
     }
 }

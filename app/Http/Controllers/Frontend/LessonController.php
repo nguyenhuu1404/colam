@@ -11,6 +11,7 @@ use App\Course;
 use App\Lesson;
 use App\Payment;
 use App\Package;
+use App\Comment;
 
 class LessonController extends Controller
 {
@@ -23,6 +24,9 @@ class LessonController extends Controller
         $data['curentLesson'] = $curentLesson;
         $data['tests'] = Lesson::find($lessonId)->tests()->get();
         $data['title'] = $curentLesson['name'];
+        $data['description'] = $curentLesson['description'];
+        $comment = Comment::where(['lesson_id' => $lessonId, 'status' => 1])->get()->toArray();
+        $data['comments'] = buildTree($comment);
         if($curentLesson['trial'] == 1){
             return view('frontend.lessons.trial', $data);
         }else{
@@ -97,4 +101,23 @@ class LessonController extends Controller
 
         }
     }
+    public function addComment(Request $request){
+        if ($request->ajax() && Auth::check()) {
+            if($request->input('content')){
+                $user = Auth::user();
+                $dataComment = [
+                    'user_id' =>  Auth::id(),
+                    'username' => $user['name'],
+                    'avatar' => $user['avatar'],
+                    'lesson_id' => $request->input('lessonId'),
+                    'content' => $request->input('content'),
+                    'parent_id' => $request->input('parent_id'),
+                    'status' => 1
+                ];
+                Comment::create($dataComment);
+            }
+
+        }
+    }
+
 }

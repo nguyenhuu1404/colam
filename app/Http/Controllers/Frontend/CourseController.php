@@ -28,15 +28,14 @@ class CourseController extends Controller
             }
         }
         $data['title'] = $course['name'];
+        $data['description'] = $course['description'];
         $data['course'] = $course;
         $data['lessons'] = buildTree($lessons);
         $data['others'] = Course::where('id', '!=', $courseId)->where('status', 1)->limit(5)->inRandomOrder()->get();
-        $checkComment = Comment::where(['course_id' => $courseId, 'status' => 1])->get()->count();
-        $data['comments'] = [];
-        if($checkComment > 0){
-            $comment = Comment::where(['course_id' => $courseId, 'status' => 1])->get()->toArray();
-            $data['comments'] = buildTree($comment);
-        }
+
+        $comment = Comment::where(['course_id' => $courseId, 'status' => 1])->get()->toArray();
+        $data['comments'] = buildTree($comment);
+
         return view('frontend.courses.index', $data);
     }
     public function checkPayment($userId, $courseId){

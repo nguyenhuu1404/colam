@@ -162,7 +162,7 @@
                                                             <div class="text-item-comment">
                                                                 <div class="row">
                                                                     <div class="col-md-9">
-                                                                        <textarea id="textreply{{$course['id']}}" class="w-100"></textarea>
+                                                                        <textarea id="textreply{{$comment['id']}}" class="w-100"></textarea>
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <div onclick="addReplyCourse({{$course['id']}}, {{$comment['id']}})" class="btn w-100 btn-warning" >
@@ -263,7 +263,7 @@ function addCommnetCourse(courseId){
     }
 }
 function addReplyCourse(courseId, parent_id){
-    var content = $('#textreply'+courseId).val();
+    var content = $('#textreply'+parent_id).val();
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     if(content.length > 0){
         $.ajax({
@@ -276,7 +276,7 @@ function addReplyCourse(courseId, parent_id){
         });
     }else{
         alert('Bạn chưa nhập nội dung bình luận');
-        $('#textreply'+courseId).focus();
+        $('#textreply'+parent_id).focus();
         return false;
     }
 }
