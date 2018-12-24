@@ -347,7 +347,7 @@
                            </div>
                            <hr>
                            <h4 class="total-payment">Tổng tiền  <span> {{ $course['price_sale'] ? priceFormat($course['price_sale']) : priceFormat($course['price'])}} ₫</span></h4>
-                           <input type="hidden" name="total_amount" value="{{ $course['price_sale'] ? $course['price'] : $course['price']}}" />
+                           <input type="hidden" name="total_amount" value="{{ $course['price_sale'] ? $course['price_sale'] : $course['price']}}" />
                            <input type="hidden" name="product_name" value="{{ $course['name']}}" />
 
                         </div>

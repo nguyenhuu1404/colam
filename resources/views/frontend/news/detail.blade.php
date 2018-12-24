@@ -51,7 +51,7 @@
 
 								<div class="col-md-3">
 									<a href="/tin-tuc/{{$new['id']}}-{{$new['slug']}}" title="{{ $new['title'] }}">
-										<img src="{{ Storage::url( $post['image'] )}}">
+										<img src="{{ Storage::url( $new['image'] )}}">
 									</a>
 								</div>
 								<div class="col-md-9">

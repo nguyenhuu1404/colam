@@ -347,7 +347,7 @@
                            </div>
                            <hr>
                            <h4 class="total-payment">Tổng tiền  <span> {{ $package['price_sale'] ? priceFormat($package['price_sale']) : priceFormat($package['price'])}} ₫</span></h4>
-                           <input type="hidden" name="total_amount" value="{{ $package['price_sale'] ? $package['price'] : $package['price']}}" />
+                           <input type="hidden" name="total_amount" value="{{ $package['price_sale'] ? $package['price_sale'] : $package['price']}}" />
                            <input type="hidden" name="product_name" value="{{ $package['name']}}" />
 
                         </div>

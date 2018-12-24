@@ -95,10 +95,12 @@
                                                         <div class="text-item-comment">
                                                             <div class="row">
                                                                 <div class="col-md-9">
-                                                                    <textarea class="w-100"></textarea>
+                                                                    <textarea id="textcomment" class="w-100"></textarea>
                                                                 </div>
                                                                 <div class="col-md-3">
-                                                                    <input class="btn w-100 btn-warning" value="Đăng" />
+                                                                    <div onclick="addCommnetCourse({{$course['id']}})" class="btn w-100 btn-warning">
+                                                                    Đăng
+                                                                    </div>
                                                                 </div>
 
                                                             </div>
@@ -107,53 +109,77 @@
                                                 </div>
                                                 @endif
 
-
+                                                @if($comments)
+                                                @foreach($comments as $comment)
                                                 <div class="item-body-comment">
                                                     <div class="parent-itemt">
                                                         <div class="avartar-item-comment">
+                                                            @if($comment['avatar'])
                                                             <img src="/images/img-avatar-1.png">
+                                                            @endif
                                                         </div>
                                                         <div class="text-item-comment">
-                                                            <div class="name-info-item-comment">Trường Chiến <span>24/10/2018 18:24</span></div>
-                                                            <div class="content-post-item-comment">Thầy ơi thầy có thể cho em vài đề thi thử n5 không ạ . E chuẩn bị thi topj</div>
+                                                            <div class="name-info-item-comment">{{$comment['username']}} <span>{{$comment['created_at']}}</span></div>
+                                                            <div class="content-post-item-comment">{{$comment['content']}}</div>
                                                         </div>
                                                     </div>
-                                                    <div class="reply-comment">
-                                                        <a href="#"><i class="fa fa-comment"></i>
-                                                        trả lời</a>
-                                                    </div>
-                                                    <div class="reply-comment">
-                                                        <a href="#"><i class="fa fa-comments"></i>
-                                                        1 phản hồi</a>
-                                                    </div>
-                                                    <div class="children-item">
-                                                        <div class="avartar-item-comment">
-                                                            <img src="/images/img-avatar-1.png">
+                                                    <div class="w-100">
+                                                        <div class="reply-comment">
+                                                            <a data-toggle="collapse" href="#reply{{$comment['id']}}" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-comment"></i>
+                                                            trả lời</a>
                                                         </div>
-                                                        <div class="text-item-comment">
-                                                            <div class="name-info-item-comment">Trường Chiến <span>24/10/2018 18:24</span></div>
-                                                            <div class="content-post-item-comment">Thầy ơi thầy có thể cho em vài đề thi thử n5 không ạ . E chuẩn bị thi topj</div>
+                                                        <div class="reply-comment">
+                                                            <a data-toggle="collapse" href="#reply{{$comment['id']}}" role="button" aria-expanded="false" aria-controls="reply"><i class="fa fa-comments"></i>
+                                                            <?php if(isset($comment['children'])) { echo count($comment['children']); } ?> phản hồi</a>
                                                         </div>
                                                     </div>
 
-                                                    <div class="children-item">
-                                                        <div class="avartar-item-comment">
-                                                            <img src="/images/img-avatar-1.png">
-                                                        </div>
-                                                        <div class="text-item-comment">
-                                                            <div class="row">
-                                                                <div class="col-md-9">
-                                                                    <textarea class="w-100"></textarea>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <input class="btn w-100 btn-warning" value="Đăng" />
-                                                                </div>
 
+                                                    <div class="collapse w-75" id="reply{{$comment['id']}}">
+                                                        @if(isset($comment['children']))
+                                                        @foreach($comment['children'] as $child)
+                                                        <div class="children-item">
+                                                            <div class="avartar-item-comment">
+                                                                @if($child['avatar'])
+                                                                <img src="/images/img-avatar-1.png">
+                                                                @endif
+                                                            </div>
+                                                            <div class="text-item-comment">
+                                                                <div class="name-info-item-comment">{{$child['username']}} <span>{{$child['created_at']}}</span></div>
+                                                                <div class="content-post-item-comment">{{$child['content']}}</div>
                                                             </div>
                                                         </div>
+                                                        @endforeach
+                                                        @endif
+
+                                                        @if(Auth::check())
+                                                        <div class="children-item">
+                                                            <div class="avartar-item-comment">
+                                                                @if($comment['avatar'])
+                                                                <img src="/images/img-avatar-1.png">
+                                                                @endif
+                                                            </div>
+                                                            <div class="text-item-comment">
+                                                                <div class="row">
+                                                                    <div class="col-md-9">
+                                                                        <textarea id="textreply{{$course['id']}}" class="w-100"></textarea>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div onclick="addReplyCourse({{$course['id']}}, {{$comment['id']}})" class="btn w-100 btn-warning" >
+                                                                        Đăng
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @endif
+
                                                     </div>
 
                                                 </div>
+                                                @endforeach
+                                                @endif
 
                                             </div>
                                             @if($others)
@@ -218,7 +244,42 @@
     $('.cat-item a').click(function(){
     $(this).parent().toggleClass('opened');
 })
-
+function addCommnetCourse(courseId){
+    var content = $('#textcomment').val();
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    if(content.length > 0){
+        $.ajax({
+            method: "POST",
+            url: "/course/addComment",
+            data: {_token: CSRF_TOKEN, content: content, courseId: courseId}
+        })
+        .done(function( data ) {
+            location.reload();
+        });
+    }else{
+        alert('Bạn chưa nhập nội dung bình luận');
+        $('#textcomment').focus();
+        return false;
+    }
+}
+function addReplyCourse(courseId, parent_id){
+    var content = $('#textreply'+courseId).val();
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    if(content.length > 0){
+        $.ajax({
+            method: "POST",
+            url: "/course/addComment",
+            data: {_token: CSRF_TOKEN, content: content, courseId: courseId, parent_id: parent_id}
+        })
+        .done(function( data ) {
+            location.reload();
+        });
+    }else{
+        alert('Bạn chưa nhập nội dung bình luận');
+        $('#textreply'+courseId).focus();
+        return false;
+    }
+}
 </script>
 @endpush
 

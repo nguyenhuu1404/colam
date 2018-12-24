@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Payment;
 
+use App\Comment;
 use App\Package;
 use App\Course;
 use App\Lesson;
@@ -30,7 +31,12 @@ class CourseController extends Controller
         $data['course'] = $course;
         $data['lessons'] = buildTree($lessons);
         $data['others'] = Course::where('id', '!=', $courseId)->where('status', 1)->limit(5)->inRandomOrder()->get();
-        //dd($data);
+        $checkComment = Comment::where(['course_id' => $courseId, 'status' => 1])->get()->count();
+        $data['comments'] = [];
+        if($checkComment > 0){
+            $comment = Comment::where(['course_id' => $courseId, 'status' => 1])->get()->toArray();
+            $data['comments'] = buildTree($comment);
+        }
         return view('frontend.courses.index', $data);
     }
     public function checkPayment($userId, $courseId){
@@ -71,6 +77,24 @@ class CourseController extends Controller
             $data['courseTypes'] = config('app.courseTypes');
             $data['courses'] = $dataCourses;
             return view('frontend.ajax.singlepackage', $data);
+
+        }
+    }
+    public function addComment(Request $request){
+        if ($request->ajax() && Auth::check()) {
+            if($request->input('content')){
+                $user = Auth::user();
+                $dataComment = [
+                    'user_id' =>  Auth::id(),
+                    'username' => $user['name'],
+                    'avatar' => $user['avatar'],
+                    'course_id' => $request->input('courseId'),
+                    'content' => $request->input('content'),
+                    'parent_id' => $request->input('parent_id'),
+                    'status' => 1
+                ];
+                Comment::create($dataComment);
+            }
 
         }
     }
