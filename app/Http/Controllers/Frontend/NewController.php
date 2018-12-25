@@ -13,6 +13,7 @@ class NewController extends Controller
 {
     public function index(){
         $data['title'] = 'Tin tức';
+        $data['description'] = 'Tin tức';
         $data['news'] = Post::where('status', 1)->paginate(5);
         $data['categories'] = Category::get()->toArray();
         return view('frontend.news.index', $data);

@@ -40,17 +40,20 @@ class PackageController extends Controller
     public function index(){
 
         $data['title'] = 'Các khóa học';
+        $data['description'] = 'Các khóa học';
         $data['courses'] = Course::where(['status' => 1])->get()->toArray();
         $data['comboPackages'] = Package::where('status', '1')->get()->toArray();
         return view('frontend.packages.index', $data);
     }
     public function course(){
         $data['title'] = 'Các khóa học đơn';
+        $data['description'] = 'Các khóa học đơn';
         $data['courses'] = Course::where(['status' => 1])->get()->toArray();
         return view('frontend.packages.index', $data);
     }
     public function coursecombo(){
         $data['title'] = 'Các khóa học combo';
+        $data['description'] = 'Các khóa học combo';
         $data['comboPackages'] = Package::where('status', '1')->get()->toArray();
         return view('frontend.packages.index', $data);
     }
@@ -91,6 +94,7 @@ class PackageController extends Controller
             }
         }
         $data['title'] = 'Khóa học của tôi';
+        $data['description'] = 'Khóa học của tôi';
         $data['myPackages'] = $dataMyPackages;
         return view('frontend.packages.mypackage', $data);
     }

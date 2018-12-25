@@ -17,22 +17,24 @@
     </section>
 	<section class="contact-box my-5 w-100">
 		<div class="container">
-			<div class="row">						
+			<div class="row">
 				<div class="col-md-5 mb-5">
 					<p>Vui lòng điền đầy đủ thông tin cần liên hệ. Lamsens sẽ cố gắng hồi đáp nhanh nhất yêu cầu của Quý khách hàng.</p>
-					<p><strong>THỜI GIAN LÀM VIỆC:</strong></p>	
+					<p><strong>THỜI GIAN LÀM VIỆC:</strong></p>
 					<p>Từ thứ Hai đến thứ Bảy hàng tuần</p>
 					<p>Sáng 8h00 - 12h00, Chiều 13h00 - 17h00</p>
 					<p></p>
 					<p></p>
-					<p><strong>THỜI GIAN TIẾP NHẬN THÔNG TIN:</strong></p>	
+					<p><strong>THỜI GIAN TIẾP NHẬN THÔNG TIN:</strong></p>
 					<p>Từ thứ Hai đến thứ Bảy hàng tuần</p>
 					<p>Sáng 8h00 - 12h00, Chiều 13h00 - 17h00</p>
 					<p></p>
 					<p></p>
-					<p><strong>THÔNG TIN LIÊN HỆ:</strong></p>	
-					<p>Từ thứ Hai đến thứ Bảy hàng tuần</p>
-					<p>Sáng 8h00 - 12h00, Chiều 13h00 - 17h00</p>
+					<p><strong>THÔNG TIN LIÊN HỆ:</strong></p>
+                    <p>Đào Thanh Lam</p>
+                    <p>Phố Xuân Đỗ, Phường Cự Khối, Quận Long Biên, Hà Nội</p>
+                    <p>HOTLINE : <strong>{{ setting('site.hotline') }}</strong></p>
+
 				</div>
 				<div class="col-md-5 offset-md-2">
 					<form action="" class="form-contact">
@@ -55,8 +57,8 @@
 
 						<button class="btn btn-danger btn-submit-form font18 text-white" type="submit"><i class="fa fa-paper-plane-o mr-4" aria-hidden="true"></i> GỬI ĐI</button>
 					</form>
-				</div>						
-				
+				</div>
+
 			</div>
 		</div>
 	</section>

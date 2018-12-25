@@ -35,6 +35,7 @@ class PaymentController extends Controller
     }
     public function course($courseId){
         $data['title'] = 'Thanh toán';
+        $data['description'] = 'Thanh toán';
         $course = Course::where('id', $courseId)->get()->first();
         $data['course'] = $course;
         $data['url']='/thanh-toan/'.$courseId.'-'.$course->slug;
@@ -215,6 +216,8 @@ class PaymentController extends Controller
 
     }
     public function thank($key){
+        $data['title'] = 'Thanh toán thành công';
+        $data['description'] = 'Thành toán thành công';
         $order = Order::where('key', $key)->get()->first();
         $data['order'] = $order;
         if($order['payment_method'] == 'ATM_ONLINE' || $order['payment_method'] == 'VISA'){
@@ -228,6 +231,8 @@ class PaymentController extends Controller
         }
     }
     public function more($key){
+        $data['title'] = 'Gia hạn thành công';
+        $data['description'] = 'Gia hạn thành toán';
         $order = Order::where('key', $key)->get()->first();
         $data['order'] = $order;
         if($order['payment_method'] == 'ATM_ONLINE' || $order['payment_method'] == 'VISA'){
@@ -243,6 +248,7 @@ class PaymentController extends Controller
 
     public function combo($packageId){
         $data['title'] = 'Thanh toán';
+        $data['description'] = 'Thanh toán';
         $package = Package::where('id', $packageId)->get()->first();
         $data['package'] = $package;
         $data['url']='/thanh-toan/package/'.$packageId.'-'.$package->slug;
@@ -421,6 +427,7 @@ class PaymentController extends Controller
     }
     public function moreCourse($courseId){
         $data['title'] = 'Gia hạn khóa học';
+        $data['description'] = 'Gia hạn khóa học';
         $course = Course::where('id', $courseId)->get()->first();
         $data['course'] = $course;
         $data['url']='/thanh-toan/'.$courseId.'-'.$course->slug;
@@ -435,6 +442,7 @@ class PaymentController extends Controller
     }
     public function moreCombo($packageId){
         $data['title'] = 'Gia hạn khóa học';
+        $data['description'] = 'Gia hạn combo khóa học';
         $package = Package::where('id', $packageId)->get()->first();
         $data['package'] = $package;
         $data['url']='/thanh-toan/package/'.$packageId.'-'.$package->slug;
