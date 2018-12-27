@@ -37,22 +37,32 @@
 
 				</div>
 				<div class="col-md-5 offset-md-2">
-					<form action="" class="form-contact">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+					<form action="/lien-he" method="post" class="form-contact">
+                        @csrf
 						<div class="form-group">
 							<label>Tên của bạn (*)</label>
-							<input type="text" class="form-control" id="name" required>
+							<input name="name" type="text" class="form-control" id="name" required>
 						</div>
 						<div class="form-group">
 							<label>Số điện thoại (*)</label>
-							<input type="text" class="form-control" id="phone" required>
+							<input name="phone" type="text" class="form-control" id="phone" required>
 						</div>
 						<div class="form-group">
 							<label>Địa chỉ email (*)</label>
-							<input type="text" class="form-control" id="email" required>
+							<input name="email" type="text" class="form-control" id="email" required>
 						</div>
 						<div class="form-group">
 							<label>Thông điệp</label>
-							<textarea class="form-control" id="note" rows="3"></textarea>
+							<textarea name="content" class="form-control" id="note" rows="3"></textarea>
 						</div>
 
 						<button class="btn btn-danger btn-submit-form font18 text-white" type="submit"><i class="fa fa-paper-plane-o mr-4" aria-hidden="true"></i> GỬI ĐI</button>

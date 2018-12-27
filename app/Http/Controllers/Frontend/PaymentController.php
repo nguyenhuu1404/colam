@@ -88,7 +88,7 @@ class PaymentController extends Controller
                     'email' => $request->input('email'),
                     'phone' => $request->input('mobile'),
                     'address_ship' => $request->input('address'),
-                    'order_status' => 'onhold',
+                    'orderstatus' => 'onhold',
                     'more' => $more,
                     'status' => 1
                 ];
@@ -178,7 +178,7 @@ class PaymentController extends Controller
             $order['phone'] = $dataNl['buyer_mobile'];
             $order['address_ship'] = $dataNl['buyer_address'];
             $order['status'] = 1;
-            $order['order_status'] = 'completed';
+            $order['orderstatus'] = 'completed';
             if($this->hasPaymentCourse($userId, $courseId)){
                 $order['more'] = 'giahan';
                 Order::create($order);
@@ -299,7 +299,7 @@ class PaymentController extends Controller
                     'email' => $request->input('email'),
                     'phone' => $request->input('mobile'),
                     'address_ship' => $request->input('address'),
-                    'order_status' => 'onhold',
+                    'orderstatus' => 'onhold',
                     'more' => $more,
                     'status' => 1
                 ];
@@ -388,7 +388,7 @@ class PaymentController extends Controller
             $order['phone'] = $dataNl['buyer_mobile'];
             $order['address_ship'] = $dataNl['buyer_address'];
             $order['status'] = 1;
-            $order['order_status'] = 'completed';
+            $order['orderstatus'] = 'completed';
 
             if($this->hasPaymentPackage($userId, $packageId)){
                 $order['more'] = 'giahan';

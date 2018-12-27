@@ -4,7 +4,7 @@ return [
     'courseTypes' => [
         'n5', 'n4', 'n3', 'n2'
     ],
-    'order_status' => [
+    'orderstatus' => [
         'processing' => 'Đang xử lí',
         'completed' => 'Thành công',
         'cancelled' => 'Đã hủy',

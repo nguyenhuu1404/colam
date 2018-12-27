@@ -345,30 +345,25 @@
 			</section>
 			<section class="user-box">
 				<div class="container">
-					<div class="row">
+					<div-- class="row">
 						<div class="col-xl-12 slick-user-info">
+                            @if($reviews)
+                            @foreach($reviews as $review)
 							<div>
 								<div class="description-user-info">
-									Tôi biết đến Tiếng Nhật Cô Lam qua một người bạn. Khi ấy trình độ tiếng Nhật của tôi giống như một tờ giấy trắng. Tôi không tự tin giao tiếp với người nước ngoài do vốn tiếng Nhật còn nhiều hạn chế,
+									{!!$review['content']!!}
 								</div>
 								<div class="user-avarta-name">
-									<img src="/images/img-avatar.png">
-									<div class="h4">Nguyễn Trường Giang</div>
-									<p>Du học sinh tại Tokyo</p>
+									<img src="{{ Storage::url($review['image']) }}">
+									<div class="h4">{{$review['name']}}</div>
+									<p>{{$review['title']}}</p>
 								</div>
 							</div>
-							<div>
-								<div class="description-user-info">
-									Tôi biết đến Tiếng Nhật Cô Lam qua một người bạn. Khi ấy trình độ tiếng Nhật của tôi giống như một tờ giấy trắng. Tôi không tự tin giao tiếp với người nước ngoài do vốn tiếng Nhật còn nhiều hạn chế,
-								</div>
-								<div class="user-avarta-name">
-									<img src="/images/img-avatar.png">
-									<div class="h4">Nguyễn Trường Giang</div>
-									<p>Du học sinh tại Tokyo</p>
-								</div>
-							</div>
+                            @endforeach
+                            @endif
+
 						</div>
-						<div class="col-xl-12">
+						<!--div class="col-xl-12">
 							<div class="register-user">
 								<div class="h3">ĐĂNG KÝ THÀNH VIÊN</div>
 								<div class="form-group">
@@ -384,7 +379,7 @@
 									<button class="btn transition btn-more">ĐĂNG KÝ</button>
 								</div>
 							</div>
-						</div>
+						</div-->
 					</div>
 				</div>
 			</section>

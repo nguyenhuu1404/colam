@@ -10,6 +10,7 @@ use App\Banner;
 use App\Package;
 use App\Lesson;
 use App\Course;
+use App\Review;
 
 class HomeController extends Controller
 {
@@ -37,6 +38,7 @@ class HomeController extends Controller
                 }
             }
         }
+        $data['reviews'] = Review::where('status', 1)->get();
         $data['title'] = setting('site.title');
         $data['description'] = setting('site.description');
         $data['courses'] = $dataCourses;

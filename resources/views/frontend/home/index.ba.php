@@ -318,7 +318,7 @@
 			</section>
 			<section class="user-box">
 				<div class="container">
-					<div class="row">
+					<div-- class="row">
 						<div class="col-xl-12 slick-user-info">
 							<div>
 								<div class="description-user-info">
@@ -341,7 +341,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-12">
+						<!--div class="col-xl-12">
 							<div class="register-user">
 								<div class="h3">ĐĂNG KÝ THÀNH VIÊN</div>
 								<div class="form-group">
@@ -357,7 +357,7 @@
 									<button class="btn btn-more">ĐĂNG KÝ</button>
 								</div>
 							</div>
-						</div>
+						</div-->
 					</div>
 				</div>
 			</section>

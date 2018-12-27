@@ -52,6 +52,7 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
     Route::get('/tin-tuc/{id}-{slug}', 'NewController@detail')->where(['id' => '[0-9]+']);
     Route::get('/ho-tro', 'FaqController@index');
     Route::get('/lien-he', 'ContactController@index');
+    Route::post('/lien-he', 'ContactController@save');
     Route::get('/{slug}', 'PageController@index');
 
 
