@@ -13,6 +13,7 @@ use App\Comment;
 use App\Package;
 use App\Course;
 use App\Lesson;
+use App\Ad;
 
 class CourseController extends Controller
 {
@@ -30,6 +31,7 @@ class CourseController extends Controller
         $data['title'] = $course['name'];
         $data['description'] = $course['description'];
         $data['course'] = $course;
+        $data['ads'] = Ad::where('status', 1)->where('page', 'course')->orderBy('id', 'desc')->get();
         $data['lessons'] = buildTree($lessons);
         $data['others'] = Course::where('id', '!=', $courseId)->where('status', 1)->limit(5)->inRandomOrder()->get();
 

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Socialite;
 use Exception;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class LoginController extends Controller
@@ -110,6 +111,8 @@ class LoginController extends Controller
         return redirect()->to('/');
     }
     public function authenticated(Request $request, $user){
+        $sessionId = $request->session()->getId();
+        Storage::put('login/'.$user->id.'.txt', $sessionId);
         $url = $request->input('url');
         return redirect($url);
     }

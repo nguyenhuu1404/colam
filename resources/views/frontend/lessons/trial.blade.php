@@ -52,9 +52,17 @@
                     </ul>
                 </div>
             @endif
+            @if($ads)
+                @foreach($ads as $ad)
                 <div class="section-sb-current">
-                    <img src="/images/sale-qc.png">
+                    <a href="{{$ad['link']}}">
+                    <img src="{{ Storage::url( $ad['image'] )}}">
+                    </a>
                 </div>
+                @endforeach
+            @endif
+
+
             </div>
             <div class="col-xl-9 pd-0-30">
                 <div class="title-content-lesson">
@@ -112,7 +120,7 @@
                             <hr/>
                             <div class="form-group text-center mt-3">
                                 @foreach($tests as $index => $test)
-                                    <button onclick="getTest(this, {{$course['id']}}, {{$curentLesson['id']}}, {{$test['id']}})" class="btn btn-primary test ml-2">Bài Test {{$index +1 }}</a>
+                                    <button onclick="getTest(this, {{$course['id']}}, {{$curentLesson['id']}}, {{$test['id']}})" class="btn btn-primary test ml-2">Bài {{$index + 1}}</a>
                                 @endforeach
                             </div>
                             <hr/>
@@ -254,6 +262,7 @@
 $('.cat-item a').click(function(){
     $(this).parent().toggleClass('opened');
 })
+
 function addCommentLesson(lessonId){
     var content = $('#textcomment').val();
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -306,17 +315,37 @@ function getTest(that, courseId, lessonId, testId){
     }
 }
 
- function finish_choice(){
+ function finish_choice(total){
 
     	$('#form_question_nn input').prop( "disabled", true );
         $('#finish-choice').prop( "disabled", true );
+        var trueAnswer = 0;
         $('.check').each(function(i, item){
-            $(this).addClass('text-success');
-            $(this).find('.form-check-label').addClass('text-success');
-            $(this).append(' <span class="has-success fa fa-check"></span>');
-        })
+            if($(this).find('.dapan').is(':checked')){
+                $(this).addClass('text-success');
+                $(this).find('.form-check-label').addClass('text-success');
+                $(this).append(' <span class="has-success fa fa-check"></span>');
+                if($(this).find('.form-check-input').is(':checked')){
+                    trueAnswer ++;
+                }
+                $(this).parent().next().show();
+            }
+        });
+        $('.wrong').each(function(i, item){
+            if($(this).find('.dapan').is(':checked')){
+                $(this).addClass('text-danger');
+                $(this).find('.form-check-label').addClass('text-danger');
+                $(this).append(' <span class="fa fa-times"></span>');
+                $(this).parent().next().show();
+            }
+        });
 
-    	$('.explanation').show();
+
+        //$('.explanation').show();
+
+        $('#ketqua').text(trueAnswer+'/'+total+ ' câu');
+        $('#showketqua').modal('show');
+        $('#xemketqua').show();
     }
 @if(isset($tests) && count($tests) > 0)
     getTest(this, <?=$course['id'];?>,<?=$curentLesson['id'];?>, <?=$tests[0]['id'];?>);

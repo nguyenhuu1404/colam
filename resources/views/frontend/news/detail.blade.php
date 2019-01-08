@@ -84,16 +84,16 @@
                             </li>
                             @endforeach
                         </ul>
+                        @if($ads)
+                            @foreach($ads as $ad)
 							<div class="ads-sb mb-4">
-								<a href="">
-										<img src="/images/ads1.png">
+								<a href="{{$ad['link']}}">
+										<img src="{{ Storage::url( $ad['image'] )}}">
 									</a>
 							</div>
-							<div class="ads-sb mb-4">
-								<a href="">
-										<img src="/images/ads2.png">
-									</a>
-							</div>
+                            @endforeach
+                        @endif
+
 						</div>
 					</div>
 				</div>

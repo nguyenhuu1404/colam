@@ -55,9 +55,15 @@
                         </ul>
                     </div>
                     @endif
-                    <div class="section-sb-current">
-                        <img src="/images/sale-qc.png">
-                    </div>
+                    @if($ads)
+                        @foreach($ads as $ad)
+                        <div class="section-sb-current">
+                            <a href="{{$ad['link']}}">
+                            <img src="{{ Storage::url( $ad['image'] )}}">
+                            </a>
+                        </div>
+                        @endforeach
+                    @endif
                 </div>
                 <div class="col-xl-9 pd-0-30">
                     <h2 class='w-100 text-uppercase font24 left-title-lesson'>Khóa học {{$course['name']}}</h2>

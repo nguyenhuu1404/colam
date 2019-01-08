@@ -46,4 +46,9 @@ class HomeController extends Controller
 
         return view('frontend.home.index', $data);
     }
+    public function relogin(){
+        $data['title'] = "Đăng nhập tài khoản cùng lúc";
+        $data['description'] = setting('site.description');
+        return view('frontend.alerts.relogin', $data);
+    }
 }

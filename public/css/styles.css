@@ -1815,7 +1815,8 @@ img{
 }
 @media all and (max-width: 767px) {
 	.ketqua-score{    width: calc(20% - 10px); }
-	.item-pay{width: calc(100% - 20px); margin: 15px 10px !important;}
+    .item-pay{width: calc(100% - 20px); margin: 15px 10px !important;}
+    .dapan{height: 20px !important; width: 20px !important;}
 
 }
 @media all and (max-width: 400px) {
@@ -2095,3 +2096,6 @@ ul.cardList li {
 .hasmenu ul {display: none; margin: 0px; padding: 0px; min-width: 230px; width: 150%; background-image: linear-gradient(to right, rgba(0,0,0,1) , rgba(0,0,0,0.6));}
 .hasmenu ul li{list-style: none;}
 .hasmenu:hover ul {display: block; position: absolute; top: 100%; left: 0px; width: 100%;}
+.dapan{height: 25px; width: 25px;}
+.test-cauhoi p{margin: 0px !important;}
+#showketqua{z-index: 9999;}

@@ -12,6 +12,7 @@ use App\Lesson;
 use App\Payment;
 use App\Package;
 use App\Comment;
+use App\Ad;
 
 class LessonController extends Controller
 {
@@ -23,6 +24,7 @@ class LessonController extends Controller
         $curentLesson = Lesson::where('id', $lessonId)->first()->toArray();
         $data['curentLesson'] = $curentLesson;
         $data['tests'] = Lesson::find($lessonId)->tests()->get();
+        $data['ads'] = Ad::where('status', 1)->where('page', 'lesson')->orderBy('id', 'desc')->get();
         $data['title'] = $curentLesson['name'];
         $data['description'] = $curentLesson['description'];
         $comment = Comment::where(['lesson_id' => $lessonId, 'status' => 1])->get()->toArray();

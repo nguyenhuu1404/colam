@@ -4,8 +4,8 @@
 	<tr>
 		<td>
 
-            <div class="form-check form-check-inline {{($value['check'] == 1) ? 'check' : ''}}">
-                <input class="form-check-input" type="radio" name="answers[{{$qestionId}}]" id="answers_{{$qestionId}}_{{$value['id']}}" value="{{$value['id']}}"/>
+            <div class="form-check form-check-inline {{($value['check'] == 1) ? 'check' : 'wrong'}}">
+                <input class="form-check-input dapan" type="radio" name="answers[{{$qestionId}}]" id="answers_{{$qestionId}}_{{$value['id']}}" value="{{$value['id']}}"/>
                 <label class="form-check-label" for="answers_{{$qestionId}}_{{$value['id']}}">{!!$value['name']!!}</label>
             </div>
 		</td>

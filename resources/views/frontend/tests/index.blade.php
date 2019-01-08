@@ -1,15 +1,18 @@
+@if($test['audio'] || $test['content'])
+<div class="test-cauhoi w-100 mb-2 p-3 bg-warning ">
 @if($test['audio'])
 <?php $testAudio = json_decode($test['audio']);
     $testAudio = $testAudio[0]->download_link;
     $testAudio = str_replace('\\', '/', $testAudio);
 ?>
-<div class="test-cauhoi border-dashed w-100 mb-2 p-4 ">
-<span class="btn volume fa fa-volume-up" onclick="read_question(this, '{{Storage::url($testAudio)}}');"></span> {!!$test['content']!!}
+<span class="btn volume fa fa-volume-up" onclick="read_question(this, '{{Storage::url($testAudio)}}');"></span>
+@endif
+{!!$test['content']!!}
 </div>
 @endif
-<form id="form_question_nn" class="question_content pd-0 item mgb15 form-horizontal bd-div bgclor" method="post">
 
     @if($questions)
+    <form id="form_question_nn" class="question_content pd-0 item mgb15 form-horizontal bd-div bgclor" method="post">
         @foreach($questions as $key => $value)
         <div class="row top20">
                 <div class="col-md-12">
@@ -35,8 +38,13 @@
                         $dataAnswer['answers'] = $processAnswer[$value['id']];
                         $dataAnswer['qestionId'] = $value['id'];
                     ?>
-                    @include('frontend.tests.choice', $dataAnswer)
+                    @if($value['type'] == 'd')
+                        @include('frontend.tests.choice', $dataAnswer)
+                    @else
+                        @include('frontend.tests.choice2', $dataAnswer)
+                    @endif
 
+                    @if($value['explain'])
                     <div class="mb-3 explanation hidden">
                         <a href="#mobile-explan-{{$value['id']}}" class=" btn btn-success btn-show-exp" data-toggle="collapse">Lý giải</a>
                     </div>
@@ -51,21 +59,43 @@
                         {!!$value['explain']!!}
                         </div>
                     </div>
+                    @endif
 
                 </div>
 
                 <div class="line-question"></div>
         </div>
     @endforeach
-@endif
+    <div class="modal fade" id="showketqua" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Kết quả</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <b>Bạn làm đúng:</b> <span id="ketqua"></span>
+                </div>
 
+            </div>
+        </div>
+    </div>
     <div class="full mb-3 text-center">
 
-        <button id="finish-choice" class="btn btn-warning" name="finish-choice" onclick="finish_choice();" type="button">
+        <button id="finish-choice" class="btn btn-warning" name="finish-choice" onclick="finish_choice({{count($questions)}});" type="button">
            Xem đáp án
+        </button>
+        <button id="xemketqua" type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#showketqua">
+            Xem kết quả
         </button>
 
     </div>
+    </form>
 
-</form>
+@endif
+
+
+
 
