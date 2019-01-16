@@ -30,6 +30,12 @@ class LessonController extends Controller
         $comment = Comment::where(['lesson_id' => $lessonId, 'status' => 1])->get()->toArray();
         $data['comments'] = buildTree($comment);
         if($curentLesson['trial'] == 1){
+            if (Auth::check()) {
+                $userId = Auth::id();
+                if($this->checkPayment($userId, $courseId)){
+                    $data['isBuy'] = true;
+                }
+            }
             return view('frontend.lessons.trial', $data);
         }else{
             if (Auth::check()) {

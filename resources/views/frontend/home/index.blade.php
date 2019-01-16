@@ -338,7 +338,7 @@
 								<div class="h4">Các phương thức thanh toán khóa học</div>
 								<p>Contact us now and we will make your event unique & unforgettable</p>
 							</div>
-							<a href="#" class="btn transition btn-more more-payment">XEM CHI TIẾT</a>
+							<a href="/phuong-thuc-thanh-toan" class="btn transition btn-more more-payment">XEM CHI TIẾT</a>
 						</div>
 					</div>
 				</div>

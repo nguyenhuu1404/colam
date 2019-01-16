@@ -87,6 +87,9 @@
         <button id="finish-choice" class="btn btn-warning" name="finish-choice" onclick="finish_choice({{count($questions)}});" type="button">
            Xem đáp án
         </button>
+        <button onclick="getTest(this, {{$courseId}}, {{$lessonId}}, {{$testId}})" type="button" class="btn btn-primary">
+            Làm lại
+        </button>
         <button id="xemketqua" type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#showketqua">
             Xem kết quả
         </button>

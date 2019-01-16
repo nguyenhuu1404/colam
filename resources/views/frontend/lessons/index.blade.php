@@ -90,9 +90,11 @@
                                 @endif
                             @else
                                 @if($curentLesson['video'])
-                                <link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+                                <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
 
-                                <script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
+                                <script src="https://vjs.zencdn.net/7.4.1/video.js"></script>
+
+
                                 <script src="https://cdn.streamroot.io/videojs-hlsjs-plugin/1/stable/videojs-hlsjs-plugin.js"></script>
                                 <script src="/videojs-quality-picker/dist/vjs-quality-picker.js"></script>
 
@@ -316,15 +318,17 @@ function getTest(that, courseId, lessonId, testId){
 
  function finish_choice(total){
 
-    	$('#form_question_nn input').prop( "disabled", true );
-        $('#finish-choice').prop( "disabled", true );
+    	//$('#form_question_nn input').prop( "disabled", true );
+        //$('#finish-choice').prop( "disabled", true );
 
         var trueAnswer = 0;
         $('.check').each(function(i, item){
             if($(this).find('.dapan').is(':checked')){
-                $(this).addClass('text-success');
-                $(this).find('.form-check-label').addClass('text-success');
-                $(this).append(' <span class="has-success fa fa-check"></span>');
+                if(!$(this).hasClass('text-success')){
+                    $(this).addClass('text-success');
+                    $(this).find('.form-check-label').addClass('text-success');
+                    $(this).append(' <span class="has-success fa fa-check"></span>');
+                }
                 if($(this).find('.form-check-input').is(':checked')){
                     trueAnswer ++;
                 }
@@ -333,9 +337,12 @@ function getTest(that, courseId, lessonId, testId){
         });
         $('.wrong').each(function(i, item){
             if($(this).find('.dapan').is(':checked')){
-                $(this).addClass('text-danger');
-                $(this).find('.form-check-label').addClass('text-danger');
-                $(this).append(' <span class="fa fa-times"></span>');
+                if(!$(this).hasClass('text-danger')){
+                    $(this).addClass('text-danger');
+                    $(this).find('.form-check-label').addClass('text-danger');
+                    $(this).append(' <span class="fa fa-times"></span>');
+                }
+
                 $(this).parent().next().show();
             }
         });

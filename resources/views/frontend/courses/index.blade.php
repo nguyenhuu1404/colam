@@ -44,7 +44,9 @@
                                     @if($child['trial'] == 1)
                                     <span class="free">Học thử</span>
                                     @else
-                                    <i class="fa fa-lock pull-right"></i>
+                                        @if(!$course['isBuy'])
+                                        <i class="fa fa-lock pull-right"></i>
+                                        @endif
                                     @endif
                                 </a></li>
                                     @endforeach

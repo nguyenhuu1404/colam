@@ -33,6 +33,9 @@ class TestController extends Controller
             $data['test'] = $test;
             $data['processAnswer'] = $processAnswer;
             $data['questions'] = $questions;
+            $data['courseId'] = $courseId;
+            $data['lessonId'] = $lessonId;
+            $data['testId'] = $testId;
             //dd($data);
 
             return view('frontend.tests.index', $data);
