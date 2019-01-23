@@ -94,9 +94,9 @@
                                 @endif
                             @else
                             @if($curentLesson['video'])
-                                <link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+                                <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
 
-                                <script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
+                                <script src="https://vjs.zencdn.net/7.4.1/video.js"></script>
                                 <script src="https://cdn.streamroot.io/videojs-hlsjs-plugin/1/stable/videojs-hlsjs-plugin.js"></script>
                                 <script src="/videojs-quality-picker/dist/vjs-quality-picker.js"></script>
 
@@ -261,6 +261,12 @@
 @push('scripts')
 
 <script>
+$(document).ready(function () {
+    $('html, body').animate({
+        scrollTop: $("div.title-content-lesson").offset().top
+    }, 1000);
+});
+
 $('.cat-item a').click(function(){
     $(this).parent().toggleClass('opened');
 })

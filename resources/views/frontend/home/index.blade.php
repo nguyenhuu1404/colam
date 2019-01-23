@@ -67,11 +67,17 @@
                         <div class="after-salce-price-combo">{{ number_format($packageRecomand['price_sale'], 0, ',', '.') }} vnđ</div>
                         @endif
 
+                        @if($packageRecomand['lock'] == 1)
+                        <div class="group-btn-combo">
+                            <button onclick="lockMessage()" class="btn transition btn-more mr-3">XEM CHI TIẾT</button>
+                            <button onclick="lockMessage()" class="btn transition btn-buy">MUA KHÓA HỌC</button>
+                        </div>
+                        @else
                         <div class="group-btn-combo">
                             <a href="/khoa-hoc/package/{{ $packageRecomand['id'] }}-{{ $packageRecomand['slug'] }}" class="btn transition btn-more mr-3">XEM CHI TIẾT</a>
                             <a href="/thanh-toan/package/{{ $packageRecomand['id'] }}-{{ $packageRecomand['slug'] }}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                         </div>
-
+                        @endif
                     </div>
                 </div>
             </div>
@@ -128,11 +134,17 @@
                         <p class="text-only-price-combo">chỉ còn</p>
                         <div class="after-salce-price-combo">{{ number_format($courseRecomand['price_sale'], 0, ',', '.') }} vnđ</div>
                         @endif
-
+                        @if($courseRecomand['lock'] == 1)
+                        <div class="group-btn-combo">
+                            <button onclick="lockMessage()" class="btn transition btn-more mr-3">XEM CHI TIẾT</button>
+                            <button onclick="lockMessage()" class="btn transition btn-buy">MUA KHÓA HỌC</button>
+                        </div>
+                        @else
                         <div class="group-btn-combo">
                             <a href="/khoa-hoc/{{ $courseRecomand['id'] }}-{{ $courseRecomand['slug'] }}" class="btn transition btn-more mr-3">XEM CHI TIẾT</a>
                             <a href="/thanh-toan/{{ $courseRecomand['id'] }}-{{ $courseRecomand['slug'] }}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                         </div>
+                        @endif
 
                     </div>
                 </div>
@@ -233,10 +245,17 @@
                                                                 <div class="number-video"></div>
                                                                 Số video:  {{$course['video_number']}}
                                                             </div>
+                                                            @if($course['lock'] == 1)
+                                                            <div class="group-btn-item-class">
+                                                                <button onclick="lockMessage()" class="btn transition btn-more mr-2">CHI TIẾT</button>
+                                                                <button onclick="lockMessage()" class="btn transition btn-buy">MUA KHÓA HỌC</button>
+                                                            </div>
+                                                            @else
                                                             <div class="group-btn-item-class">
                                                                 <a href="/khoa-hoc/{{$course['id']}}-{{$course['slug']}}" class="btn transition btn-more mr-2">CHI TIẾT</a>
                                                                 <a href="/thanh-toan/{{$course['id']}}-{{$course['slug']}}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                             </div>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

@@ -38,3 +38,23 @@ function read_question(elem, url) {
       question_audios[url].play();
     });
 }
+function lockMessage(){
+    var message = "Rất xin lỗi vì sự bất tiện. Hiện khóa học này vẫn đang trong quá trình xây dựng. Vui lòng truy cập fanpage https://www.facebook.com/hoctiengnhatcolam Hoặc liên hệ HOTLINE 037 223 2268 để biết thêm chi tiết và để lại thông tin để chúng tôi liên hệ lại cho bạn ngay khi khóa học hoàn thành. Xin chân thành cảm ơn !";
+    alert(message);
+}
+
+if(1){
+    $('body').bind('cut copy paste', function (e) {
+        e.preventDefault();
+    });
+    $("body").on("contextmenu",function(e){
+        return false;
+    });
+    $(document).keydown(function(event){
+        if (event.keyCode == 123 || (event.ctrlKey && event.keyCode == 85) || (event.ctrlKey && event.shiftKey && event.keyCode == 73 || event.keyCode == 116)) {
+                        return false;
+                } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                        return false; //Prevent from ctrl+shift+i
+                }
+    });
+}

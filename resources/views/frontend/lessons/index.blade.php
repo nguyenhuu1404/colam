@@ -261,6 +261,11 @@
 @push('scripts')
 
 <script>
+$(document).ready(function () {
+    $('html, body').animate({
+        scrollTop: $("div.title-content-lesson").offset().top
+    }, 1000);
+});
     $('.cat-item a').click(function(){
     $(this).parent().toggleClass('opened');
 })

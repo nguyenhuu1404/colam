@@ -75,7 +75,9 @@
                     <div class="body-content-lesson">
                         <div class="row">
                             <div class="col-xl-12 p-0">
+                                @if($course['youtube'])
                                 <iframe class="iframe" height="450" src="https://www.youtube.com/embed/{{getYoutubeId($course['youtube'])}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                @endif
 
                                 <div class="description-body-content-lesson">
                                     {!!$course['info']!!}
@@ -218,10 +220,17 @@
                                                                         <div class="number-video"></div>
                                                                         Số video: {{$other['video_number']}}
                                                                     </div>
+                                                                    @if($other['lock'] == 1)
+                                                                    <div class="group-btn-item-class">
+                                                                        <button onclick="lockMessage()" class="btn transition btn-more mr-2">CHI TIẾT</button>
+                                                                        <button onclick="lockMessage()" class="btn transition btn-buy">MUA KHÓA HỌC</button>
+                                                                    </div>
+                                                                    @else
                                                                     <div class="group-btn-item-class">
                                                                         <a href="/khoa-hoc/{{$other['id']}}-{{$other['slug']}}" class="btn transition btn-more mr-2">CHI TIẾT</a>
                                                                         <a href="/thanh-toan/{{$other['id']}}-{{$other['slug']}}" class="btn transition btn-buy">MUA KHÓA HỌC</a>
                                                                     </div>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>

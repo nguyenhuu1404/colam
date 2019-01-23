@@ -22,6 +22,9 @@ class LessonController extends Controller
         $data['course'] = $course;
         $data['lessons'] = buildTree($lessons);
         $curentLesson = Lesson::where('id', $lessonId)->first()->toArray();
+        $ormLesson = Lesson::find($lessonId);
+        $ormLesson->view = $curentLesson['view'] + 1;
+        $ormLesson->save();
         $data['curentLesson'] = $curentLesson;
         $data['tests'] = Lesson::find($lessonId)->tests()->get();
         $data['ads'] = Ad::where('status', 1)->where('page', 'lesson')->orderBy('id', 'desc')->get();
@@ -35,6 +38,8 @@ class LessonController extends Controller
                 if($this->checkPayment($userId, $courseId)){
                     $data['isBuy'] = true;
                 }
+            }else{
+                $data['isBuy'] = false;
             }
             return view('frontend.lessons.trial', $data);
         }else{

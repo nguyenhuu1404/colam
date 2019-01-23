@@ -28,10 +28,17 @@
                         <div class="number-video"></div>
                         Số video:  {{$package['video_number']}}
                     </div>
+                    @if($package['lock'] == 1)
+                    <div class="group-btn-item-class">
+                        <button onclick="lockMessage()" class="btn transition btn-more mr-2">CHI TIẾT</button>
+                        <button onclick="lockMessage()" class="btn transition btn-buy">MUA KHÓA HỌC</button>
+                    </div>
+                    @else
                     <div class="group-btn-item-class">
                         <a href="/khoa-hoc/package/{{$package['id']}}-{{$package['slug']}}" class="btn btn-more mr-2">CHI TIẾT</a>
                         <a href="/thanh-toan/package/{{$package['id']}}-{{$package['slug']}}" class="btn btn-buy">MUA KHÓA HỌC</a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
