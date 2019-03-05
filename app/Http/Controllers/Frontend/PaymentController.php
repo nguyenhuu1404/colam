@@ -143,7 +143,6 @@ class PaymentController extends Controller
 
     }
     public function successCourse(Request $request, $courseId){
-        //dd($courseId);
         $course = Course::where('id', $courseId)->get()->first();
 
         $price = $course['price'];
@@ -224,8 +223,8 @@ class PaymentController extends Controller
             $data['message'] = 'Thanh toán thành công! tài khoản của bạn đã được kích hoạt!';
             return  view('frontend.payment.thank', $data);
         }else if($order['payment_method'] == 'CK'){
-            $data['message'] = 'Mã đơn hàng của quý khách là <b>#'.$order->id.'</b>
-            <p>Quý khách vui lòng đến ngân hàng hoặc sử dụng internet banking để chuyển khoản cho chúng tôi theo 1 trong 2 tài khoản dưới đây. Khi nhận được tiền chúng tôi sẽ ngay lập tức kích hoạt tài khoản cho bạn.</p>
+            $data['message'] = 'Mã đơn hàng của quý khách là <b>'.$order->id.'</b>
+            <p>Quý khách vui lòng đến ngân hàng hoặc sử dụng internet banking để chuyển khoản cho chúng tôi theo 1 trong các tài khoản dưới đây. Khi nhận được tiền chúng tôi sẽ ngay lập tức kích hoạt tài khoản cho bạn.</p>
             <p>'.setting('site.bankinfo');
             return  view('frontend.payment.thank', $data);
         }
@@ -239,8 +238,8 @@ class PaymentController extends Controller
             $data['message'] = 'Tài khoản của bạn được gia hạn thành công!';
             return  view('frontend.payment.thank', $data);
         }else if($order['payment_method'] == 'CK'){
-            $data['message'] = 'Mã đơn hàng của quý khách là <b>#'.$order->id.'</b>
-            <p>Quý khách vui lòng đến ngân hàng hoặc sử dụng internet banking để chuyển khoản cho chúng tôi theo 1 trong 2 tài khoản dưới đây. Khi nhận được tiền chúng tôi sẽ ngay lập tức kích hoạt tài khoản cho bạn.</p>
+            $data['message'] = 'Mã đơn hàng của quý khách là <b>'.$order->id.'</b>
+            <p>Quý khách vui lòng đến ngân hàng hoặc sử dụng internet banking để chuyển khoản cho chúng tôi theo 1 trong các tài khoản dưới đây. Khi nhận được tiền chúng tôi sẽ ngay lập tức kích hoạt tài khoản cho bạn.</p>
             <p>'.setting('site.bankinfo');
             return  view('frontend.payment.thank', $data);
         }

@@ -5,7 +5,10 @@
     $testAudio = $testAudio[0]->download_link;
     $testAudio = str_replace('\\', '/', $testAudio);
 ?>
-<span class="btn volume fa fa-volume-up" onclick="read_question(this, '{{Storage::url($testAudio)}}');"></span>
+<audio controls>
+    <source src="{{Storage::url($testAudio)}}" type="audio/mpeg">
+</audio>
+<!--span class="btn volume fa fa-volume-up" onclick="read_question(this, '{{Storage::url($testAudio)}}');"></span-->
 @endif
 {!!$test['content']!!}
 </div>
@@ -23,7 +26,10 @@
                             $audio = $audio[0]->download_link;
                             $audio = str_replace('\\', '/', $audio);
                         ?>
-                        <span id="sound-{{$value['id']}}" class="btn volume fa fa-volume-up" onclick="read_question(this, '{{Storage::url($audio)}}');"></span>
+                        <audio class="audio" controls>
+                        <source src="{{Storage::url($audio)}}" type="audio/mpeg">
+                        </audio>
+                        <!--span id="sound-{{$value['id']}}" class="btn volume fa fa-volume-up" onclick="read_question(this, '{{Storage::url($audio)}}');"></span-->
                         @endif
                     </div>
 
@@ -76,7 +82,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <b>Bạn làm đúng:</b> <span id="ketqua"></span>
+                    <b>Bạn làm đúng:</b> <span id="ketqua">0 câu</span>
                 </div>
 
             </div>
@@ -84,14 +90,14 @@
     </div>
     <div class="full mb-3 text-center">
 
-        <button id="finish-choice" class="btn btn-warning" name="finish-choice" onclick="finish_choice({{count($questions)}});" type="button">
-           Xem đáp án
+        <button id="finish-primary" class="btn btn-warning" name="finish-choice" onclick="finish_choice({{count($questions)}});" type="button">
+        Xem kết quả
         </button>
         <button onclick="getTest(this, {{$courseId}}, {{$lessonId}}, {{$testId}})" type="button" class="btn btn-primary">
             Làm lại
         </button>
-        <button id="xemketqua" type="button" class="btn btn-primary hidden" data-toggle="modal" data-target="#showketqua">
-            Xem kết quả
+        <button onclick="showAnswer();" type="button" class="btn btn-primary" >
+            Xem đáp án
         </button>
 
     </div>

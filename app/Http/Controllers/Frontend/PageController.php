@@ -9,7 +9,7 @@ use TCG\Voyager\Models\Page;
 class PageController extends Controller
 {
     public function index($slug){
-        $page = Page::where(['slug' => $slug, 'status' => 'ACTIVE'])->get()->first()->toArray();
+        $page = Page::where(['slug' => $slug, 'status' => 1])->get()->first()->toArray();
         $data['page'] = $page;
         $data['title'] = $page['title'];
         $data['description'] = $page['meta_description'];

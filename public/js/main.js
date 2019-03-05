@@ -4,7 +4,7 @@ $(document).ready(function(){
         $('body').toggleClass('show');
         $(this).find('i').toggleClass('fa-times');
     });
-
+    $("#menu-mobile").mmenu();
 
 })
 

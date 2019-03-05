@@ -18,7 +18,7 @@
     </section>
     <section class="contact-box SFD mb-5 w-100">
         <div class="container">
-            <form id="payment" name="NLpayBank" action="/payment/paymentCourse" method="post">
+            <form id="payment" name="NLpayBank" action="/payment/paymentPackage" method="post">
             @csrf
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -77,7 +77,22 @@
                                           </td>
                                        </tr>
 
+                                       <tr>
+                                          <td class="user-form-item">Địa chỉ</td>
+                                          <td class="user-form-item">
+                                          <span id="textAddress" class="empty-info">{{$user['address'] ? $user['address'] : 'Chưa có thông tin' }}</span>
 
+                                          <input id="address" type="hidden" name="address" value="{{ $user['address']}}" />
+                                          <span id="inputAddress" class="hidden">
+                                            <input value="{{$user['address']}}" type="text" id="addAddress" name="addAddress" />
+                                            <span onclick="addAddress();" class="btn btn-sm btn-warning">Lưu lại</span>
+                                            <span onclick="showAddress();" class="btn btn-sm btn-danger">Hủy bỏ</span>
+                                          </span>
+
+                                          <span onclick="showAddress();" class="float-right badge badge-warning pointer">Chỉnh sửa</span>
+                                          <p id="errorAddress" class="hidden alert alert-danger">Địa chỉ không được để trống!</p>
+                                          </td>
+                                       </tr>
                                     </tbody>
                                  </table>
                                 <div onclick="showPay()" class="btn btn-primary">Tiếp tục</div>
@@ -314,26 +329,26 @@
                            <div class="payment-heading"><span>Thông tin đơn hàng</span></div>
                            <div class="payment-sb">
                               <div class="title-body-item-class">
-                                {{$course['name']}}
+                                {{$package['name']}}
                                   <span class="tuition">học phí: <b>
-                                  {{ $course['price_sale'] ? priceFormat($course['price_sale']) : priceFormat($course['price'])}} đ
+                                  {{ $package['price_sale'] ? priceFormat($package['price_sale']) : priceFormat($package['price'])}} đ
                                   </b></span>
                               </div>
                               <div class="content-item-class">
                                   <div class="info-item-class">
                                       <div class="duration">L</div>
-                                      Thời gian học: {{$course['time']}} tháng
+                                      Thời gian học: {{$package['time']}} tháng
                                   </div>
                                   <div class="info-item-class">
                                       <div class="number-video"></div>
-                                      Số video: {{$course['video_number']}}
+                                      Số video: {{$package['video_number']}}
                                   </div>
                               </div>
                            </div>
                            <hr>
-                           <h4 class="total-payment">Tổng tiền  <span> {{ $course['price_sale'] ? priceFormat($course['price_sale']) : priceFormat($course['price'])}} ₫</span></h4>
-                           <input type="hidden" name="total_amount" value="{{ $course['price_sale'] ? $course['price_sale'] : $course['price']}}" />
-                           <input type="hidden" name="product_name" value="{{ $course['name']}}" />
+                           <h4 class="total-payment">Tổng tiền  <span> {{ $package['price_sale'] ? priceFormat($package['price_sale']) : priceFormat($package['price'])}} ₫</span></h4>
+                           <input type="hidden" name="total_amount" value="{{ $package['price_sale'] ? $package['price_sale'] : $package['price']}}" />
+                           <input type="hidden" name="product_name" value="{{ $package['name']}}" />
 
                         </div>
                      </div>
@@ -344,11 +359,10 @@
             @if(isset($more))
             <input type="hidden" name="more" value="{{ $more }}" />
             @endif
-            <input id="address" type="hidden" name="address" value="Ha Noi" />
             <input type="hidden" name="user_id" value="{{ Auth::id() }}" />
-            <input type="hidden" name="course_id" value="{{ $course['id']}}" />
-            <input type="hidden" name="course_url" value="{{ $course['slug']}}" />
-            <input type="hidden" name="return_url" value="{{url('/')}}/payment/successCourse/{{$course['id']}}" />
+            <input type="hidden" name="package_id" value="{{ $package['id']}}" />
+            <input type="hidden" name="package_url" value="{{ $package['slug']}}" />
+            <input type="hidden" name="return_url" value="{{url('/')}}/payment/successPackage/{{$package['id']}}" />
             <input id="choicePay" onclick="chociePay()" type="button" name="nlpayment" class="btn hidden btn-warning" value="thanh toán"/>
         </form>
         </div>
@@ -366,7 +380,28 @@
         $('#errorPhone').hide();
         $('#errorAddress').hide();
     }
+    function showAddress(){
+        $('#inputAddress').toggle();
+        $('#textAddress').toggle();
+        $('#errorPhone').hide();
+        $('#errorAddress').hide();
+    }
+    function addAddress(){
+        var address = $('#addAddress').val();
+        if(address != ''){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                method: "POST",
+                url: "{{ route('api.payment.updateAddress') }}",
+                data: {_token: CSRF_TOKEN, address: address}
+            }).done(function( data ) {
+                location.reload();
+            });
+        }else{
+            $('#errorAddress').show();
 
+        }
+    }
     function addPhone(){
         var phone = $('#phone').val();
         if(phone != ''){
@@ -376,7 +411,7 @@
                 url: "{{ route('api.payment.updatePhone') }}",
                 data: {_token: CSRF_TOKEN, phone: phone}
             }).done(function( data ) {
-                window.location.reload(true);
+                location.reload();
             });
         }else{
             $('#errorPhone').show();
@@ -385,12 +420,16 @@
     }
     function showPay(){
         var phone = $('#mobile').val();
-
+        var address = $('#address').val();
         if(!phone){
             $('#errorPhone').show();
             return false;
+        }else if(!address){
+            $('#errorAddress').show();
+            return false;
         }else{
             $('#errorPhone').hide();
+            $('#errorAddress').hide();
             $('#thanhtoan').show();
             $('#choicePay').show();
         }

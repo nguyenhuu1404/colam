@@ -5,12 +5,14 @@
             @foreach ($banners as $banner)
                 <div>
                     <img src="{{ Storage::url($banner['image']) }}">
+                    @if($banner['text_button'])
                     <div class="title-description">
                         <div class="container">
                             <h2 class="title-slider">{{ $banner['title'] }}</h2>
                             <a href="" class="btn-slider ml-3">{{ $banner['text_button']}}</a>
                         </div>
                     </div>
+                    @endif
                 </div>
             @endforeach
 
@@ -406,7 +408,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-6 text-right">
-							<img src="/images/img-iu.png">
+							<img class="w-100" src="/images/lam.png">
 						</div>
 						<div class="col-xl-6">
 							<div class="title-comment">FANPAGE</div>

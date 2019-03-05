@@ -77,22 +77,7 @@
                                           </td>
                                        </tr>
 
-                                       <tr>
-                                          <td class="user-form-item">Địa chỉ</td>
-                                          <td class="user-form-item">
-                                          <span id="textAddress" class="empty-info">{{$user['address'] ? $user['address'] : 'Chưa có thông tin' }}</span>
 
-                                          <input id="address" type="hidden" name="address" value="{{ $user['address']}}" />
-                                          <span id="inputAddress" class="hidden">
-                                            <input value="{{$user['address']}}" type="text" id="addAddress" name="addAddress" />
-                                            <span onclick="addAddress();" class="btn btn-sm btn-warning">Lưu lại</span>
-                                            <span onclick="showAddress();" class="btn btn-sm btn-danger">Hủy bỏ</span>
-                                          </span>
-
-                                          <span onclick="showAddress();" class="float-right badge badge-warning pointer">Chỉnh sửa</span>
-                                          <p id="errorAddress" class="hidden alert alert-danger">Địa chỉ không được để trống!</p>
-                                          </td>
-                                       </tr>
                                     </tbody>
                                  </table>
                                 <div onclick="showPay()" class="btn btn-primary">Tiếp tục</div>
@@ -359,6 +344,7 @@
             @if(isset($more))
             <input type="hidden" name="more" value="{{ $more }}" />
             @endif
+            <input id="address" type="hidden" name="address" value="Ha Noi" />
             <input type="hidden" name="user_id" value="{{ Auth::id() }}" />
             <input type="hidden" name="package_id" value="{{ $package['id']}}" />
             <input type="hidden" name="package_url" value="{{ $package['slug']}}" />
@@ -380,28 +366,7 @@
         $('#errorPhone').hide();
         $('#errorAddress').hide();
     }
-    function showAddress(){
-        $('#inputAddress').toggle();
-        $('#textAddress').toggle();
-        $('#errorPhone').hide();
-        $('#errorAddress').hide();
-    }
-    function addAddress(){
-        var address = $('#addAddress').val();
-        if(address != ''){
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                method: "POST",
-                url: "{{ route('api.payment.updateAddress') }}",
-                data: {_token: CSRF_TOKEN, address: address}
-            }).done(function( data ) {
-                location.reload();
-            });
-        }else{
-            $('#errorAddress').show();
 
-        }
-    }
     function addPhone(){
         var phone = $('#phone').val();
         if(phone != ''){
@@ -411,7 +376,7 @@
                 url: "{{ route('api.payment.updatePhone') }}",
                 data: {_token: CSRF_TOKEN, phone: phone}
             }).done(function( data ) {
-                location.reload();
+                window.location.reload(true);
             });
         }else{
             $('#errorPhone').show();
@@ -420,16 +385,12 @@
     }
     function showPay(){
         var phone = $('#mobile').val();
-        var address = $('#address').val();
+
         if(!phone){
             $('#errorPhone').show();
             return false;
-        }else if(!address){
-            $('#errorAddress').show();
-            return false;
         }else{
             $('#errorPhone').hide();
-            $('#errorAddress').hide();
             $('#thanhtoan').show();
             $('#choicePay').show();
         }
