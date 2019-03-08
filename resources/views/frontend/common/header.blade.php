@@ -3,18 +3,18 @@
 					<nav class="navbar navbar-expand-lg navbar-light">
 						<a class="navbar-brand" href="/">
 							<img src="{{ Storage::url(setting('site.logo')) }}" alt="logo">
-						</a>                        
+						</a>
 						<button class="navbar-toggler collapsed " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 							<i class="fa fa-bars"></i>
 						</button>
-                        
+
 						<div class="collapse navbar-collapse " id="navbarSupportedContent">
 							<ul class="navbar-nav ml-auto" id="andy">
 								<?php
 								echo menu('topmenu', 'topmenu');
 								?>
 
-								<li class="nav-item d-flex align-items-center">
+								<li-- class="nav-item d-flex align-items-center">
 									<div class="search-nav">
 										<!-- <button type="button" class="btn-search toggle-search"><i class="fa fa-search"></i></button>
 										<div class="form-search">
@@ -43,8 +43,8 @@
 										<!--div class="notification-user">2</div-->
 										<ul class="nav-toogle">
 											<li><a href="/khoa-hoc-cua-toi">Khóa học của tôi <i class="fa fa-file-text-o"></i></a></li>
-											<!--li><a href="/doi-mat-khau">Đổi mật khẩu <i class="fa fa-lock"></i></a></li>
-											<!--li><a href="/thong-bao">Thông báo (2) <i class="fa fa-exclamation-circle "></i></a></li-->
+											<!--li><a href="/doi-mat-khau">Đổi mật khẩu <i class="fa fa-lock"></i></a></li-->
+											<li><a href="/thong-bao">Thông báo <i class="fa fa-exclamation-circle "></i></a></li>
 
 											<li>
 											<a class="dropdown-item" href="{{route('frontend.logout') }}"

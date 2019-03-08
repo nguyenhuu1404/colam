@@ -90,7 +90,7 @@
     </div>
     <div class="full mb-3 text-center">
 
-        <button id="finish-primary" class="btn btn-warning" name="finish-choice" onclick="finish_choice({{count($questions)}});" type="button">
+        <button id="finish-primary" class="btn btn-primary" name="finish-choice" onclick="finish_choice({{count($questions)}});" type="button">
         Xem kết quả
         </button>
         <button onclick="getTest(this, {{$courseId}}, {{$lessonId}}, {{$testId}})" type="button" class="btn btn-primary">

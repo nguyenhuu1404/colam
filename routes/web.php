@@ -24,6 +24,9 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend'], function() {
         Route::get('/login/google', 'Auth\LoginController@redirectToProviderGoogle');
         Route::get('/login/google/callback', 'Auth\LoginController@handleProviderCallbackGoogle');
 
+        Route::get('/thong-bao', 'MessageController@index');
+        Route::get('/thong-bao/{id}-{slug}', 'MessageController@detail')->where(['id' => '[0-9]+']);;
+
         Route::get('/khoa-hoc', 'PackageController@index');
         Route::get('/khoa-hoc/don', 'PackageController@course');
         Route::get('/khoa-hoc/combo', 'PackageController@coursecombo');
