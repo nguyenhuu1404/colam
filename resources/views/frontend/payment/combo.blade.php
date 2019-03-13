@@ -36,10 +36,22 @@
                   <div class="row">
                      <div class="col-sm-8 col-md-9 ">
 
+                        <div class="alert alert-primary" >
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" placeholder="Mã giảm giá" class="form-control" name="txtsale" value="{{ old('txtsale') }}" id="txtsale"/>
+                                </div>
+                                <div class="col">
+                                    <a onclick="checkGiftCombo({{$package['id']}})" class="btn btn-warning" href="javascript:void(0);" >Xác nhận</a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="step-1-container bg_f8f8f8 my-4 ">
                            <div class="customer-info-container">
                               <div class=" payment-heading"><span>Thông tin khách hàng</span>
                               </div>
+
                               <div class=" customer-info-table py-4 px-4">
                                  <p style="font-size: 14px; margin-bottom: 25px;">(<span style="color: rgb(231, 76, 60);">*</span>) Thông tin bắt buộc</p>
                                  <!---->
@@ -316,7 +328,7 @@
                               <div class="title-body-item-class">
                                 {{$package['name']}}
                                   <span class="tuition">học phí: <b>
-                                  {{ $package['price_sale'] ? priceFormat($package['price_sale']) : priceFormat($package['price'])}} đ
+                                  {{ priceFormat($price)}} đ
                                   </b></span>
                               </div>
                               <div class="content-item-class">
@@ -331,8 +343,8 @@
                               </div>
                            </div>
                            <hr>
-                           <h4 class="total-payment">Tổng tiền  <span> {{ $package['price_sale'] ? priceFormat($package['price_sale']) : priceFormat($package['price'])}} ₫</span></h4>
-                           <input type="hidden" name="total_amount" value="{{ $package['price_sale'] ? $package['price_sale'] : $package['price']}}" />
+                           <h4 class="total-payment">Tổng tiền  <span> {{ priceFormat($price)}} ₫</span></h4>
+                           <input type="hidden" name="total_amount" value="{{ $price }}" />
                            <input type="hidden" name="product_name" value="{{ $package['name']}}" />
 
                         </div>
@@ -381,6 +393,28 @@
         }else{
             $('#errorPhone').show();
 
+        }
+    }
+    function checkGiftCombo(package_id){
+        var gift = $('#txtsale').val();
+        if(gift != ''){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                method: "POST",
+                url: "{{ route('api.payment.checkGiftCombo') }}",
+                data: {_token: CSRF_TOKEN, package_id: package_id, gift: gift}
+            }).done(function( data ) {
+                if(data == 1){
+                    window.location.reload(true);
+                }else{
+                    alert('Mã khuyến mại không hợp lệ.');
+                    return false;
+                }
+
+            });
+        }else{
+            alert('Bạn chưa nhập mã khuyến mại.');
+            return false;
         }
     }
     function showPay(){

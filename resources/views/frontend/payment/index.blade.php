@@ -42,7 +42,7 @@
                                 <input type="text" placeholder="Mã giảm giá" class="form-control" name="txtsale" value="{{ old('txtsale') }}" id="txtsale"/>
                             </div>
                             <div class="col">
-                                <a onclick="checkGift()" class="btn btn-warning" href="javascript:void(0);" >Xác nhận</a>
+                                <a onclick="checkGift({{$course['id']}})" class="btn btn-warning" href="javascript:void(0);" >Xác nhận</a>
                             </div>
                         </div>
                      </div>
@@ -394,14 +394,14 @@
 
         }
     }
-    function checkGift(){
+    function checkGift(course_id){
         var gift = $('#txtsale').val();
         if(gift != ''){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 method: "POST",
                 url: "{{ route('api.payment.checkGift') }}",
-                data: {_token: CSRF_TOKEN, gift: gift}
+                data: {_token: CSRF_TOKEN, course_id: course_id, gift: gift}
             }).done(function( data ) {
                 if(data == 1){
                     window.location.reload(true);

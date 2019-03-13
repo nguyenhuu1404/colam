@@ -21,10 +21,25 @@ class PaymentController extends Controller
     public function checkGift(Request $request){
         if ($request->ajax()) {
             $gift = $request->input('gift');
-            $voucher =  DB::table('vouchers')->where('status', 1)->where('code', $gift)->count();
+            $courseId = $request->input('course_id');
+            $voucher =  DB::table('vouchers')->where('status', 1)->where('code', $gift)->where('course_id', $courseId)->count();
             if($voucher > 0){
-                $dataVoucher =  DB::table('vouchers')->where('status', 1)->where('code', $gift)->get()->first();
+                $dataVoucher =  DB::table('vouchers')->where('status', 1)->where('code', $gift)->where('course_id', $courseId)->get()->first();
                 $request->session()->flash('gift', $dataVoucher->price);
+                return 1;
+            }else{
+                return 2;
+            }
+        }
+    }
+    public function checkGiftCombo(Request $request){
+        if ($request->ajax()) {
+            $gift = $request->input('gift');
+            $packageId = $request->input('package_id');
+            $voucher =  DB::table('vouchers')->where('status', 1)->where('code', $gift)->where('package_id', $packageId)->count();
+            if($voucher > 0){
+                $dataVoucher =  DB::table('vouchers')->where('status', 1)->where('code', $gift)->where('package_id', $packageId)->get()->first();
+                $request->session()->flash('giftCombo', $dataVoucher->price);
                 return 1;
             }else{
                 return 2;
@@ -268,11 +283,20 @@ class PaymentController extends Controller
         }
     }
 
-    public function combo($packageId){
+    public function combo(Request $request, $packageId){
         $data['title'] = 'Thanh toán';
         $data['description'] = 'Thanh toán';
         $package = Package::where('id', $packageId)->get()->first();
         $data['package'] = $package;
+        $gift = $request->session()->get('giftCombo');
+        $price = $package['price'];
+        if($package['price_sale']){
+            $price = $package['price_sale'];
+        }
+        if($gift){
+            $price = $price - $gift;
+        }
+        $data['price'] = $price;
         $data['url']='/thanh-toan/package/'.$packageId.'-'.$package->slug;
         if (Auth::check()) {
             $user = Auth::user();

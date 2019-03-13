@@ -19,4 +19,7 @@ class Course extends Model
     function packages(){
         return $this->belongsToMany('App\Package', 'course_package', 'package_id', 'course_id');
     }
+    public function vouchers() {
+        return $this->hasMany('App\Voucher', 'course_id', 'id');
+    }
 }

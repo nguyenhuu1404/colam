@@ -74,6 +74,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'Frontend'], fun
     Route::post('/test/getTests', 'TestController@index')->name('test.index');
     Route::post('/payment/updatePhone', 'PaymentController@updatePhone')->name('payment.updatePhone');
     Route::post('/payment/checkGift', 'PaymentController@checkGift')->name('payment.checkGift');
+    Route::post('/payment/checkGiftCombo', 'PaymentController@checkGiftCombo')->name('payment.checkGiftCombo');
     Route::post('/payment/updateAddress', 'PaymentController@updateAddress')->name('payment.updateAddress');
 
 });
