@@ -91,26 +91,26 @@
                             @if($curentLesson['trial'] == 1)
                                 @if($curentLesson['youtube'])
                                 <iframe class="iframe" src="https://www.youtube.com/embed/{{getYoutubeId($curentLesson['youtube'])}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                @else
+                                    @if($curentLesson['video'])
+                                    <link href="{{ asset('css/video-js.css') }}" rel="stylesheet">
+
+                                    <script src="{{ asset('js/video.js') }}"></script>
+                                    <script src="{{ asset('js/videojs-hlsjs-plugin.js') }}"></script>
+                                    <script src="/videojs-quality-picker/dist/vjs-quality-picker.js"></script>
+
+                                    <video  id="my-video" class="video-js iframe w-100" controls preload="auto" autoplay>
+                                    <source src="/hls-{{$curentLesson['video']}}-{{$curentLesson['video']}}.mp4-<?php echo ($t = time())?>-<?php $video = $curentLesson['video']; echo md5("tk.$t.$video.$video.mp4")?>-playlist.m3u8">
+                                    <p class="vjs-no-js">
+                                        To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                                    </p>
+                                    </video>
+                                    <script>
+                                    videojs('my-video').qualityPickerPlugin();
+                                    </script>
+                                    @endif
                                 @endif
-                            @else
-                            @if($curentLesson['video'])
-                                <link href="{{ asset('css/video-js.css') }}" rel="stylesheet">
-
-                                <script src="{{ asset('js/video.js') }}"></script>
-                                <script src="{{ asset('js/videojs-hlsjs-plugin.js') }}"></script>
-                                <script src="/videojs-quality-picker/dist/vjs-quality-picker.js"></script>
-
-                                <video  id="my-video" class="video-js iframe w-100" controls preload="auto" autoplay>
-                                <source src="/hls-{{$curentLesson['video']}}-{{$curentLesson['video']}}.mp4-<?php echo ($t = time())?>-<?php $video = $curentLesson['video']; echo md5("tk.$t.$video.$video.mp4")?>-playlist.m3u8">
-                                <p class="vjs-no-js">
-                                    To view this video please enable JavaScript, and consider upgrading to a web browser that
-                                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                                </p>
-                                </video>
-                                <script>
-                                videojs('my-video').qualityPickerPlugin();
-                                </script>
-                            @endif
                             @endif
                             @if($curentLesson['content'])
                             <div class="mt-3">

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
    <!--  <link rel="stylesheet" href="{{ asset('css/jquery.mmenu.all.css') }}"> -->
     @yield('styles')
+
 </head>
 <body>
 <!-- <div id="andy"> -->
@@ -33,10 +34,11 @@
 		</div>
 	</div>
 <!-- </div> --> <!-- end #andy -->
-	<script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/slick.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+
    <!--  <script src="{{ asset('js/jquery.mmenu.all.min.js') }}"></script> -->
 	<script>
 		function register(){

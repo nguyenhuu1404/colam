@@ -1,13 +1,3 @@
-
-$(document).ready(function(){
-    $('.js-toggle-search').click(function(){
-        $('body').toggleClass('show');
-        $(this).find('i').toggleClass('fa-times');
-    });
-    $("#menu-mobile").mmenu();
-
-})
-
 var question_audios = {};
 var current_sound = null;
 var current_sound_url = null;
@@ -43,18 +33,80 @@ function lockMessage(){
     alert(message);
 }
 
-if(1){
-    $('body').bind('cut copy paste', function (e) {
+$(document).ready(function(){
+    $('.js-toggle-search').click(function(){
+        $('body').toggleClass('show');
+        $(this).find('i').toggleClass('fa-times');
+    });
+
+    //xu ly mainmenu
+    var ww = document.body.clientWidth;
+    if(ww < 600){
+
+        $('ul#andy').toggleClass('ccodon');
+        var menuList = $(".ccodon").find("li.hasmenu");
+        menuList.find("ul").hide();
+        menuList.on("click", function(e){
+        var childUl = $(this).find("ul");
+        if (childUl.length < 1 || childUl.is(':visible')) {
+            return;
+        }
         e.preventDefault();
-    });
-    $("body").on("contextmenu",function(e){
-        return false;
-    });
-    $(document).keydown(function(event){
-        if (event.keyCode == 123 || (event.ctrlKey && event.keyCode == 85) || (event.ctrlKey && event.shiftKey && event.keyCode == 73 || event.keyCode == 116)) {
-                        return false;
-                } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
-                        return false; //Prevent from ctrl+shift+i
-                }
-    });
-}
+        menuList.removeClass("active");
+        menuList.find("ul").slideUp(400);
+        childUl.slideDown(400);
+        $(this).addClass("active");
+        });
+
+    }
+
+    function detectmob() {
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var t = {
+        delay: 125,
+        overlay: $(".fb-overlay"),
+        widget: $(".fb-widget"),
+        button: $(".fb-button")
+    };
+    setTimeout(function() {
+        $("div.fb-livechat").fadeIn()
+    }, 8 * t.delay);
+    if (!detectmob()) {
+        $(".ctrlq").on("click", function(e) {
+            e.preventDefault(), t.overlay.is(":visible") ? (t.overlay.fadeOut(t.delay), t.widget.stop().animate({
+                bottom: 0,
+                opacity: 0
+            }, 2 * t.delay, function() {
+                $(this).hide("slow"), t.button.show()
+            })) : t.button.fadeOut("medium", function() {
+                t.widget.stop().show().animate({
+                    bottom: "30px",
+                    opacity: 1
+                }, 2 * t.delay), t.overlay.fadeIn(t.delay)
+            })
+        })
+    }
+
+
+    if(0){
+        $('body').bind('cut copy paste', function (e) {
+            e.preventDefault();
+        });
+        $("body").on("contextmenu",function(e){
+            return false;
+        });
+        $(document).keydown(function(event){
+            if (event.keyCode == 123 || (event.ctrlKey && event.keyCode == 85) || (event.ctrlKey && event.shiftKey && event.keyCode == 73 || event.keyCode == 116)) {
+                            return false;
+                    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+                            return false; //Prevent from ctrl+shift+i
+                    }
+        });
+    }
+
+});

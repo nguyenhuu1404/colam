@@ -36,6 +36,17 @@
                   <div class="row">
                      <div class="col-sm-8 col-md-9 ">
 
+                     <div class="alert alert-primary" >
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" placeholder="Mã giảm giá" class="form-control" name="txtsale" value="{{ old('txtsale') }}" id="txtsale"/>
+                            </div>
+                            <div class="col">
+                                <a onclick="checkGift()" class="btn btn-warning" href="javascript:void(0);" >Xác nhận</a>
+                            </div>
+                        </div>
+                     </div>
+
                         <div class="step-1-container bg_f8f8f8 my-4 ">
                            <div class="customer-info-container">
                               <div class=" payment-heading"><span>Thông tin khách hàng</span>
@@ -316,7 +327,7 @@
                               <div class="title-body-item-class">
                                 {{$course['name']}}
                                   <span class="tuition">học phí: <b>
-                                  {{ $course['price_sale'] ? priceFormat($course['price_sale']) : priceFormat($course['price'])}} đ
+                                  {{ priceFormat($price)}} đ
                                   </b></span>
                               </div>
                               <div class="content-item-class">
@@ -331,8 +342,8 @@
                               </div>
                            </div>
                            <hr>
-                           <h4 class="total-payment">Tổng tiền  <span> {{ $course['price_sale'] ? priceFormat($course['price_sale']) : priceFormat($course['price'])}} ₫</span></h4>
-                           <input type="hidden" name="total_amount" value="{{ $course['price_sale'] ? $course['price_sale'] : $course['price']}}" />
+                           <h4 class="total-payment">Tổng tiền  <span> {{ priceFormat($price)}} ₫</span></h4>
+                           <input type="hidden" name="total_amount" value="{{ $price}}" />
                            <input type="hidden" name="product_name" value="{{ $course['name']}}" />
 
                         </div>
@@ -381,6 +392,28 @@
         }else{
             $('#errorPhone').show();
 
+        }
+    }
+    function checkGift(){
+        var gift = $('#txtsale').val();
+        if(gift != ''){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                method: "POST",
+                url: "{{ route('api.payment.checkGift') }}",
+                data: {_token: CSRF_TOKEN, gift: gift}
+            }).done(function( data ) {
+                if(data == 1){
+                    window.location.reload(true);
+                }else{
+                    alert('Mã khuyến mại không hợp lệ.');
+                    return false;
+                }
+
+            });
+        }else{
+            alert('Bạn chưa nhập mã khuyến mại.');
+            return false;
         }
     }
     function showPay(){

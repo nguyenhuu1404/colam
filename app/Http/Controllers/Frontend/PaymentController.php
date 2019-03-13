@@ -15,8 +15,22 @@ use App\Package;
 use App\Course;
 use App\User;
 
+
 class PaymentController extends Controller
 {
+    public function checkGift(Request $request){
+        if ($request->ajax()) {
+            $gift = $request->input('gift');
+            $voucher =  DB::table('vouchers')->where('status', 1)->where('code', $gift)->count();
+            if($voucher > 0){
+                $dataVoucher =  DB::table('vouchers')->where('status', 1)->where('code', $gift)->get()->first();
+                $request->session()->flash('gift', $dataVoucher->price);
+                return 1;
+            }else{
+                return 2;
+            }
+        }
+    }
     public function updatePhone(Request $request){
         if ($request->ajax()) {
             $phone = $request->input('phone');
@@ -33,11 +47,20 @@ class PaymentController extends Controller
             $user->save();
         }
     }
-    public function course($courseId){
+    public function course(Request $request, $courseId){
         $data['title'] = 'Thanh toán';
         $data['description'] = 'Thanh toán';
         $course = Course::where('id', $courseId)->get()->first();
         $data['course'] = $course;
+        $gift = $request->session()->get('gift');
+        $price = $course['price'];
+        if($course['price_sale']){
+            $price = $course['price_sale'];
+        }
+        if($gift){
+            $price = $price - $gift;
+        }
+        $data['price'] = $price;
         $data['url']='/thanh-toan/'.$courseId.'-'.$course->slug;
         if (Auth::check()) {
             $user = Auth::user();
